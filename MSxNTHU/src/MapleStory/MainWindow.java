@@ -7,8 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
-public class MainWindow extends JFrame
-{
+public class MainWindow extends JFrame {
 	
 	/*private slots:
 	    void handleButton();
@@ -21,10 +20,12 @@ public class MainWindow extends JFrame
 	    void green_mode();*/
 	//private ModForGame gameMod;
 	//private Menu *menu;
+	
+	private KeyControl keyControl;
 
 	private MapWithObsticle map;
 	private DisplayPanel display;
-	//private Beginner *role;
+	private Beginner role;
 
 	    /*enum Monster{pig,green};
 	    Monster which;
@@ -61,18 +62,21 @@ public class MainWindow extends JFrame
 			javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤J¹ÏÀÉ¿ù»~");
 		}
 	    this.setTitle("MapleStory");
-	    //this.setUndecorated(true); //no border
+	    this.setUndecorated(true); //no border
 	    this.setExtendedState(JFrame.MAXIMIZED_BOTH); //full screen
 	    //this.setResizable(false);
 	    //this.pack();
 	    //this.setex
 	    
 	    display = new DisplayPanel();
-	    display.setBounds(0, 0, this.getWidth(), this.getHeight());
+	    
 	    
 	    this.add(display);
+	    keyControl = new KeyControl();
+	    this.addKeyListener(keyControl);
 	    this.setVisible(true);
-	
+	    display.setBounds(0, 0, this.getWidth(), this.getHeight());
+	System.out.println("ass " + this.getWidth() + " "+ this.getHeight());
 	    //which = pig;
 	
 	    /*play_bgm = true;
@@ -109,12 +113,12 @@ public class MainWindow extends JFrame
 
 	    map = new MapWithObsticle(this);
 	    display.setMap(map);
-	    display.repaint();
 	    //map->show();
 	    //connect(Timer,SIGNAL(timeout()),map,SLOT(update()));
 
-	    /*role = new Beginner(map ,this);
-	    role->show();
+	    role = new Beginner(this, display, map);
+	    display.setCharacter(role);
+	    /*role->show();
 	    connect(Timer,SIGNAL(timeout()),role,SLOT(update()));
 	    connect(Timer,SIGNAL(timeout()),role,SLOT(RoleAction()));
 	    connect(role,SIGNAL(dead(int)),this,SLOT(deadinfor(int)));*/
@@ -184,6 +188,7 @@ public class MainWindow extends JFrame
 	    connect(Timer,SIGNAL(timeout()),this,SLOT (keyaction()));
 
 	    connect(Timer,SIGNAL(timeout()),this,SLOT (update()));*/
+	    //display.repaint();
 	}
 	    /*void pick();
 	    void createmonster();
@@ -197,7 +202,7 @@ public class MainWindow extends JFrame
 	    void keyReleaseEvent(QKeyEvent *);
 	    void mouseReleaseEvent(QMouseEvent *);*/
 
-
+	
 	public static void main(String[] args) {
 		new MainWindow();
 	}

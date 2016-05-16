@@ -2,8 +2,8 @@ package MapleStory;
 
 import java.util.Vector;
 
-public class MapWithObsticle 
-{
+public class MapWithObsticle {
+	
 	private MainWindow parent;
 	private int size_x, size_y, screen_size_x, screen_size_y;
 	private int shift_x, shift_y, over_shift_x, over_shift_y;

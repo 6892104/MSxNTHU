@@ -1,8 +1,7 @@
 package MapleStory;
 
 public abstract class Role {
-	/*public:
-	    void paintEvent(QPaintEvent *);*/
+	
     protected int x,y;
     protected int width, height;
     protected int shift;
@@ -14,12 +13,12 @@ public abstract class Role {
     protected int move_range_right;
     protected int move_pace;
 
-    protected Direction dir;            // 0  Left  1  Right
+    protected int dir;            // 0  Left  1  Right
 	    /*enum{left=0,right=1};
 	    enum{up=0,down=1};*/
 
 	    //mode
-    protected double move_mod;
+    protected int move_mod;
     protected int jump_mod;
     protected int climb_mod;
     protected int be_hit;
@@ -29,21 +28,19 @@ public abstract class Role {
 
 
 
-
+    protected MainWindow parent;
+    protected DisplayPanel display;
     protected MapWithObsticle map;
     protected boolean human;
     
-	public int pic_num;
-	    /*QString std_pic[2];
-	    QString jump_pic[2];
-	    QString move_pic[2][10];
-	    QString climb_pic[2];*/
-	public int climb_pic_num;
-	    //QString be_hit_pic[2];
-	public int [] g;
+
+
+	protected int [] g;
 	  
-	public Role(MapWithObsticle _map){
-		map = _map;
+	public Role(MainWindow parent, DisplayPanel display,MapWithObsticle map){
+		this.parent = parent;
+		this.display = display;
+		this.map = map;
 	    x = 1000;
 	    y = map.getMax_y()/2;
 	    shift = 0;
@@ -53,7 +50,7 @@ public abstract class Role {
 	    move_range_right=map.getMax_x();
 
 
-	    dir=Direction.left;
+	    dir=0;
 	    jump_mod=0;
 	    move_mod=0;
 	    climb_mod=0;
@@ -67,26 +64,90 @@ public abstract class Role {
 	    hp=max_hp;
 	    exp=100;
 	    level=1;
-	    climb_pic_num=0;
+	    //climb_pic_num=0;
 
 	    g = new int[21];
 	    for(int i=2 ; i<23 ; i++){
 	        g[i-2]=(int)(i*i/4);
 	    }
 	}
-	/*private slots:
-	    void RoleAction();
-	    void Be_atk(int,int,int,int,int,int);
+
+	public void RoleAction(){
+		move(x-map.getShift_x() , y-map.getShift_y());
+	    AtkAction();
+	    if(able)
+	    {
+	        //climb
+	        if(climb_mod > 0)
+	        {
+	            if(climb_mod > 1){
+	            	// 0  up   1  down
+	                if(dir == 0){
+	                    if(human) map.change_shift_y( (-1)*move_pace );
+	                    y -= move_pace;
+	                }else if(dir == 1){
+	                    if(human) map.change_shift_y( move_pace );
+	                    y += move_pace;
+	                }
+	                climb_mod--;
+	            }
+
+	            return;
+	        }
+	    }
+	        //jump and fall
+	        if(jump_mod > 0)
+	        {
+	            if(human) map.change_shift_y( (-1)*g[jump_mod] );
+	            y -= g[jump_mod--];
+	        }else if(!map.standable(x+width()/2 , y+height()))
+	        {
+	            int amount = g[fall];
+	            for(int i=0 ; i<amount ; i++){
+	                if(human) map.change_shift_y(1);
+	                y++;
+	                if(map.standable(x+width()/2 , y+height())) break;
+	            }
+	            if(fall < 12) fall++;
+	        }else{
+	            fall=0;
+	        }
+
+	        //move
+	        if(move_mod > 0)
+	        {
+	            int move_dir=dir;
+	            if(be_hit > 0)
+	                move_dir=~dir;
+	            // 0  left   1  right
+	            if(move_dir == 0 && x-move_pace > move_range_left){
+	                if(human) map.change_shift_x( (-1)*move_pace );
+	                x-=move_pace;
+	            }else if(move_dir == 1 && x+move_pace+width() < move_range_right){
+	                if(human) map.change_shift_x( move_pace );
+	                x+=move_pace;
+	            }
+	            move_mod--;
+	        }
+
+	    if(be_hit > 0){
+	        be_hit--;
+	        if(be_hit == 0 && hp > 0)
+	            able=true;
+	    }
+	}
+	
+	    /*void Be_atk(int,int,int,int,int,int);
 	signals:
 	    void atk(int,int,int,int,int,int);
 	    void dead(int);
 	    void create_treasure(int,int,std::string);*/
-	protected void RoleMove(Direction direction){
+	protected void RoleMove(int direction){
 		dir = direction;
 	    if(move_mod<=0 && climb_mod <= 0 && able)
-	        move_mod = pic_num;
+	        move_mod = display.getCharacterPictureNumber();
 	}
-    /*protected void climb(int tmp){
+    protected void climb(int tmp){
     	if(able)
         {
             if(map.climbable(x+width()/2 , y+height()/2)){
@@ -105,7 +166,7 @@ public abstract class Role {
     	if(dead_time > 0){
             dead_time--;
             if(dead_time == 0){
-                dir=left;
+                dir=0;
                 jump_mod=0;
                 move_mod=0;
                 climb_mod=0;
@@ -113,17 +174,35 @@ public abstract class Role {
                 fall=0;
                 hp=max_hp;
                 able=true;
-                show();
+                //show();
             }
         }
         //if(able) emit atk(x,y,x+width(),y+height(),1000/max_hp,dir);
-    }*/
+    }
 	    //virtual void setMap(MapWithObsticle *);
+    
+    public void move(int x, int y){
+    	this.x = x;
+    	this.y = y;
+    }
+    
+    public int dir(){
+    	return dir;
+    }
+    
     public int width(){
     	return width;
     }
     
     public int height(){
-    	return width;
+    	return height;
+    }
+    
+    public int x(){
+    	return x;
+    }
+    
+    public int y(){
+    	return y;
     }
 }
