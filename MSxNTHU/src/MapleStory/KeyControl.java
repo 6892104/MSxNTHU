@@ -20,54 +20,96 @@ public class KeyControl implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT)     key.put("right", true);
-		/*if(event->key()==Qt::Key_Right)     key["right"]=false;
-		if(event->key()==Qt::Key_Left)      key["left"]=true;
-	    if(event->key()==Qt::Key_Alt)       key["alt"]=true;
-	    if(event->key()==Qt::Key_Up)        key["up"]=true;
-	    if(event->key()==Qt::Key_Down)      key["down"]=true;
-	    if(event->key()==Qt::Key_Escape)    key["esc"]=true;
-	    if(event->key()==Qt::Key_Space)     key["space"]=true;
-	    if(event->key()==Qt::Key_A)         key["a"]=true;
-	    if(event->key()==Qt::Key_B)         key["b"]=true;
-	    if(event->key()==Qt::Key_C)         key["c"]=true;
-	    if(event->key()==Qt::Key_D)         key["d"]=true;
-	    if(event->key()==Qt::Key_E)         key["e"]=true;
-	    if(event->key()==Qt::Key_F)         key["f"]=true;
-	    if(event->key()==Qt::Key_G)         key["g"]=true;
-	    if(event->key()==Qt::Key_H)         key["h"]=true;
-	    if(event->key()==Qt::Key_I)         key["i"]=true;
-	    if(event->key()==Qt::Key_J)         key["j"]=true;
-	    if(event->key()==Qt::Key_K)         key["k"]=true;
-	    if(event->key()==Qt::Key_L)         key["l"]=true;
-	    if(event->key()==Qt::Key_M)         key["m"]=true;
-	    if(event->key()==Qt::Key_N)         key["n"]=true;
-	    if(event->key()==Qt::Key_O)         key["o"]=true;
-	    if(event->key()==Qt::Key_P)         key["p"]=true;
-	    if(event->key()==Qt::Key_Q)         key["q"]=true;
-	    if(event->key()==Qt::Key_R)         key["r"]=true;
-	    if(event->key()==Qt::Key_S)         key["s"]=true;
-	    if(event->key()==Qt::Key_T)         key["t"]=true;
-	    if(event->key()==Qt::Key_U)         key["u"]=true;
-	    if(event->key()==Qt::Key_V)         key["v"]=true;
-	    if(event->key()==Qt::Key_W)         key["w"]=true;
-	    if(event->key()==Qt::Key_X)         key["x"]=true;
-	    if(event->key()==Qt::Key_Y)         key["y"]=true;
-	    if(event->key()==Qt::Key_Z)         key["z"]=true;
-	    if(event->key()==Qt::Key_1)         key["1"]=true;
-	    if(event->key()==Qt::Key_2)         key["2"]=true;
-	    if(event->key()==Qt::Key_3)         key["3"]=true;
-	    if(event->key()==Qt::Key_4)         key["4"]=true;
-	    if(event->key()==Qt::Key_5)         key["5"]=true;
-	    if(event->key()==Qt::Key_6)         key["6"]=true;
-	    if(event->key()==Qt::Key_7)         key["7"]=true;
-	    if(event->key()==Qt::Key_8)         key["8"]=true;
-	    if(event->key()==Qt::Key_F11)       key["F11"]=true;*/
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT)    key.put("right", true);
+		if(e.getKeyCode() == KeyEvent.VK_LEFT)     key.put("left", true);
+		if(e.getKeyCode() == KeyEvent.VK_ALT)      key.put("alt", true);
+		if(e.getKeyCode() == KeyEvent.VK_UP)       key.put("up", true);
+		if(e.getKeyCode() == KeyEvent.VK_DOWN)     key.put("down", true);
+		if(e.getKeyCode() == KeyEvent.VK_ESCAPE)   key.put("esc", true);
+		if(e.getKeyCode() == KeyEvent.VK_SPACE)    key.put("space", true);
+		if(e.getKeyCode() == KeyEvent.VK_A)        key.put("a", true);
+		if(e.getKeyCode() == KeyEvent.VK_B)        key.put("b", true);
+		if(e.getKeyCode() == KeyEvent.VK_C)        key.put("c", true);
+		if(e.getKeyCode() == KeyEvent.VK_D)        key.put("d", true);
+		if(e.getKeyCode() == KeyEvent.VK_E)        key.put("e", true);
+		if(e.getKeyCode() == KeyEvent.VK_F)        key.put("f", true);
+		if(e.getKeyCode() == KeyEvent.VK_G)        key.put("g", true);
+		if(e.getKeyCode() == KeyEvent.VK_H)        key.put("h", true);
+		if(e.getKeyCode() == KeyEvent.VK_I)        key.put("i", true);
+		if(e.getKeyCode() == KeyEvent.VK_J)        key.put("j", true);
+		if(e.getKeyCode() == KeyEvent.VK_K)        key.put("k", true);
+		if(e.getKeyCode() == KeyEvent.VK_L)        key.put("l", true);
+		if(e.getKeyCode() == KeyEvent.VK_M)        key.put("m", true);
+		if(e.getKeyCode() == KeyEvent.VK_N)        key.put("n", true);
+		if(e.getKeyCode() == KeyEvent.VK_O)        key.put("o", true);
+		if(e.getKeyCode() == KeyEvent.VK_P)        key.put("p", true);
+		if(e.getKeyCode() == KeyEvent.VK_Q)        key.put("q", true);
+		if(e.getKeyCode() == KeyEvent.VK_R)        key.put("r", true);
+		if(e.getKeyCode() == KeyEvent.VK_S)        key.put("s", true);
+		if(e.getKeyCode() == KeyEvent.VK_T)        key.put("t", true);
+		if(e.getKeyCode() == KeyEvent.VK_U)        key.put("u", true);
+		if(e.getKeyCode() == KeyEvent.VK_V)        key.put("v", true);
+		if(e.getKeyCode() == KeyEvent.VK_W)        key.put("w", true);
+		if(e.getKeyCode() == KeyEvent.VK_X)        key.put("x", true);
+		if(e.getKeyCode() == KeyEvent.VK_Y)        key.put("y", true);
+		if(e.getKeyCode() == KeyEvent.VK_Z)        key.put("z", true);
+		if(e.getKeyCode() == KeyEvent.VK_1)        key.put("1", true);
+		if(e.getKeyCode() == KeyEvent.VK_2)        key.put("2", true);
+		if(e.getKeyCode() == KeyEvent.VK_3)        key.put("3", true);
+		if(e.getKeyCode() == KeyEvent.VK_4)        key.put("4", true);
+		if(e.getKeyCode() == KeyEvent.VK_5)        key.put("5", true);
+		if(e.getKeyCode() == KeyEvent.VK_6)        key.put("6", true);
+		if(e.getKeyCode() == KeyEvent.VK_7)        key.put("7", true);
+		if(e.getKeyCode() == KeyEvent.VK_8)        key.put("8", true);
+		if(e.getKeyCode() == KeyEvent.VK_F11)      key.put("F11", true);
+		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT)    key.put("right", false);
+		if(e.getKeyCode() == KeyEvent.VK_LEFT)     key.put("left", false);
+		if(e.getKeyCode() == KeyEvent.VK_ALT)      key.put("alt", false);
+		if(e.getKeyCode() == KeyEvent.VK_UP)       key.put("up", false);
+		if(e.getKeyCode() == KeyEvent.VK_DOWN)     key.put("down", false);
+		if(e.getKeyCode() == KeyEvent.VK_ESCAPE)   key.put("esc", false);
+		if(e.getKeyCode() == KeyEvent.VK_SPACE)    key.put("space", false);
+		if(e.getKeyCode() == KeyEvent.VK_A)        key.put("a", false);
+		if(e.getKeyCode() == KeyEvent.VK_B)        key.put("b", false);
+		if(e.getKeyCode() == KeyEvent.VK_C)        key.put("c", false);
+		if(e.getKeyCode() == KeyEvent.VK_D)        key.put("d", false);
+		if(e.getKeyCode() == KeyEvent.VK_E)        key.put("e", false);
+		if(e.getKeyCode() == KeyEvent.VK_F)        key.put("f", false);
+		if(e.getKeyCode() == KeyEvent.VK_G)        key.put("g", false);
+		if(e.getKeyCode() == KeyEvent.VK_H)        key.put("h", false);
+		if(e.getKeyCode() == KeyEvent.VK_I)        key.put("i", false);
+		if(e.getKeyCode() == KeyEvent.VK_J)        key.put("j", false);
+		if(e.getKeyCode() == KeyEvent.VK_K)        key.put("k", false);
+		if(e.getKeyCode() == KeyEvent.VK_L)        key.put("l", false);
+		if(e.getKeyCode() == KeyEvent.VK_M)        key.put("m", false);
+		if(e.getKeyCode() == KeyEvent.VK_N)        key.put("n", false);
+		if(e.getKeyCode() == KeyEvent.VK_O)        key.put("o", false);
+		if(e.getKeyCode() == KeyEvent.VK_P)        key.put("p", false);
+		if(e.getKeyCode() == KeyEvent.VK_Q)        key.put("q", false);
+		if(e.getKeyCode() == KeyEvent.VK_R)        key.put("r", false);
+		if(e.getKeyCode() == KeyEvent.VK_S)        key.put("s", false);
+		if(e.getKeyCode() == KeyEvent.VK_T)        key.put("t", false);
+		if(e.getKeyCode() == KeyEvent.VK_U)        key.put("u", false);
+		if(e.getKeyCode() == KeyEvent.VK_V)        key.put("v", false);
+		if(e.getKeyCode() == KeyEvent.VK_W)        key.put("w", false);
+		if(e.getKeyCode() == KeyEvent.VK_X)        key.put("x", false);
+		if(e.getKeyCode() == KeyEvent.VK_Y)        key.put("y", false);
+		if(e.getKeyCode() == KeyEvent.VK_Z)        key.put("z", false);
+		if(e.getKeyCode() == KeyEvent.VK_1)        key.put("1", false);
+		if(e.getKeyCode() == KeyEvent.VK_2)        key.put("2", false);
+		if(e.getKeyCode() == KeyEvent.VK_3)        key.put("3", false);
+		if(e.getKeyCode() == KeyEvent.VK_4)        key.put("4", false);
+		if(e.getKeyCode() == KeyEvent.VK_5)        key.put("5", false);
+		if(e.getKeyCode() == KeyEvent.VK_6)        key.put("6", false);
+		if(e.getKeyCode() == KeyEvent.VK_7)        key.put("7", false);
+		if(e.getKeyCode() == KeyEvent.VK_8)        key.put("8", false);
+		if(e.getKeyCode() == KeyEvent.VK_F11)      key.put("F11", false);
 		
 	}
 
