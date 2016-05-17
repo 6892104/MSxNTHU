@@ -30,9 +30,9 @@ public class DisplayPanel extends JPanel {
 		super.paintComponent(g);
 		if(map != null) g.drawImage(mapImage, (-1)*map.getShift_x() , (-1)*map.getShift_y() , map.getMax_x() , map.getMax_y(), null);
 		if(character != null){
-			//System.out.println("fuck : "+  character.x()+ " "+ character.y());
+			//System.out.println("fuck : "+  character.x()+ " "+ character.y() + " " + map.getShift_x() + " " + map.getShift_y());
 			chImage = chPic.getImage();
-			g.drawImage(chImage, character.x() , character.y() , character.width() , character.height(), null);
+			g.drawImage(chImage, character.x() - map.getShift_x()  , character.y() - map.getShift_y()  , character.width() , character.height(), null);
 		}
 	}
 	

@@ -18,10 +18,10 @@ public class Beginner extends Role {
 		human = true;
 		width = 200;
 	    height = 100;
-	    //x=1420;
-	    x = parent.getWidth()/2 - width/2;
-	    //y=874;
-	    y = parent.getHeight()/2 - height/2;
+	    x=1420;
+	    //x = parent.getWidth()/2 - width/2;
+	    y=874;
+	    //y = parent.getHeight()/2 - height/2;
 	    shift=95;
 	    move_range_left=0-shift;
 	    move_range_right=map.getMax_x()+shift;
@@ -82,6 +82,15 @@ public class Beginner extends Role {
 	    	return new RoleMode(Mode.stand, 0);
 	}
 	
+	public void jump(){
+		if(jump_mod <= 0 && (map.standable(x+width()/2 , y+height()) || climb_mod > 0) && fall <= 0)
+	    {
+	        /*if(play_soundEffect)
+	            jump_effect.play();*/
+	        jump_mod = 10;
+	        climb_mod = 0;
+	    }
+	}
 	   /* void paintEvent(QPaintEvent *);
 
 	    void normal_attack();

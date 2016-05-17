@@ -20,7 +20,7 @@ public class MainWindow extends JFrame {
 	    void green_mode();*/
 	//private ModForGame gameMod;
 	//private Menu *menu;
-	
+	private Control control;
 	private KeyControl keyControl;
 
 	private MapWithObsticle map;
@@ -123,7 +123,11 @@ public class MainWindow extends JFrame {
 	    connect(Timer,SIGNAL(timeout()),role,SLOT(RoleAction()));
 	    connect(role,SIGNAL(dead(int)),this,SLOT(deadinfor(int)));*/
 
-
+	    control = new Control();
+	    control.setCharacter(role);
+	    control.setDisplay(display);
+	    control.setKeyControl(keyControl);
+	    control.start();
 
 
 	    //create monster

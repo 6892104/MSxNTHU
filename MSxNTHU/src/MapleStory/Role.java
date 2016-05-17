@@ -3,6 +3,7 @@ package MapleStory;
 public abstract class Role {
 	
     protected int x,y;
+    //public int screen_x, screen_y;
     protected int width, height;
     protected int shift;
     protected int hp;
@@ -73,7 +74,7 @@ public abstract class Role {
 	}
 
 	public void RoleAction(){
-		move(x-map.getShift_x() , y-map.getShift_y());
+		//move(x-map.getShift_x() , y-map.getShift_y());
 	    AtkAction();
 	    if(able)
 	    {
@@ -181,10 +182,10 @@ public abstract class Role {
     }
 	    //virtual void setMap(MapWithObsticle *);
     
-    public void move(int x, int y){
+    /*public void move(int x, int y){
     	this.x = x;
     	this.y = y;
-    }
+    }*/
     
     public int dir(){
     	return dir;
