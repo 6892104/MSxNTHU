@@ -12,7 +12,7 @@ public class KeyControl implements KeyListener {
 		key.put("right", false);
 		key.put("left", false);
 		key.put("alt", false);
-		/*key.put("up", false);
+		key.put("up", false);
 		key.put("down", false);
 		key.put("esc", false);
 		key.put("space", false);
@@ -50,7 +50,7 @@ public class KeyControl implements KeyListener {
 		key.put("6", false);
 		key.put("7", false);
 		key.put("8", false);
-		key.put("F11", false);*/
+		key.put("F11", false);
 	}
 
 	public boolean get(String key){
@@ -60,6 +60,7 @@ public class KeyControl implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
+		//if(e.isAltDown()) key.put("alt", true);
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT)    key.put("right", true);
 		if(e.getKeyCode() == KeyEvent.VK_LEFT)     key.put("left", true);
 		if(e.getKeyCode() == KeyEvent.VK_ALT)      key.put("alt", true);
@@ -108,6 +109,9 @@ public class KeyControl implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
+		System.out.println(KeyEvent.VK_RIGHT + " " + e.getKeyCode()+ " " + e.getKeyChar());
+		if(!e.isAltDown()) key.put("alt", false);
+		//if(e.isAltDown() && e.getKeyCode() == KeyEvent.VK_RIGHT) key.put("right", false);
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT)    key.put("right", false);
 		if(e.getKeyCode() == KeyEvent.VK_LEFT)     key.put("left", false);
 		if(e.getKeyCode() == KeyEvent.VK_ALT)      key.put("alt", false);

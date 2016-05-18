@@ -2,6 +2,11 @@ package MapleStory;
 
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -62,14 +67,32 @@ public class MainWindow extends JFrame {
 			javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤J¹ÏÀÉ¿ù»~");
 		}
 	    this.setTitle("MapleStory");
-	    this.setUndecorated(true); //no border
-	    this.setExtendedState(JFrame.MAXIMIZED_BOTH); //full screen
+	    //this.setUndecorated(true); //no border
+	    //this.setExtendedState(JFrame.MAXIMIZED_BOTH); //full screen
 	    //this.setResizable(false);
 	    //this.pack();
 	    //this.setex
 	    
 	    display = new DisplayPanel();
 	    
+	    /*this.addFocusListener(new FocusListener() {
+	        private final KeyEventDispatcher altDisabler = new KeyEventDispatcher() {
+	            @Override
+	            public boolean dispatchKeyEvent(KeyEvent e) {
+	                return e.getKeyCode() == 18;
+	            }
+	        };
+
+	        @Override
+	        public void focusGained(FocusEvent e) {
+	            KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(altDisabler);
+	        }
+
+	        @Override
+	        public void focusLost(FocusEvent e) {
+	            KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(altDisabler);
+	        }
+	    });*/
 	    
 	    this.add(display);
 	    keyControl = new KeyControl();
