@@ -102,5 +102,8 @@ public class Beginner extends Role {
 	    virtual void gain_exp(int);
 	signals:
 	    void state_change(int,int,int,int);*/
-
+	
+	public int mp(){
+		return mp;
+	}
 }

@@ -14,10 +14,15 @@ public class DisplayPanel extends JPanel {
 	
 	private MapWithObsticle map;
 	private Beginner character;
+	
+	private Status status;
 	private CharacterPic chPic;
+	private PigPic pigPic;
 	
 	public DisplayPanel(){
+		status = new Status();
 		chPic = new CharacterPic();
+		pigPic = new PigPic();
 		try {
 			mapImage = ImageIO.read(this.getClass().getResourceAsStream("/background.png"));
 		}catch (IOException ie){
@@ -30,6 +35,7 @@ public class DisplayPanel extends JPanel {
 		super.paintComponent(g);
 		if(map != null) g.drawImage(mapImage, (-1)*map.getShift_x() , (-1)*map.getShift_y() , map.getMax_x() , map.getMax_y(), null);
 		if(character != null){
+			if(status != null) status.paintStatus(g);
 			//System.out.println("fuck : "+  character.x()+ " "+ character.y() + " " + map.getShift_x() + " " + map.getShift_y());
 			chImage = chPic.getImage();
 			g.drawImage(chImage, character.x() - map.getShift_x()  , character.y() - map.getShift_y()  , character.width() , character.height(), null);
@@ -62,6 +68,10 @@ public class DisplayPanel extends JPanel {
 		return chPic.pic_num;
 	}
 	
+	public int getPigPictureNumber(){
+		return pigPic.pic_num;
+	}
+	
 	public void setMap(MapWithObsticle map){
 		this.map = map;
 	}
@@ -73,43 +83,50 @@ public class DisplayPanel extends JPanel {
 	
 	private class Status{
 		
+		private int y;
 		private Image stbg, sthpmpexp, LV;
 		private Image hp, mp, exp;
 		private Image[] LvNumber;
 		
 		public Status(){
+			y = 620;
 			try {
 				stbg = ImageIO.read(this.getClass().getResourceAsStream("/stbg.png"));
-			    /*stbg.load(":/Image/stbg.png");
-			    sthpmpexp.load(":/Image/sthpmpexp.png");
-			    LV.load(":/Image/LV.png");
-			    hp.load(":/Image/hp.png");
-			    mp.load(":/Image/mp.png");
-			    exp.load(":/Image/exp.png");*/
+				sthpmpexp = ImageIO.read(this.getClass().getResourceAsStream("/sthpmpexp.png"));
+				LV = ImageIO.read(this.getClass().getResourceAsStream("/LV.png"));
+				hp = ImageIO.read(this.getClass().getResourceAsStream("/hp.png"));
+				mp = ImageIO.read(this.getClass().getResourceAsStream("/mp.png"));
+				exp = ImageIO.read(this.getClass().getResourceAsStream("/exp.png"));
 			    
 			    LvNumber = new Image[10];
 			    LvNumber[0] = ImageIO.read(this.getClass().getResourceAsStream("/lv_number0.png"));
-			    /*lv[0].load(":/Image/lv_number0.png");
-			    lv[1].load(":/Image/lv_number1.png");
-			    lv[2].load(":/Image/lv_number2.png");
-			    lv[3].load(":/Image/lv_number3.png");
-			    lv[4].load(":/Image/lv_number4.png");
-			    lv[5].load(":/Image/lv_number5.png");
-			    lv[6].load(":/Image/lv_number6.png");
-			    lv[7].load(":/Image/lv_number7.png");
-			    lv[8].load(":/Image/lv_number8.png");
-			    lv[9].load(":/Image/lv_number9.png");*/
+			    LvNumber[1] = ImageIO.read(this.getClass().getResourceAsStream("/lv_number1.png"));
+			    LvNumber[2] = ImageIO.read(this.getClass().getResourceAsStream("/lv_number2.png"));
+			    LvNumber[3] = ImageIO.read(this.getClass().getResourceAsStream("/lv_number3.png"));
+			    LvNumber[4] = ImageIO.read(this.getClass().getResourceAsStream("/lv_number4.png"));
+			    LvNumber[5] = ImageIO.read(this.getClass().getResourceAsStream("/lv_number5.png"));
+			    LvNumber[6] = ImageIO.read(this.getClass().getResourceAsStream("/lv_number6.png"));
+			    LvNumber[7] = ImageIO.read(this.getClass().getResourceAsStream("/lv_number7.png"));
+			    LvNumber[8] = ImageIO.read(this.getClass().getResourceAsStream("/lv_number8.png"));
+			    LvNumber[9] = ImageIO.read(this.getClass().getResourceAsStream("/lv_number9.png"));
 			}catch (IOException ie){
-				javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤J¥D¨¤¹ÏÀÉ¿ù»~");
+				javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤JStatus¹ÏÀÉ¿ù»~");
 			}
 		}
 		
-		public void paintStatus(){
+		public void paintStatus(java.awt.Graphics g){
 			int tenth = character.level/10;
 			int oneth = character.level%10;
 
-		    /*painter.drawPixmap(0,0,1280,100,stbg);
-		    painter.drawPixmap(150,28,700,60,sthpmpexp);
+		    g.drawImage(stbg, 0, y, 1280, 100, null);
+		    g.drawImage(sthpmpexp, 150, y + 28, 700, 60, null);
+		    g.drawImage(LV, 0, y + 10, 100, 100, null);
+		    g.drawImage(hp, 210, y + 32, (int)(2.8*character.hp), 18, null);
+		    g.drawImage(mp, 565, y + 32, (int)(2.8*character.mp()), 18, null);
+		    g.drawImage(exp, 210, y + 65, (int)(6.3*character.exp), 20, null);
+		    g.drawImage(LvNumber[tenth], 80, y + 40, 30, 40, null);
+		    g.drawImage(LvNumber[oneth], 110, y + 40, 30, 40, null);
+		    /*painter.drawPixmap(150,28,700,60,sthpmpexp);
 		    painter.drawPixmap(0,10,100,100,LV);
 		    painter.drawPixmap(210,32,2.8*HP,18,hp);
 		    painter.drawPixmap(565,32,2.8*MP,18,mp);
@@ -162,6 +179,7 @@ public class DisplayPanel extends JPanel {
 		private int tomb_effect;
 		
 		public CharacterPic(){
+			super();
 			try {
 				// 0  left   1  right
 				std_pic[0] = ImageIO.read(this.getClass().getResourceAsStream("/Character/Beginner/stand.0.png"));
@@ -269,6 +287,34 @@ public class DisplayPanel extends JPanel {
 		        return move_pic[character.dir()][rm.value%pic_num];
 		    else
 		    	return std_pic[character.dir()];
+		}
+	}
+	
+	private class PigPic extends RolePic{
+		public PigPic(){
+			super();
+			try {
+				// 0  left   1  right
+				std_pic[0] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Pig/move.1.png"));
+				/*std_pic[0]=":/Image/Monster/Pig/move.1.png";
+			    move_pic[0][3]=":/Image/Monster/Pig/move.0.png";
+			    move_pic[0][2]=":/Image/Monster/Pig/move.1.png";
+			    move_pic[0][1]=":/Image/Monster/Pig/move.2.png";
+			    move_pic[0][0]=":/Image/Monster/Pig/move.1.png";
+			    std_pic[1]=":/Image/Monster/Pig/Right/move.1.png";
+			    move_pic[1][3]=":/Image/Monster/Pig/Right/move.0.png";
+			    move_pic[1][2]=":/Image/Monster/Pig/Right/move.1.png";
+			    move_pic[1][1]=":/Image/Monster/Pig/Right/move.2.png";
+			    move_pic[1][0]=":/Image/Monster/Pig/Right/move.1.png";
+			    pic_num=4;
+			    jump_pic[0]=":/Image/Monster/Pig/jump.0.png";
+			    jump_pic[1]=":/Image/Monster/Pig/Right/jump.0.png";
+
+			    be_hit_pic[0]=":/Image/Monster/Pig/hit1.0.png";
+			    be_hit_pic[1]=":/Image/Monster/Pig/Right/hit1.0.png";*/
+			}catch (IOException ie){
+				javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤JªÎªÎ¹ÏÀÉ¿ù»~");
+			}
 		}
 	}
 }
