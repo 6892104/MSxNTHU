@@ -149,6 +149,7 @@ public abstract class Role {
 	        move_mod = display.getCharacterPictureNumber();
 	}
     protected void climb(int tmp){
+    	// 0  up   1  down
     	if(able)
         {
             if(map.climbable(x+width()/2 , y+height()/2)){

@@ -33,6 +33,7 @@ public class Beginner extends Role {
 	    move_pace=10;
 	    max_mp=100;
 	    mp=max_mp;
+	    //level = 1;
 	    exp=0;
 	    max_exp = new int[100];
 	    max_exp[1]=100;
@@ -95,7 +96,6 @@ public class Beginner extends Role {
 
 	    void normal_attack();
 	    virtual void AtkAction();
-	    virtual void jump();
 	    int atk_mod;
 
 	public slots:

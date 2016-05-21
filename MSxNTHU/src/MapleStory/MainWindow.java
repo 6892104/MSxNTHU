@@ -71,8 +71,7 @@ public class MainWindow extends JFrame {
 	    //this.setExtendedState(JFrame.MAXIMIZED_BOTH); //full screen
 	    //this.setResizable(false);
 	    //this.pack();
-	    //this.setex
-	    
+	    //KeyHook.blockWindowsKey();
 	    display = new DisplayPanel();
 	    
 	    /*this.addFocusListener(new FocusListener() {

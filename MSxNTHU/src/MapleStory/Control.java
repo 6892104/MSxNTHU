@@ -43,14 +43,12 @@ public class Control extends Thread{
 	}
 	
 	private void keyDetect(){
-		if(keyControl.get("right"))    character.RoleMove(1);
-		if(keyControl.get("left"))     character.RoleMove(0);
+		if(keyControl.get("right"))      character.RoleMove(1);
+		if(keyControl.get("left"))       character.RoleMove(0);
 		if(keyControl.get("space"))      character.jump();
-	    /*if(key["left"])     role->RoleMove(left);
-	    if(key["alt"])      role->jump();
-	    if(key["up"])       role->climb(up);
-	    if(key["down"])     role->climb(down);
-	    if(key["esc"]){
+	    if(keyControl.get("up"))         character.climb(0);
+	    if(keyControl.get("down"))     	 character.climb(1);
+	    /*if(key["esc"]){
 	        menuBar()->show();
 	        showNormal();
 	    }

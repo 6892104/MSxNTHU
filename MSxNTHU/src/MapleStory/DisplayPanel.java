@@ -71,8 +71,56 @@ public class DisplayPanel extends JPanel {
 		chPic = new CharacterPic();
 	}
 	
-	private class RolePic
-	{
+	private class Status{
+		
+		private Image stbg, sthpmpexp, LV;
+		private Image hp, mp, exp;
+		private Image[] LvNumber;
+		
+		public Status(){
+			try {
+				stbg = ImageIO.read(this.getClass().getResourceAsStream("/stbg.png"));
+			    /*stbg.load(":/Image/stbg.png");
+			    sthpmpexp.load(":/Image/sthpmpexp.png");
+			    LV.load(":/Image/LV.png");
+			    hp.load(":/Image/hp.png");
+			    mp.load(":/Image/mp.png");
+			    exp.load(":/Image/exp.png");*/
+			    
+			    LvNumber = new Image[10];
+			    LvNumber[0] = ImageIO.read(this.getClass().getResourceAsStream("/lv_number0.png"));
+			    /*lv[0].load(":/Image/lv_number0.png");
+			    lv[1].load(":/Image/lv_number1.png");
+			    lv[2].load(":/Image/lv_number2.png");
+			    lv[3].load(":/Image/lv_number3.png");
+			    lv[4].load(":/Image/lv_number4.png");
+			    lv[5].load(":/Image/lv_number5.png");
+			    lv[6].load(":/Image/lv_number6.png");
+			    lv[7].load(":/Image/lv_number7.png");
+			    lv[8].load(":/Image/lv_number8.png");
+			    lv[9].load(":/Image/lv_number9.png");*/
+			}catch (IOException ie){
+				javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤J¥D¨¤¹ÏÀÉ¿ù»~");
+			}
+		}
+		
+		public void paintStatus(){
+			int tenth = character.level/10;
+			int oneth = character.level%10;
+
+		    /*painter.drawPixmap(0,0,1280,100,stbg);
+		    painter.drawPixmap(150,28,700,60,sthpmpexp);
+		    painter.drawPixmap(0,10,100,100,LV);
+		    painter.drawPixmap(210,32,2.8*HP,18,hp);
+		    painter.drawPixmap(565,32,2.8*MP,18,mp);
+		    painter.drawPixmap(210,65,6.3*EXP,20,exp);
+		    painter.drawPixmap(80,40,30 ,40 ,lv[tenth]);
+		    painter.drawPixmap(110,40,30 ,40 ,lv[oneth]);*/
+		}
+	}
+	
+	private class RolePic{
+		
 	    protected Image[] std_pic;
 	    protected Image[] jump_pic;
 	    protected Image[][] move_pic;
@@ -101,8 +149,8 @@ public class DisplayPanel extends JPanel {
 	    
 	}
 	
-	private class CharacterPic extends RolePic
-	{
+	private class CharacterPic extends RolePic{
+		
 		private Image[][] atk_pic;
 		private Image[] levelup_pic;
 		private Image[] tomb_pic;

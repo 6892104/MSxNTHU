@@ -59,7 +59,6 @@ public class KeyControl implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
 		//if(e.isAltDown()) key.put("alt", true);
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT)    key.put("right", true);
 		if(e.getKeyCode() == KeyEvent.VK_LEFT)     key.put("left", true);
@@ -103,14 +102,12 @@ public class KeyControl implements KeyListener {
 		if(e.getKeyCode() == KeyEvent.VK_7)        key.put("7", true);
 		if(e.getKeyCode() == KeyEvent.VK_8)        key.put("8", true);
 		if(e.getKeyCode() == KeyEvent.VK_F11)      key.put("F11", true);
-		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println(KeyEvent.VK_RIGHT + " " + e.getKeyCode()+ " " + e.getKeyChar());
-		if(!e.isAltDown()) key.put("alt", false);
+		//System.out.println(KeyEvent.VK_RIGHT + " " + e.getKeyCode()+ " " + e.getKeyChar());
+		//if(!e.isAltDown()) key.put("alt", false);
 		//if(e.isAltDown() && e.getKeyCode() == KeyEvent.VK_RIGHT) key.put("right", false);
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT)    key.put("right", false);
 		if(e.getKeyCode() == KeyEvent.VK_LEFT)     key.put("left", false);
