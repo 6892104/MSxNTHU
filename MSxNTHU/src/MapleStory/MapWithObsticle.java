@@ -1,10 +1,13 @@
 package MapleStory;
 
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Vector;
 
 public class MapWithObsticle {
 	
 	private MainWindow parent;
+	private DisplayPanel display;
 	private int size_x, size_y, screen_size_x, screen_size_y;
 	private int shift_x, shift_y, over_shift_x, over_shift_y;
 
@@ -12,8 +15,9 @@ public class MapWithObsticle {
     private Vector<BlockOnMap> slopes;
     private Vector<BlockAndMonsterLimit> BAML;
 	
-	public MapWithObsticle(MainWindow parent){
+	public MapWithObsticle(MainWindow parent, DisplayPanel display){
 		this.parent = parent;
+		this.display = display;
 		
 		floors = new Vector<BlockOnMap>();
 		slopes = new Vector<BlockOnMap>();
@@ -202,8 +206,56 @@ public class MapWithObsticle {
 	    }
 	}
 	
-
-//-----------------inner classes----------------------
+	public ArrayList<Pig> createMonster(){
+		//pig_num = 0;
+	    /*vector <BlockAndMonsterLimit> blk = map.get_each_BlockAndMonsterLimit();
+	    std::vector <BlockAndMonsterLimit>::iterator it;*/
+		Random ran = new Random();
+		ArrayList<Pig> monsters = new ArrayList<Pig>();
+	    for(int i = 0 ; i < BAML.size() ; i++){
+	    	BlockAndMonsterLimit baml = BAML.get(i);
+	        for(int j = 0 ; j < baml.limit ; j++){
+	            Pig piggy = new Pig(parent, display, this);
+	            piggy.move_range_left = baml.start_x;
+	            piggy.move_range_right = baml.end_x;
+	            piggy.x = baml.start_x + ran.nextInt(baml.end_x -piggy.width() - baml.start_x + 1);
+	            piggy.y = baml.start_y - piggy.height() - 10;
+	            monsters.add(piggy);
+	            //piggy[pig_num]->show();
+	            /*connect(Timer,SIGNAL(timeout()),piggy[pig_num],SLOT(update()));
+	            connect(Timer,SIGNAL(timeout()),piggy[pig_num],SLOT(RoleAction()));
+	            connect(Timer,SIGNAL(timeout()),piggy[pig_num],SLOT(RandomMove()));
+	            connect(role,SIGNAL(atk(int,int,int,int,int,int)),piggy[pig_num],SLOT(Be_atk(int,int,int,int,int,int)));
+	            connect(piggy[pig_num],SIGNAL(atk(int,int,int,int,int,int)),role,SLOT(Be_atk(int,int,int,int,int,int)));
+	            connect(piggy[pig_num],SIGNAL(dead(int)),role,SLOT(gain_exp(int)));
+	            connect(piggy[pig_num],SIGNAL(create_treasure(int,int,std::string)),this,SLOT(tcreator(int,int,std::string)));
+	            pig_num++;*/
+	        }
+	    }
+	    /*green_num = 0;
+	    for(it=blk.begin();it!=blk.end() && which == green;it++){
+	        for(int i=0;i<(*it).limit;i++){
+	            greens[green_num] = new Green(map, this);
+	            greens[green_num]->move_range_left = (*it).start_x;
+	            greens[green_num]->move_range_right = (*it).end_x;
+	            greens[green_num]->x = (*it).start_x + rand()%((*it).end_x -greens[green_num]->width() - (*it).start_x + 1);
+	            greens[green_num]->y = (*it).start_y - greens[green_num]->height() - 10;
+	            greens[green_num]->show();
+	            connect(Timer,SIGNAL(timeout()),greens[green_num],SLOT(update()));
+	            connect(Timer,SIGNAL(timeout()),greens[green_num],SLOT(RoleAction()));
+	            connect(Timer,SIGNAL(timeout()),greens[green_num],SLOT(RandomMove()));
+	            connect(role,SIGNAL(atk(int,int,int,int,int,int)),greens[green_num],SLOT(Be_atk(int,int,int,int,int,int)));
+	            connect(greens[green_num],SIGNAL(atk(int,int,int,int,int,int)),role,SLOT(Be_atk(int,int,int,int,int,int)));
+	            connect(greens[green_num],SIGNAL(dead(int)),role,SLOT(gain_exp(int)));
+	            connect(greens[green_num],SIGNAL(create_treasure(int,int,std::string)),this,SLOT(tcreator(int,int,std::string)));
+	            green_num++;
+	        }
+	    }*/
+	    return monsters;
+	}
+//----------------------------------------------------------------	
+//-----------------inner classes----------------------------------
+//----------------------------------------------------------------
 	class BlockOnMap
 	{
 		public int start_x , start_y;

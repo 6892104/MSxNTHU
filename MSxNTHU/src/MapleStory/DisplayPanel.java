@@ -2,6 +2,7 @@ package MapleStory;
 
 import java.awt.Image;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -11,9 +12,11 @@ public class DisplayPanel extends JPanel {
 	
 	private Image mapImage;
 	private Image chImage;
+	private Image pigImage;
 	
 	private MapWithObsticle map;
 	private Beginner character;
+	private ArrayList<Pig> monsters;
 	
 	private Status status;
 	private CharacterPic chPic;
@@ -35,11 +38,19 @@ public class DisplayPanel extends JPanel {
 		super.paintComponent(g);
 		if(map != null) g.drawImage(mapImage, (-1)*map.getShift_x() , (-1)*map.getShift_y() , map.getMax_x() , map.getMax_y(), null);
 		if(character != null){
-			if(status != null) status.paintStatus(g);
 			//System.out.println("fuck : "+  character.x()+ " "+ character.y() + " " + map.getShift_x() + " " + map.getShift_y());
 			chImage = chPic.getImage();
 			g.drawImage(chImage, character.x() - map.getShift_x()  , character.y() - map.getShift_y()  , character.width() , character.height(), null);
 		}
+		if(monsters != null){
+			for(int i = 0 ; i < monsters.size() ; i++){
+				Pig piggy = monsters.get(i);
+				System.out.println(piggy.x() + " " + piggy.y());
+				pigImage = pigPic.getImage(piggy);
+				g.drawImage(pigImage, piggy.x() - map.getShift_x(), piggy.y() - map.getShift_y(), piggy.width(), piggy.height(), null);
+			}
+		}
+		if(status != null) status.paintStatus(g);
 	}
 	
 	private void displayCharacter(java.awt.Graphics g){
@@ -81,6 +92,13 @@ public class DisplayPanel extends JPanel {
 		chPic = new CharacterPic();
 	}
 	
+	public void setMonsters(ArrayList<Pig> monsters){
+		this.monsters = monsters;
+		pigPic = new PigPic();
+	}
+//----------------------------------------------------------------	
+//-----------------inner classes----------------------------------
+//----------------------------------------------------------------
 	private class Status{
 		
 		private int y;
@@ -315,6 +333,19 @@ public class DisplayPanel extends JPanel {
 			}catch (IOException ie){
 				javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤JªÎªÎ¹ÏÀÉ¿ù»~");
 			}
+		}
+		
+		public Image getImage(Pig piggy){
+			RoleMode rm = piggy.getMode();
+			RoleMode.Mode mode = rm.mode;
+		    /*if(mode == RoleMode.Mode.be_hit)
+		        return be_hit_pic[piggy.dir()];
+		    else if(mode == RoleMode.Mode.jump)
+		        return jump_pic[piggy.dir()];
+		    else if(mode == RoleMode.Mode.move)
+		        return move_pic[piggy.dir()][rm.value%pic_num];
+		    else*/
+		    	return std_pic[piggy.dir()];
 		}
 	}
 }

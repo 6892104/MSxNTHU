@@ -4,10 +4,12 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
+import java.awt.List;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -31,6 +33,7 @@ public class MainWindow extends JFrame {
 	private MapWithObsticle map;
 	private DisplayPanel display;
 	private Beginner role;
+	private ArrayList<Pig> monsters;
 
 	    /*enum Monster{pig,green};
 	    Monster which;
@@ -133,7 +136,7 @@ public class MainWindow extends JFrame {
 	    /*Timer = new QTimer(this);
 	    Timer->start(40);*/
 
-	    map = new MapWithObsticle(this);
+	    map = new MapWithObsticle(this, display);
 	    display.setMap(map);
 	    //map->show();
 	    //connect(Timer,SIGNAL(timeout()),map,SLOT(update()));
@@ -145,6 +148,10 @@ public class MainWindow extends JFrame {
 	    connect(Timer,SIGNAL(timeout()),role,SLOT(RoleAction()));
 	    connect(role,SIGNAL(dead(int)),this,SLOT(deadinfor(int)));*/
 
+	    monsters = map.createMonster();
+	    display.setMonsters(monsters);
+	    //System.out.println("fuck");
+	    
 	    control = new Control();
 	    control.setCharacter(role);
 	    control.setDisplay(display);
