@@ -12,6 +12,7 @@ public class KeyControl implements KeyListener {
 		key.put("right", false);
 		key.put("left", false);
 		key.put("alt", false);
+		key.put("control", false);
 		key.put("up", false);
 		key.put("down", false);
 		key.put("esc", false);
@@ -63,6 +64,7 @@ public class KeyControl implements KeyListener {
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT)    key.put("right", true);
 		if(e.getKeyCode() == KeyEvent.VK_LEFT)     key.put("left", true);
 		if(e.getKeyCode() == KeyEvent.VK_ALT)      key.put("alt", true);
+		if(e.getKeyCode() == KeyEvent.VK_CONTROL)  key.put("control", true);
 		if(e.getKeyCode() == KeyEvent.VK_UP)       key.put("up", true);
 		if(e.getKeyCode() == KeyEvent.VK_DOWN)     key.put("down", true);
 		if(e.getKeyCode() == KeyEvent.VK_ESCAPE)   key.put("esc", true);
@@ -112,6 +114,7 @@ public class KeyControl implements KeyListener {
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT)    key.put("right", false);
 		if(e.getKeyCode() == KeyEvent.VK_LEFT)     key.put("left", false);
 		if(e.getKeyCode() == KeyEvent.VK_ALT)      key.put("alt", false);
+		if(e.getKeyCode() == KeyEvent.VK_CONTROL)  key.put("control", false);
 		if(e.getKeyCode() == KeyEvent.VK_UP)       key.put("up", false);
 		if(e.getKeyCode() == KeyEvent.VK_DOWN)     key.put("down", false);
 		if(e.getKeyCode() == KeyEvent.VK_ESCAPE)   key.put("esc", false);

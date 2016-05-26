@@ -2,6 +2,7 @@ package Role;
 
 import MapleStory.DisplayPanel;
 import MapleStory.MapWithObsticle;
+import Skill.Skill.Direction;
 
 public abstract class Role {
 	
@@ -121,8 +122,12 @@ public abstract class Role {
 	        if(move_mod > 0)
 	        {
 	            int move_dir=dir;
-	            if(be_hit > 0)
-	                move_dir=~dir;
+	            if(be_hit > 0){
+	            	if(dir == 0)
+	            		move_dir = 1;
+	            	else
+	            		move_dir = 0;
+	            }
 	            // 0  left   1  right
 	            if(move_dir == 0 && x-move_pace > move_range_left){
 	                if(human) map.change_shift_x( (-1)*move_pace );
@@ -147,9 +152,10 @@ public abstract class Role {
 	    void dead(int);
 	    void create_treasure(int,int,std::string);*/
 	public void RoleMove(int direction){
-		dir = direction;
-	    if(move_mod<=0 && climb_mod <= 0 && able)
+	    if(move_mod<=0 && climb_mod <= 0 && able){
+	    	dir = direction;
 	        move_mod = display.getCharacterPictureNumber();
+	    }
 	}
 	
     public void climb(int tmp){
@@ -186,12 +192,48 @@ public abstract class Role {
         }
         //if(able) emit atk(x,y,x+width(),y+height(),1000/max_hp,dir);
     }
+    
+    public void beAttacked(int damage, int dir){
+    	if(able){
+            move_mod = 3;
+            if(dir == 0)
+            	this.dir = 1;
+            else
+            	this.dir = 0;
+            //System.out.println("dir = " + this.dir);
+            be_hit = 20;
+            hp -= damage;
+            able = false;
+            /*if(hp <=0 ){
+                hide();
+                hp=0;
+                dead_time = 200;
+                emit dead(exp);
+                if(rand()%2==1){
+                    int choose=rand()%8;
+                    if(choose == 0) emit create_treasure(x+width()/2,y+height(),"apple");
+                    if(choose == 1) emit create_treasure(x+width()/2,y+height(),"red_medicine");
+                    if(choose == 2) emit create_treasure(x+width()/2,y+height(),"blue_snail_shell");
+                    if(choose == 3) emit create_treasure(x+width()/2,y+height(),"full_medicine");
+                    if(choose == 4) emit create_treasure(x+width()/2,y+height(),"orange_medicine");
+                    if(choose == 5) emit create_treasure(x+width()/2,y+height(),"blue_medicine");
+                    if(choose == 6) emit create_treasure(x+width()/2,y+height(),"mushroom_cap");
+                    if(choose == 7) emit create_treasure(x+width()/2,y+height(),"green_wet_fairy");
+                }
+
+
+
+
+            }*/
+        }
+    }
 	    //virtual void setMap(MapWithObsticle *);
     
     /*public void move(int x, int y){
     	this.x = x;
     	this.y = y;
     }*/
+    
     
     public int level(){
     	return level;

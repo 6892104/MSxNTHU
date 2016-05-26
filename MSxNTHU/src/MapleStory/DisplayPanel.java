@@ -41,11 +41,6 @@ public class DisplayPanel extends JPanel {
 	protected void paintComponent(java.awt.Graphics g) { //paint pictures (using TA's code)
 		super.paintComponent(g);
 		if(map != null) g.drawImage(mapImage, (-1)*map.getShift_x() , (-1)*map.getShift_y() , map.getMax_x() , map.getMax_y(), null);
-		if(character != null){
-			//System.out.println("fuck : "+  character.x()+ " "+ character.y() + " " + map.getShift_x() + " " + map.getShift_y());
-			chImage = chPic.getImage();
-			g.drawImage(chImage, character.x() - map.getShift_x()  , character.y() - map.getShift_y()  , character.width() , character.height(), null);
-		}
 		if(monsters != null){
 			for(int i = 0 ; i < monsters.size() ; i++){
 				Monster piggy = monsters.get(i);
@@ -54,7 +49,12 @@ public class DisplayPanel extends JPanel {
 				g.drawImage(pigImage, piggy.x() - map.getShift_x(), piggy.y() - map.getShift_y(), piggy.width(), piggy.height(), null);
 			}
 		}
-		if(status != null) status.paintStatus(g);
+		if(character != null){
+			//System.out.println("fuck : "+  character.x()+ " "+ character.y() + " " + map.getShift_x() + " " + map.getShift_y());
+			chImage = chPic.getImage();
+			g.drawImage(chImage, character.x() - map.getShift_x()  , character.y() - map.getShift_y()  , character.width() , character.height(), null);
+		}
+		if(status != null && character != null) status.paintStatus(g);
 	}
 	
 	private void displayCharacter(java.awt.Graphics g){
@@ -85,6 +85,10 @@ public class DisplayPanel extends JPanel {
 	
 	public int getPigPictureNumber(){
 		return pigPic.pic_num;
+	}
+	
+	public int getAtkParameter(){
+		return chPic.atk_pic_num * chPic.atk_co;
 	}
 	
 	public void setMap(MapWithObsticle map){
@@ -310,6 +314,8 @@ public class DisplayPanel extends JPanel {
 		    else
 		    	return std_pic[character.dir()];
 		}
+		
+		
 	}
 	
 	private class PigPic extends RolePic{

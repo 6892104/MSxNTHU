@@ -5,6 +5,8 @@ package Role;
 import MapleStory.DisplayPanel;
 import MapleStory.MapWithObsticle;
 import Role.RoleMode.Mode;
+import Skill.NormalAttack;
+import Skill.Skill.Direction;
 
 public class Beginner extends Role {
 	
@@ -94,13 +96,35 @@ public class Beginner extends Role {
 	        climb_mod = 0;
 	    }
 	}
-	   /* void paintEvent(QPaintEvent *);
+	
+	public NormalAttack normal_attack(){
+		if(atk_mod <= 0 && climb_mod <= 0 && able){
+	      atk_mod = display.getAtkParameter();
+	      move_mod = 0;
+	      able = false;
+	    // 0  left   1  right
+	      if(dir == 0){
+	    	  return new NormalAttack(x+width()/2 - 100 , y , 100 , height() , 20 , Direction.left , true);
+	      }else{
+	    	  return new NormalAttack(x+width()/2 , y , 100 , height() , 20 , Direction.right , true);
+	      }
+	      //if(play_soundEffect) nor_attack->play();
+		}
+		return null;
+	}
+	
+	@Override
+	protected void AtkAction()
+	{
+	    if(atk_mod > 0){
+	        atk_mod--;
+	        if(atk_mod == 0)
+	            able = true;
+	    }
+	    //emit state_change(hp*100/max_hp,mp*100/max_mp,exp*100/max_exp[level],level);
+	}
 
-	    void normal_attack();
-	    virtual void AtkAction();
-	    int atk_mod;
-
-	public slots:
+	/*public slots:
 	    virtual void gain_exp(int);
 	signals:
 	    void state_change(int,int,int,int);*/

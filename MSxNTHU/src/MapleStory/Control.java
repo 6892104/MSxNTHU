@@ -1,15 +1,18 @@
 package MapleStory;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import Role.Beginner;
 import Role.Monster;
+import Skill.Skill;
 
 public class Control extends Thread{
 
 	private MapWithObsticle map;
 	private Beginner character;
 	private ArrayList<Monster> monsters;
+	private ArrayList<Skill> skills;
 	
 	private DisplayPanel display;
 	private KeyControl keyControl;
@@ -22,6 +25,7 @@ public class Control extends Thread{
 	    display.setCharacter(character);
 	    monsters = map.createMonster();
 	    display.setMonsters(monsters);
+	    skills = new ArrayList<Skill>();
 	}
 	
 	@Override
@@ -48,10 +52,28 @@ public class Control extends Thread{
 				Thread.sleep(40);
 				keyDetect();
 				character.RoleAction();
+				
 				for(int i = 0 ; i < monsters.size() ; i++){
 					monsters.get(i).RandomMove();
-					monsters.get(i).RoleAction();;
+					monsters.get(i).RoleAction();
 				}
+				
+				Iterator<Skill> it = skills.iterator();
+				while(it.hasNext()){
+					Skill sk = it.next();
+					if(sk.isHuman()){
+						for(int j = 0 ; j < monsters.size() ; j++){
+							Monster mon = monsters.get(j);
+							if(sk.hit(mon.x(), mon.y(), mon.width(), mon.height()))
+								mon.beAttacked(sk.damage(), character.dir());
+						}
+					}
+					if(sk.arrive()){
+						//System.out.println("fuck");
+						it.remove();
+					}
+				}
+				
 				display.repaint();
 				//System.out.println(keyControl.get("right"));
 			} catch(InterruptedException e){
@@ -66,6 +88,11 @@ public class Control extends Thread{
 		if(keyControl.get("space"))      character.jump();
 	    if(keyControl.get("up"))         character.climb(0);
 	    if(keyControl.get("down"))     	 character.climb(1);
+	    if(keyControl.get("control")){
+	    	Skill sk = character.normal_attack();
+	    	if(sk != null)
+	    		skills.add(sk);
+	    }
 	    /*if(key["esc"]){
 	        menuBar()->show();
 	        showNormal();
