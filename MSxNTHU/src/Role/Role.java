@@ -1,7 +1,11 @@
-package MapleStory;
+package Role;
+
+import MapleStory.DisplayPanel;
+import MapleStory.MapWithObsticle;
 
 public abstract class Role {
 	
+	protected String name;
     protected int x,y;
     //public int screen_x, screen_y;
     protected int width, height;
@@ -29,7 +33,6 @@ public abstract class Role {
 
 
 
-    protected MainWindow parent;
     protected DisplayPanel display;
     protected MapWithObsticle map;
     protected boolean human;
@@ -38,8 +41,8 @@ public abstract class Role {
 
 	protected int [] g;
 	  
-	public Role(MainWindow parent, DisplayPanel display,MapWithObsticle map){
-		this.parent = parent;
+	public Role(String name, DisplayPanel display,MapWithObsticle map){
+		this.name = name;
 		this.display = display;
 		this.map = map;
 	    x = 1000;
@@ -143,12 +146,13 @@ public abstract class Role {
 	    void atk(int,int,int,int,int,int);
 	    void dead(int);
 	    void create_treasure(int,int,std::string);*/
-	protected void RoleMove(int direction){
+	public void RoleMove(int direction){
 		dir = direction;
 	    if(move_mod<=0 && climb_mod <= 0 && able)
 	        move_mod = display.getCharacterPictureNumber();
 	}
-    protected void climb(int tmp){
+	
+    public void climb(int tmp){
     	// 0  up   1  down
     	if(able)
         {
@@ -164,6 +168,7 @@ public abstract class Role {
             }
         }
     }
+    
     protected void AtkAction(){
     	if(dead_time > 0){
             dead_time--;
@@ -187,6 +192,18 @@ public abstract class Role {
     	this.x = x;
     	this.y = y;
     }*/
+    
+    public int level(){
+    	return level;
+    }
+    
+    public int hp(){
+    	return hp;
+    }
+    
+    public int exp(){
+    	return exp;
+    }
     
     public int dir(){
     	return dir;

@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Vector;
 
+import Role.Monster;
+import Role.Pig;
+
 public class MapWithObsticle {
 	
-	private MainWindow parent;
 	private DisplayPanel display;
 	private int size_x, size_y, screen_size_x, screen_size_y;
 	private int shift_x, shift_y, over_shift_x, over_shift_y;
@@ -15,8 +17,7 @@ public class MapWithObsticle {
     private Vector<BlockOnMap> slopes;
     private Vector<BlockAndMonsterLimit> BAML;
 	
-	public MapWithObsticle(MainWindow parent, DisplayPanel display){
-		this.parent = parent;
+	public MapWithObsticle(DisplayPanel display){
 		this.display = display;
 		
 		floors = new Vector<BlockOnMap>();
@@ -206,20 +207,20 @@ public class MapWithObsticle {
 	    }
 	}
 	
-	public ArrayList<Pig> createMonster(){
+	public ArrayList<Monster> createMonster(){
 		//pig_num = 0;
 	    /*vector <BlockAndMonsterLimit> blk = map.get_each_BlockAndMonsterLimit();
 	    std::vector <BlockAndMonsterLimit>::iterator it;*/
 		Random ran = new Random();
-		ArrayList<Pig> monsters = new ArrayList<Pig>();
+		ArrayList<Monster> monsters = new ArrayList<Monster>();
 	    for(int i = 0 ; i < BAML.size() ; i++){
 	    	BlockAndMonsterLimit baml = BAML.get(i);
 	        for(int j = 0 ; j < baml.limit ; j++){
-	            Pig piggy = new Pig(parent, display, this);
-	            piggy.move_range_left = baml.start_x;
-	            piggy.move_range_right = baml.end_x;
-	            piggy.x = baml.start_x + ran.nextInt(baml.end_x -piggy.width() - baml.start_x + 1);
-	            piggy.y = baml.start_y - piggy.height() - 10;
+	            Monster piggy = new Pig("ªÎªÎ", display, this);
+	            piggy.setRange(baml.start_x, baml.end_x);
+	            int tmpX = baml.start_x + ran.nextInt(baml.end_x -piggy.width() - baml.start_x + 1);
+	            int tmpY = baml.start_y - piggy.height() - 10;
+	            piggy.setStartPosition(tmpX, tmpY);
 	            monsters.add(piggy);
 	            //piggy[pig_num]->show();
 	            /*connect(Timer,SIGNAL(timeout()),piggy[pig_num],SLOT(update()));

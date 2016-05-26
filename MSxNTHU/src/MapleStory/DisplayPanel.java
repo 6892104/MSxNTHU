@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import Role.Beginner;
+import Role.Monster;
+import Role.RoleMode;
+
 
 public class DisplayPanel extends JPanel {
 	
@@ -16,7 +20,7 @@ public class DisplayPanel extends JPanel {
 	
 	private MapWithObsticle map;
 	private Beginner character;
-	private ArrayList<Pig> monsters;
+	private ArrayList<Monster> monsters;
 	
 	private Status status;
 	private CharacterPic chPic;
@@ -44,8 +48,8 @@ public class DisplayPanel extends JPanel {
 		}
 		if(monsters != null){
 			for(int i = 0 ; i < monsters.size() ; i++){
-				Pig piggy = monsters.get(i);
-				System.out.println(piggy.x() + " " + piggy.y());
+				Monster piggy = monsters.get(i);
+				//System.out.println(piggy.x() + " " + piggy.y());
 				pigImage = pigPic.getImage(piggy);
 				g.drawImage(pigImage, piggy.x() - map.getShift_x(), piggy.y() - map.getShift_y(), piggy.width(), piggy.height(), null);
 			}
@@ -92,7 +96,7 @@ public class DisplayPanel extends JPanel {
 		chPic = new CharacterPic();
 	}
 	
-	public void setMonsters(ArrayList<Pig> monsters){
+	public void setMonsters(ArrayList<Monster> monsters){
 		this.monsters = monsters;
 		pigPic = new PigPic();
 	}
@@ -133,15 +137,15 @@ public class DisplayPanel extends JPanel {
 		}
 		
 		public void paintStatus(java.awt.Graphics g){
-			int tenth = character.level/10;
-			int oneth = character.level%10;
+			int tenth = character.level()/10;
+			int oneth = character.level()%10;
 
 		    g.drawImage(stbg, 0, y, 1280, 100, null);
 		    g.drawImage(sthpmpexp, 150, y + 28, 700, 60, null);
 		    g.drawImage(LV, 0, y + 10, 100, 100, null);
-		    g.drawImage(hp, 210, y + 32, (int)(2.8*character.hp), 18, null);
+		    g.drawImage(hp, 210, y + 32, (int)(2.8*character.hp()), 18, null);
 		    g.drawImage(mp, 565, y + 32, (int)(2.8*character.mp()), 18, null);
-		    g.drawImage(exp, 210, y + 65, (int)(6.3*character.exp), 20, null);
+		    g.drawImage(exp, 210, y + 65, (int)(6.3*character.exp()), 20, null);
 		    g.drawImage(LvNumber[tenth], 80, y + 40, 30, 40, null);
 		    g.drawImage(LvNumber[oneth], 110, y + 40, 30, 40, null);
 		    /*painter.drawPixmap(150,28,700,60,sthpmpexp);
@@ -314,37 +318,36 @@ public class DisplayPanel extends JPanel {
 			try {
 				// 0  left   1  right
 				std_pic[0] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Pig/move.1.png"));
-				/*std_pic[0]=":/Image/Monster/Pig/move.1.png";
-			    move_pic[0][3]=":/Image/Monster/Pig/move.0.png";
-			    move_pic[0][2]=":/Image/Monster/Pig/move.1.png";
-			    move_pic[0][1]=":/Image/Monster/Pig/move.2.png";
-			    move_pic[0][0]=":/Image/Monster/Pig/move.1.png";
-			    std_pic[1]=":/Image/Monster/Pig/Right/move.1.png";
-			    move_pic[1][3]=":/Image/Monster/Pig/Right/move.0.png";
-			    move_pic[1][2]=":/Image/Monster/Pig/Right/move.1.png";
-			    move_pic[1][1]=":/Image/Monster/Pig/Right/move.2.png";
-			    move_pic[1][0]=":/Image/Monster/Pig/Right/move.1.png";
-			    pic_num=4;
-			    jump_pic[0]=":/Image/Monster/Pig/jump.0.png";
-			    jump_pic[1]=":/Image/Monster/Pig/Right/jump.0.png";
-
-			    be_hit_pic[0]=":/Image/Monster/Pig/hit1.0.png";
-			    be_hit_pic[1]=":/Image/Monster/Pig/Right/hit1.0.png";*/
+				move_pic[0][3] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Pig/move.0.png"));
+				move_pic[0][2] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Pig/move.1.png"));
+				move_pic[0][1] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Pig/move.2.png"));
+				move_pic[0][0] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Pig/move.1.png"));
+				std_pic[1] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Pig/Right/move.1.png"));
+				move_pic[1][3] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Pig/Right/move.0.png"));
+				move_pic[1][2] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Pig/Right/move.1.png"));
+				move_pic[1][1] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Pig/Right/move.2.png"));
+				move_pic[1][0] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Pig/Right/move.1.png"));
+				pic_num=4;
+				jump_pic[0] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Pig/jump.0.png"));
+				jump_pic[1] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Pig/Right/jump.0.png"));
+				
+				be_hit_pic[0] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Pig/hit1.0.png"));
+				be_hit_pic[1] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Pig/Right/hit1.0.png"));
 			}catch (IOException ie){
 				javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤JªÎªÎ¹ÏÀÉ¿ù»~");
 			}
 		}
 		
-		public Image getImage(Pig piggy){
+		public Image getImage(Monster piggy){
 			RoleMode rm = piggy.getMode();
 			RoleMode.Mode mode = rm.mode;
-		    /*if(mode == RoleMode.Mode.be_hit)
+		    if(mode == RoleMode.Mode.be_hit)
 		        return be_hit_pic[piggy.dir()];
 		    else if(mode == RoleMode.Mode.jump)
 		        return jump_pic[piggy.dir()];
 		    else if(mode == RoleMode.Mode.move)
 		        return move_pic[piggy.dir()][rm.value%pic_num];
-		    else*/
+		    else
 		    	return std_pic[piggy.dir()];
 		}
 	}

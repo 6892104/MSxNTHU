@@ -1,8 +1,10 @@
-package MapleStory;
+package Role;
 
-import java.time.chrono.MinguoChronology;
 
-import MapleStory.RoleMode.Mode;
+
+import MapleStory.DisplayPanel;
+import MapleStory.MapWithObsticle;
+import Role.RoleMode.Mode;
 
 public class Beginner extends Role {
 	
@@ -12,8 +14,8 @@ public class Beginner extends Role {
 	private int original_mp;
 	public int atk_mod;
 	
-	public Beginner(MainWindow parent, DisplayPanel display,MapWithObsticle map){
-		super(parent, display, map);
+	public Beginner(String name, DisplayPanel display, MapWithObsticle map){
+		super(name, display, map);
 		
 		human = true;
 		width = 200;

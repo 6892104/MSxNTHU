@@ -1,13 +1,27 @@
 package MapleStory;
 
+import java.util.ArrayList;
+
+import Role.Beginner;
+import Role.Monster;
+
 public class Control extends Thread{
 
-	Beginner character;
-	DisplayPanel display;
-	KeyControl keyControl;
+	private MapWithObsticle map;
+	private Beginner character;
+	private ArrayList<Monster> monsters;
+	
+	private DisplayPanel display;
+	private KeyControl keyControl;
 
-	public Control(){
-		
+	public Control(DisplayPanel display){
+		this.display = display;
+		map = new MapWithObsticle(display);
+	    display.setMap(map);
+	    character = new Beginner("ชüจ}จ}ค์", display, map);
+	    display.setCharacter(character);
+	    monsters = map.createMonster();
+	    display.setMonsters(monsters);
 	}
 	
 	@Override
@@ -34,6 +48,10 @@ public class Control extends Thread{
 				Thread.sleep(40);
 				keyDetect();
 				character.RoleAction();
+				for(int i = 0 ; i < monsters.size() ; i++){
+					monsters.get(i).RandomMove();
+					monsters.get(i).RoleAction();;
+				}
 				display.repaint();
 				//System.out.println(keyControl.get("right"));
 			} catch(InterruptedException e){

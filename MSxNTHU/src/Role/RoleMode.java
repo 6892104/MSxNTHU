@@ -1,4 +1,4 @@
-package MapleStory;
+package Role;
 
 public class RoleMode {
 	public enum Mode{

@@ -30,10 +30,8 @@ public class MainWindow extends JFrame {
 	private Control control;
 	private KeyControl keyControl;
 
-	private MapWithObsticle map;
+	
 	private DisplayPanel display;
-	private Beginner role;
-	private ArrayList<Pig> monsters;
 
 	    /*enum Monster{pig,green};
 	    Monster which;
@@ -136,25 +134,22 @@ public class MainWindow extends JFrame {
 	    /*Timer = new QTimer(this);
 	    Timer->start(40);*/
 
-	    map = new MapWithObsticle(this, display);
-	    display.setMap(map);
+	    
 	    //map->show();
 	    //connect(Timer,SIGNAL(timeout()),map,SLOT(update()));
 
-	    role = new Beginner(this, display, map);
-	    display.setCharacter(role);
+	    
 	    /*role->show();
 	    connect(Timer,SIGNAL(timeout()),role,SLOT(update()));
 	    connect(Timer,SIGNAL(timeout()),role,SLOT(RoleAction()));
 	    connect(role,SIGNAL(dead(int)),this,SLOT(deadinfor(int)));*/
 
-	    monsters = map.createMonster();
-	    display.setMonsters(monsters);
+
 	    //System.out.println("fuck");
 	    
-	    control = new Control();
-	    control.setCharacter(role);
-	    control.setDisplay(display);
+	    control = new Control(display);
+	    /*control.setCharacter(role);
+	    control.setDisplay(display);*/
 	    control.setKeyControl(keyControl);
 	    control.start();
 
