@@ -73,7 +73,7 @@ public class DisplayPanel extends JPanel {
 		if(status != null && character != null) status.paintStatus(g);
 	}
 	
-	public void drawName(java.awt.Graphics g, Role role){
+	private void drawName(java.awt.Graphics g, Role role){
 		int fontSize = 20;
 		int nameX = role.x() - map.getShift_x() + role.width()/2 - role.name().length()/2*fontSize;
 		g.setFont(new Font(g.getFont().getFontName(), Font.BOLD, fontSize));//deriveFont(float size).
