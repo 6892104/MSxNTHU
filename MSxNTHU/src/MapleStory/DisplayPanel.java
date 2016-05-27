@@ -21,6 +21,8 @@ public class DisplayPanel extends JPanel {
 	private Image chImage;
 	private Image pigImage;
 	
+	private boolean drawName;
+	
 	private MapWithObsticle map;
 	private Beginner character;
 	private ArrayList<Monster> monsters;
@@ -38,7 +40,7 @@ public class DisplayPanel extends JPanel {
 		}catch (IOException ie){
 			javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤J¹ÏÀÉ¿ù»~");
 		}
-		
+		drawName = true;
 	}
 	
 	@Override
@@ -52,7 +54,7 @@ public class DisplayPanel extends JPanel {
 				if(piggy.visiable()){
 					pigImage = pigPic.getImage(piggy);
 					g.drawImage(pigImage, piggy.x() - map.getShift_x(), piggy.y() - map.getShift_y(), piggy.width(), piggy.height(), null);
-					drawName(g, piggy);
+					if(drawName) drawName(g, piggy);
 				}
 			}
 		}
@@ -63,7 +65,7 @@ public class DisplayPanel extends JPanel {
 				g.drawImage(chPic.getTombImage(), character.x() - map.getShift_x()  , character.tomb.getY() - map.getShift_y()  , character.width() , character.height(), null);
 			}else{
 				g.drawImage(chPic.getImage(), character.x() - map.getShift_x()  , character.y() - map.getShift_y()  , character.width() , character.height(), null);
-				drawName(g, character);
+				if(drawName) drawName(g, character);
 			}
 			if(character.levelEffect() > 0)
 				g.drawImage(chPic.getLevelUPImage(), character.x() - map.getShift_x()  , character.y() - map.getShift_y()  , character.width() , character.height(), null);
