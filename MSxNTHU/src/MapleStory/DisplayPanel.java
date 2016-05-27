@@ -45,8 +45,10 @@ public class DisplayPanel extends JPanel {
 			for(int i = 0 ; i < monsters.size() ; i++){
 				Monster piggy = monsters.get(i);
 				//System.out.println(piggy.x() + " " + piggy.y());
-				pigImage = pigPic.getImage(piggy);
-				g.drawImage(pigImage, piggy.x() - map.getShift_x(), piggy.y() - map.getShift_y(), piggy.width(), piggy.height(), null);
+				if(piggy.visiable()){
+					pigImage = pigPic.getImage(piggy);
+					g.drawImage(pigImage, piggy.x() - map.getShift_x(), piggy.y() - map.getShift_y(), piggy.width(), piggy.height(), null);
+				}
 			}
 		}
 		if(character != null){

@@ -31,6 +31,7 @@ public abstract class Role {
     protected int fall;
     protected boolean able;
     protected int dead_time;
+    protected boolean visiable;
 
 
 
@@ -62,6 +63,7 @@ public abstract class Role {
 	    be_hit=0;
 	    fall=0;
 	    able=true;
+	    visiable = true;
 
 
 	    move_pace=1;
@@ -187,6 +189,7 @@ public abstract class Role {
                 fall=0;
                 hp=max_hp;
                 able=true;
+                visiable = true;
                 //show();
             }
         }
@@ -204,11 +207,11 @@ public abstract class Role {
             be_hit = 20;
             hp -= damage;
             able = false;
-            /*if(hp <=0 ){
-                hide();
+            if(hp <=0 ){
+                visiable = false;
                 hp=0;
                 dead_time = 200;
-                emit dead(exp);
+                /*emit dead(exp);
                 if(rand()%2==1){
                     int choose=rand()%8;
                     if(choose == 0) emit create_treasure(x+width()/2,y+height(),"apple");
@@ -219,12 +222,12 @@ public abstract class Role {
                     if(choose == 5) emit create_treasure(x+width()/2,y+height(),"blue_medicine");
                     if(choose == 6) emit create_treasure(x+width()/2,y+height(),"mushroom_cap");
                     if(choose == 7) emit create_treasure(x+width()/2,y+height(),"green_wet_fairy");
-                }
+                }*/
 
 
 
 
-            }*/
+            }
         }
     }
 	    //virtual void setMap(MapWithObsticle *);
@@ -234,6 +237,9 @@ public abstract class Role {
     	this.y = y;
     }*/
     
+    public boolean visiable(){
+    	return visiable;
+    }
     
     public int level(){
     	return level;
