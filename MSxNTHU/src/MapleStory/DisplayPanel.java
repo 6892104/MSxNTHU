@@ -1,5 +1,7 @@
 package MapleStory;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import javax.swing.JPanel;
 
 import role.Beginner;
 import role.Monster;
+import role.Role;
 import role.RoleMode;
 
 
@@ -35,6 +38,7 @@ public class DisplayPanel extends JPanel {
 		}catch (IOException ie){
 			javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤J¹ÏÀÉ¿ù»~");
 		}
+		
 	}
 	
 	@Override
@@ -48,6 +52,7 @@ public class DisplayPanel extends JPanel {
 				if(piggy.visiable()){
 					pigImage = pigPic.getImage(piggy);
 					g.drawImage(pigImage, piggy.x() - map.getShift_x(), piggy.y() - map.getShift_y(), piggy.width(), piggy.height(), null);
+					drawName(g, piggy);
 				}
 			}
 		}
@@ -58,6 +63,7 @@ public class DisplayPanel extends JPanel {
 				g.drawImage(chPic.getTombImage(), character.x() - map.getShift_x()  , character.tomb.getY() - map.getShift_y()  , character.width() , character.height(), null);
 			}else{
 				g.drawImage(chPic.getImage(), character.x() - map.getShift_x()  , character.y() - map.getShift_y()  , character.width() , character.height(), null);
+				drawName(g, character);
 			}
 			if(character.levelEffect() > 0)
 				g.drawImage(chPic.getLevelUPImage(), character.x() - map.getShift_x()  , character.y() - map.getShift_y()  , character.width() , character.height(), null);
@@ -65,6 +71,15 @@ public class DisplayPanel extends JPanel {
 		if(status != null && character != null) status.paintStatus(g);
 	}
 	
+	public void drawName(java.awt.Graphics g, Role role){
+		int fontSize = 20;
+		int nameX = role.x() - map.getShift_x() + role.width()/2 - role.name().length()/2*fontSize;
+		g.setFont(new Font(g.getFont().getFontName(), Font.BOLD, fontSize));//deriveFont(float size).
+		g.setColor(Color.WHITE);
+		g.fillRect(nameX, role.y() - map.getShift_y() + role.height(), (int)(role.name().length()*fontSize*1.1), (int)(fontSize*1.3));
+		g.setColor(Color.BLACK);
+		g.drawString(role.name(), nameX , role.y() - map.getShift_y() + role.height() + fontSize);
+	}
 	
 	public int getCharacterPictureNumber(){
 		return chPic.pic_num;

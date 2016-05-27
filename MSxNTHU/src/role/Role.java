@@ -241,6 +241,10 @@ public abstract class Role {
     	return visiable;
     }
     
+    public String name(){
+    	return name;
+    }
+    
     public int level(){
     	return level;
     }
