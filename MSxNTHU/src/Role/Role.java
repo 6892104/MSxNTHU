@@ -199,10 +199,12 @@ public abstract class Role {
     public void beAttacked(int damage, int dir){
     	if(able){
             move_mod = 3;
-            if(dir == 0)
-            	this.dir = 1;
-            else
-            	this.dir = 0;
+            if(!human){
+	            if(dir == 0)
+	            	this.dir = 1;
+	            else
+	            	this.dir = 0;
+            }
             //System.out.println("dir = " + this.dir);
             be_hit = 20;
             hp -= damage;

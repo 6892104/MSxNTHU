@@ -51,11 +51,16 @@ public class Control extends Thread{
 				//lastTime = lastTime + DELAY;
 				Thread.sleep(40);
 				keyDetect();
-				character.RoleAction();
+				if(character.isDead()){
+					character.tomb.move();
+				}else
+					character.RoleAction();
 				
 				for(int i = 0 ; i < monsters.size() ; i++){
-					monsters.get(i).RandomMove();
-					monsters.get(i).RoleAction();
+					Monster mon = monsters.get(i);
+					mon.RandomMove();
+					mon.RoleAction();
+					character.beBumped(mon.x(), mon.y(), mon.width(), mon.height(), mon.damage());
 				}
 				
 				Iterator<Skill> it = skills.iterator();

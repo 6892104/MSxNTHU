@@ -7,7 +7,10 @@ import MapleStory.MapWithObsticle;
 import Role.RoleMode.Mode;
 
 public abstract class Monster extends Role{
-	Random ran;
+	
+	protected int damage;
+	protected Random ran;
+	
 	public Monster(String name, DisplayPanel display,MapWithObsticle map){
 		super(name, display, map);
 		human = false;
@@ -19,6 +22,8 @@ public abstract class Monster extends Role{
 	    move_mod=0;
 	    able=true;
 	    move_pace=10;
+	    
+	    damage = 10;
 	    
 	    ran = new Random();
 	}
@@ -44,5 +49,9 @@ public abstract class Monster extends Role{
 	public void setStartPosition(int x, int y){
 		this.x = x;
 		this.y = y;
+	}
+	
+	public int damage(){
+		return damage;
 	}
 }

@@ -16,6 +16,8 @@ public class Beginner extends Role {
 	private int original_mp;
 	public int atk_mod;
 	
+	public Tomb tomb;
+	
 	public Beginner(String name, DisplayPanel display, MapWithObsticle map){
 		super(name, display, map);
 		
@@ -46,7 +48,7 @@ public class Beginner extends Role {
 	        max_exp[i]=max_exp[i-1]+50;
 
 
-	    
+	    tomb = new Tomb();
 
 
 
@@ -123,6 +125,13 @@ public class Beginner extends Role {
 	    }
 	    //emit state_change(hp*100/max_hp,mp*100/max_mp,exp*100/max_exp[level],level);
 	}
+	
+	
+	public void beBumped(int x, int y, int width, int height, int damage){
+		if(this.x+this.width - shift > x && this.x + shift < x+width && this.y+this.height > y && this.y < y+height){
+			beAttacked(damage, dir);
+		}
+	}
 
 	/*public slots:
 	    virtual void gain_exp(int);
@@ -131,5 +140,45 @@ public class Beginner extends Role {
 	
 	public int mp(){
 		return mp;
+	}
+	
+	public boolean isDead(){
+		if(hp <= 0){
+			return true;
+		}else
+			return false;
+	}
+	
+	public class Tomb{
+		private int y;
+		private int tombEffect;
+		
+		public Tomb(){
+			y = y() - 190;
+			tombEffect = 0;
+		}
+		
+		private void reset(){
+			x = x();
+			y = y() - 190;
+			tombEffect = 21;
+		}
+		
+		public void move(){
+			if(tombEffect > 1){
+				y = y + 10;
+				tombEffect--;
+			}
+			if(hp <= 0 && tombEffect == 0)
+				reset();
+		}
+		
+		public int getParameter(){
+			return tombEffect;
+		}
+		
+		public int getY(){
+			return y;
+		}
 	}
 }

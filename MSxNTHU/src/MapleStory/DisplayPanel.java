@@ -53,8 +53,12 @@ public class DisplayPanel extends JPanel {
 		}
 		if(character != null){
 			//System.out.println("fuck : "+  character.x()+ " "+ character.y() + " " + map.getShift_x() + " " + map.getShift_y());
-			chImage = chPic.getImage();
-			g.drawImage(chImage, character.x() - map.getShift_x()  , character.y() - map.getShift_y()  , character.width() , character.height(), null);
+			if(character.isDead()){
+				//System.out.println(character.tomb.getY() - map.getShift_y() );
+				g.drawImage(chPic.getTombImage(), character.x() - map.getShift_x()  , character.tomb.getY() - map.getShift_y()  , character.width() , character.height(), null);
+			}else{
+				g.drawImage(chPic.getImage(), character.x() - map.getShift_x()  , character.y() - map.getShift_y()  , character.width() , character.height(), null);
+			}
 		}
 		if(status != null && character != null) status.paintStatus(g);
 	}
@@ -317,7 +321,9 @@ public class DisplayPanel extends JPanel {
 		    	return std_pic[character.dir()];
 		}
 		
-		
+		public Image getTombImage(){
+			return tomb_pic[character.tomb.getParameter()];
+		}
 	}
 	
 	private class PigPic extends RolePic{
