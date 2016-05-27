@@ -3,6 +3,7 @@ package MapleStory;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import item.ItemDatabase;
 import role.Beginner;
 import role.Monster;
 import skill.Skill;
@@ -13,6 +14,9 @@ public class Control extends Thread{
 	private Beginner character;
 	private ArrayList<Monster> monsters;
 	private ArrayList<Skill> skills;
+	private Bag bag;
+	private int bagDelay;
+	private ItemDatabase dataBase;
 	
 	private DisplayPanel display;
 	private KeyControl keyControl;
@@ -26,6 +30,10 @@ public class Control extends Thread{
 	    monsters = map.createMonster();
 	    display.setMonsters(monsters);
 	    skills = new ArrayList<Skill>();
+	    dataBase = new ItemDatabase();
+	    bag = new Bag(dataBase);
+	    bagDelay = 0;
+	    display.setBag(bag);
 	}
 	
 	@Override
@@ -84,6 +92,7 @@ public class Control extends Thread{
 					}
 				}
 				
+				bagDelay--;
 				display.repaint();
 				//System.out.println(keyControl.get("right"));
 			} catch(InterruptedException e){
@@ -98,6 +107,12 @@ public class Control extends Thread{
 		if(keyControl.get("space"))      character.jump();
 	    if(keyControl.get("up"))         character.climb(0);
 	    if(keyControl.get("down"))     	 character.climb(1);
+	    if(keyControl.get("i")){		 
+	    	if(bagDelay <= 0){
+	    		bag.open();
+	    		bagDelay = 3;
+	    	}
+	    }
 	    if(keyControl.get("control")){
 	    	Skill sk = character.normal_attack();
 	    	if(sk != null)

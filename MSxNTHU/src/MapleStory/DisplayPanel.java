@@ -20,12 +20,14 @@ public class DisplayPanel extends JPanel {
 	private Image mapImage;
 	private Image chImage;
 	private Image pigImage;
+	private Image bagImage;
 	
 	private boolean drawName;
 	
 	private MapWithObsticle map;
 	private Beginner character;
 	private ArrayList<Monster> monsters;
+	private Bag bag;
 	
 	private Status status;
 	private CharacterPic chPic;
@@ -38,7 +40,12 @@ public class DisplayPanel extends JPanel {
 		try {
 			mapImage = ImageIO.read(this.getClass().getResourceAsStream("/background.png"));
 		}catch (IOException ie){
-			javax.swing.JOptionPane.showMessageDialog(null, "載入圖檔錯誤");
+			javax.swing.JOptionPane.showMessageDialog(null, "載入地圖圖檔錯誤");
+		}
+		try {
+			bagImage = ImageIO.read(this.getClass().getResourceAsStream("/bag.png"));
+		}catch (IOException ie){
+			javax.swing.JOptionPane.showMessageDialog(null, "載入背包圖檔錯誤");
 		}
 		drawName = true;
 	}
@@ -71,6 +78,7 @@ public class DisplayPanel extends JPanel {
 				g.drawImage(chPic.getLevelUPImage(), character.x() - map.getShift_x()  , character.y() - map.getShift_y()  , character.width() , character.height(), null);
 		}
 		if(status != null && character != null) status.paintStatus(g);
+		if(bag != null && bag.visiable()) g.drawImage(bagImage, bag.x(), bag.y(), bag.width(), bag.height(), null);
 	}
 	
 	private void drawName(java.awt.Graphics g, Role role){
@@ -107,6 +115,10 @@ public class DisplayPanel extends JPanel {
 	public void setMonsters(ArrayList<Monster> monsters){
 		this.monsters = monsters;
 		pigPic = new PigPic();
+	}
+	
+	public void setBag(Bag bag){
+		this.bag = bag;
 	}
 //----------------------------------------------------------------	
 //-----------------inner classes----------------------------------
