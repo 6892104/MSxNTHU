@@ -1,4 +1,4 @@
-package Role;
+package role;
 
 public class RoleMode {
 	public enum Mode{

@@ -1,10 +1,10 @@
-package Role;
+package role;
 
 import java.util.Random;
 
 import MapleStory.DisplayPanel;
 import MapleStory.MapWithObsticle;
-import Role.RoleMode.Mode;
+import role.RoleMode.Mode;
 
 public abstract class Monster extends Role{
 	

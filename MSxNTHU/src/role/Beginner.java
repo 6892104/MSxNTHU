@@ -1,12 +1,12 @@
-package Role;
+package role;
 
 
 
 import MapleStory.DisplayPanel;
 import MapleStory.MapWithObsticle;
-import Role.RoleMode.Mode;
-import Skill.NormalAttack;
-import Skill.Skill.Direction;
+import role.RoleMode.Mode;
+import skill.NormalAttack;
+import skill.Skill.Direction;
 
 public class Beginner extends Role {
 	

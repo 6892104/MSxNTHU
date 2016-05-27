@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import Role.Beginner;
-import Role.Monster;
-import Role.RoleMode;
+import role.Beginner;
+import role.Monster;
+import role.RoleMode;
 
 
 public class DisplayPanel extends JPanel {

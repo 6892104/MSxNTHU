@@ -3,9 +3,9 @@ package MapleStory;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import Role.Beginner;
-import Role.Monster;
-import Skill.Skill;
+import role.Beginner;
+import role.Monster;
+import skill.Skill;
 
 public class Control extends Thread{
 

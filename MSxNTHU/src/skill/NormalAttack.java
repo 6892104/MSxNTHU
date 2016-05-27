@@ -1,4 +1,4 @@
-package Skill;
+package skill;
 
 
 

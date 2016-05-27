@@ -1,0 +1,62 @@
+{
+  "Consumables": [
+    {
+      "name": "bow",
+      "lvRequired":  100,
+      "atk": 30,
+      "matk": 10,
+      "def": 10,
+      "mdef": 5
+    },
+    {
+      "name": "cane",
+      "lvRequired":  120,
+      "atk": 50,
+      "matk": 15,
+      "def": 25,
+      "mdef": 8
+    }
+  ],
+  "Equipments": [
+    {
+      "name": "shirt",
+      "lvRequired":  150,
+      "atk": 30,
+      "matk": 20,
+      "def": 80,
+      "mdef": 50
+    },
+    {
+      "name": "shoes",
+      "lvRequired":  60,
+      "atk": 30,
+      "matk": 20,
+      "def": 50,
+      "mdef": 35
+    }
+  ],
+  "Other Items": [
+    {
+      "name": "water",
+      "lvRequired":  0,
+      "HP": 20,
+      "MP": 10,
+      "atk": 0,
+      "matk": 0,
+      "def": 0,
+      "mdef": 0,
+      "maxNum": 100
+    },
+    {
+      "name": "bread",
+      "lvRequired":  0,
+      "HP": 50,
+      "MP": 30,
+      "atk": 10,
+      "matk": 5,
+      "def": 10,
+      "mdef": 10,
+      "maxNum": 100
+    }
+  ]
+}

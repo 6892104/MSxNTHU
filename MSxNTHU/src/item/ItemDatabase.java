@@ -1,0 +1,92 @@
+package item;
+
+import processing.core.PApplet;
+import processing.data.JSONArray;
+import processing.data.JSONObject;
+
+import java.util.HashMap;
+
+//@SuppressWarnings("serial")
+public class ItemDatabase {
+	JSONObject data;
+	JSONArray data_array;
+	private HashMap<String, Consumable> consumables;
+	private HashMap<String, Equipment> equipments;
+	private HashMap<String, OtherItem> otherItems;
+
+
+	public ItemDatabase() {
+		consumables = new HashMap<String, Consumable>();
+		equipments = new HashMap<String, Equipment>();
+		otherItems = new HashMap<String, OtherItem>();
+		loadData();
+	}
+	public void loadData() {
+//		data = loadJSONObject(file);
+		try{
+			String file1 = "item/item_data.json";
+			String file2 = this.getClass().getResource("/item/item_data.json").getFile();
+			data = new PApplet().loadJSONObject(file1);
+		}catch (NullPointerException ie){
+			javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤Jª««~data¿ù»~");
+		}
+
+		data_array = data.getJSONArray("Consumables");
+		for(int i =0; i< data_array.size(); i++) {
+			String name = data_array.getJSONObject(i).getString("name");
+			int lvRequired = data_array.getJSONObject(i).getInt("lvRequired");
+			int atk = data_array.getJSONObject(i).getInt("atk");
+			int matk = data_array.getJSONObject(i).getInt("matk");
+			int def = data_array.getJSONObject(i).getInt("def");
+			int mdef = data_array.getJSONObject(i).getInt("mdef");
+			
+			Consumable c = new Consumable(name, lvRequired, atk, matk, def, mdef);
+			consumables.put(name, c);
+		}
+		
+		data_array = data.getJSONArray("Equipments");
+		for(int i =0; i< data_array.size(); i++) {
+			String name = data_array.getJSONObject(i).getString("name");
+			int lvRequired = data_array.getJSONObject(i).getInt("lvRequired");
+			int atk = data_array.getJSONObject(i).getInt("atk");
+			int matk = data_array.getJSONObject(i).getInt("matk");
+			int def = data_array.getJSONObject(i).getInt("def");
+			int mdef = data_array.getJSONObject(i).getInt("mdef");
+			
+			Equipment e = new Equipment(name, lvRequired, atk, matk, def, mdef);
+			equipments.put(name,  e);
+		}
+		data_array = data.getJSONArray("Other Items");
+		for(int i =0; i< data_array.size(); i++) {
+			String name = data_array.getJSONObject(i).getString("name");
+			int lvRequired = data_array.getJSONObject(i).getInt("lvRequired");
+			int atk = data_array.getJSONObject(i).getInt("atk");
+			int matk = data_array.getJSONObject(i).getInt("matk");
+			int def = data_array.getJSONObject(i).getInt("def");
+			int mdef = data_array.getJSONObject(i).getInt("mdef");
+			int maxNum =data_array.getJSONObject(i).getInt("maxNum");
+			int hp = data_array.getJSONObject(i).getInt("HP");
+			int mp = data_array.getJSONObject(i).getInt("MP");
+			
+			OtherItem o = new OtherItem(name, lvRequired, atk, matk, def, mdef, maxNum, hp, mp);
+			otherItems.put(name,  o);
+		}
+
+	}
+	
+	public Item createItem(String itemName) {
+		if(consumables.containsKey(itemName)) {
+			Consumable i = new Consumable(consumables.get(itemName));
+			return i;
+		}
+		else if(equipments.containsKey(itemName)) {
+			Equipment i = new Equipment(equipments.get(itemName));
+			return i;
+		}
+		else if(otherItems.containsKey(itemName)) {
+			Item i = new OtherItem(otherItems.get(itemName));
+			return i;
+		}
+		return null;
+	}
+}

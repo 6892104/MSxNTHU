@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Vector;
 
-import Role.Monster;
-import Role.Pig;
+import role.Monster;
+import role.Pig;
 
 public class MapWithObsticle {
 	

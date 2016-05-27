@@ -1,8 +1,8 @@
-package Role;
+package role;
 
 import MapleStory.DisplayPanel;
 import MapleStory.MapWithObsticle;
-import Skill.Skill.Direction;
+import skill.Skill.Direction;
 
 public abstract class Role {
 	
