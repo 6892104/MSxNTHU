@@ -196,7 +196,7 @@ public abstract class Role {
         //if(able) emit atk(x,y,x+width(),y+height(),1000/max_hp,dir);
     }
     
-    public void beAttacked(int damage, int dir){
+    public boolean beAttacked(int damage, int dir){
     	if(able){
             move_mod = 3;
             if(!human){
@@ -213,6 +213,7 @@ public abstract class Role {
                 visiable = false;
                 hp=0;
                 dead_time = 200;
+                return true;
                 /*emit dead(exp);
                 if(rand()%2==1){
                     int choose=rand()%8;
@@ -225,12 +226,9 @@ public abstract class Role {
                     if(choose == 6) emit create_treasure(x+width()/2,y+height(),"mushroom_cap");
                     if(choose == 7) emit create_treasure(x+width()/2,y+height(),"green_wet_fairy");
                 }*/
-
-
-
-
             }
         }
+    	return false;
     }
 	    //virtual void setMap(MapWithObsticle *);
     
@@ -249,6 +247,10 @@ public abstract class Role {
     
     public int hp(){
     	return hp;
+    }
+    
+    public int maxHP(){
+    	return max_hp;
     }
     
     public int exp(){

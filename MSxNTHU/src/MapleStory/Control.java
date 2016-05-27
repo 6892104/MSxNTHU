@@ -60,7 +60,9 @@ public class Control extends Thread{
 					Monster mon = monsters.get(i);
 					mon.RandomMove();
 					mon.RoleAction();
-					character.beBumped(mon.x(), mon.y(), mon.width(), mon.height(), mon.damage());
+					if(mon.visiable()){
+						character.beBumped(mon.x(), mon.y(), mon.width(), mon.height(), mon.damage());
+					}
 				}
 				
 				Iterator<Skill> it = skills.iterator();
@@ -69,8 +71,11 @@ public class Control extends Thread{
 					if(sk.isHuman()){
 						for(int j = 0 ; j < monsters.size() ; j++){
 							Monster mon = monsters.get(j);
-							if(sk.hit(mon.x(), mon.y(), mon.width(), mon.height()))
-								mon.beAttacked(sk.damage(), character.dir());
+							if(sk.hit(mon.x(), mon.y(), mon.width(), mon.height())){
+								boolean isDead = mon.beAttacked(sk.damage(), character.dir());
+								if(isDead)
+									character.gainEXP(mon.exp());
+							}
 						}
 					}
 					if(sk.arrive()){

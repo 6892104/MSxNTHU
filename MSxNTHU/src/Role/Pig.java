@@ -14,7 +14,7 @@ public class Pig extends Monster{
 	    height = 70;
 
 	    move_pace=10;
-	    
+	    exp = 50;
 	    damage = 10;
 
 	}

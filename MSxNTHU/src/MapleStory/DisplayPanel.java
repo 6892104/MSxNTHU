@@ -59,31 +59,12 @@ public class DisplayPanel extends JPanel {
 			}else{
 				g.drawImage(chPic.getImage(), character.x() - map.getShift_x()  , character.y() - map.getShift_y()  , character.width() , character.height(), null);
 			}
+			if(character.levelEffect() > 0)
+				g.drawImage(chPic.getLevelUPImage(), character.x() - map.getShift_x()  , character.y() - map.getShift_y()  , character.width() , character.height(), null);
 		}
 		if(status != null && character != null) status.paintStatus(g);
 	}
 	
-	private void displayCharacter(java.awt.Graphics g){
-
-	    /*if(tomb_effect > 0){
-	        pix.load(tomb_pic[tomb_effect]);
-	        painter.drawPixmap(0,0,this->width(),this->height(),pix);
-	        if(tomb_effect > 1) {
-	            tomb_effect--;
-	        }
-	        return;
-	    }*/
-
-	    
-	    //painter.drawPixmap(0,0,this->width(),this->height(),pix);
-
-
-	    /*if(level_effect > 0){
-	        pix.load(levelup_pic[level_effect/3]);
-	        painter.drawPixmap(0,0,this->width(),this->height(),pix);
-	        level_effect--;
-	    }*/
-	}
 	
 	public int getCharacterPictureNumber(){
 		return chPic.pic_num;
@@ -153,9 +134,9 @@ public class DisplayPanel extends JPanel {
 		    g.drawImage(stbg, 0, y, 1280, 100, null);
 		    g.drawImage(sthpmpexp, 150, y + 28, 700, 60, null);
 		    g.drawImage(LV, 0, y + 10, 100, 100, null);
-		    g.drawImage(hp, 210, y + 32, (int)(2.8*character.hp()), 18, null);
-		    g.drawImage(mp, 565, y + 32, (int)(2.8*character.mp()), 18, null);
-		    g.drawImage(exp, 210, y + 65, (int)(6.3*character.exp()), 20, null);
+		    g.drawImage(hp, 210, y + 32, (int)(280 * character.hp() / character.maxHP()), 18, null);
+		    g.drawImage(mp, 565, y + 32, (int)(280 * character.mp() / character.maxMP()), 18, null);
+		    g.drawImage(exp, 210, y + 65, (int)(630*character.exp() / character.maxEXP()), 20, null);
 		    g.drawImage(LvNumber[tenth], 80, y + 40, 30, 40, null);
 		    g.drawImage(LvNumber[oneth], 110, y + 40, 30, 40, null);
 		    /*painter.drawPixmap(150,28,700,60,sthpmpexp);
@@ -323,6 +304,10 @@ public class DisplayPanel extends JPanel {
 		
 		public Image getTombImage(){
 			return tomb_pic[character.tomb.getParameter()];
+		}
+		
+		public Image getLevelUPImage(){
+			return levelup_pic[character.levelEffect()/3];
 		}
 	}
 	

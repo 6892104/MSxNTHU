@@ -15,6 +15,7 @@ public class Beginner extends Role {
 	private int mp;
 	private int original_mp;
 	public int atk_mod;
+	private int level_effect;
 	
 	public Tomb tomb;
 	
@@ -39,11 +40,11 @@ public class Beginner extends Role {
 	    move_pace=10;
 	    max_mp=100;
 	    mp=max_mp;
-	    //level = 1;
+	    level = 1;
 	    exp=0;
 	    max_exp = new int[100];
 	    max_exp[1]=100;
-	    //level_effect=0;
+	    level_effect=0;
 	    for(int i=2;i<100;i++)
 	        max_exp[i]=max_exp[i-1]+50;
 
@@ -124,6 +125,8 @@ public class Beginner extends Role {
 	            able = true;
 	    }
 	    //emit state_change(hp*100/max_hp,mp*100/max_mp,exp*100/max_exp[level],level);
+	    if(level_effect > 0)
+	    	level_effect--;
 	}
 	
 	
@@ -138,17 +141,48 @@ public class Beginner extends Role {
 	signals:
 	    void state_change(int,int,int,int);*/
 	
+	public void gainEXP(int new_exp){
+		exp+=new_exp;
+	    if(exp >= max_exp[level])
+	    {
+	        /*if(play_soundEffect)
+	            level_up->play();*/
+	        exp-=max_exp[level];
+	        level++;
+	        max_hp+=20;
+	        hp=max_hp;
+	        max_mp+=20;
+	        mp=max_mp;
+	        level_effect = 60;
+	    }
+	}
+	
+	public int levelEffect(){
+		return level_effect;
+	}
+	
 	public int mp(){
 		return mp;
 	}
 	
+	public int maxMP(){
+		return max_mp;
+	}
+	
+	public int maxEXP(){
+		return max_exp[level];
+	}
+	
 	public boolean isDead(){
-		if(hp <= 0){
+		if(hp <= 0)
 			return true;
-		}else
+		else
 			return false;
 	}
 	
+//----------------------------------------------------------------	
+//-----------------inner classes----------------------------------
+//----------------------------------------------------------------	
 	public class Tomb{
 		private int y;
 		private int tombEffect;
