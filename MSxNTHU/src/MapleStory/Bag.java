@@ -3,6 +3,7 @@ package MapleStory;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -20,11 +21,11 @@ public class Bag{
 	private ItemDatabase dataBase;
 	private Vector<Item> items;
 	
-	private int x, y, setNumber, menuNumber;
+	private int x, y, menuNumber;
 	private int width, height;
 	private boolean visiable;
 	
-	private JButton bagButton;
+	private JButton bagButton, dragButton, closeButton;
 	private ArrayList<JButton> bagMenuButtons;
 	private ArrayList<JButton> itemButtons;
 	
@@ -36,42 +37,23 @@ public class Bag{
 		bagMenuButtons = new ArrayList<JButton>();
 		itemButtons = new ArrayList<JButton>();
 		
-		
 		x = 100;
 		y = 100;
 		width = 200;
 		height = 300;
 		visiable = false;
-		setNumber=0;
 		menuNumber=0;
 		setButtons();
 		
-		bagButton = new JButton();
-	    bagButton.setContentAreaFilled(false);
-	    bagButton.setBounds(860, 655, 60, 60);
-	    bagButton.setFocusable(false);
-	    bagButton.addMouseListener(new MouseAdapter(){
-	        @Override
-	        public void mouseClicked(MouseEvent e){
-	            if(e.getClickCount()==2){
-	                open();
-	            }
-	        }
-	    });
-	    try {
-	        Image img = ImageIO.read(getClass().getResource("/bag/bag_button.png"));
-	        img = img.getScaledInstance( 60, 60,  java.awt.Image.SCALE_SMOOTH ) ;
-	        bagButton.setIcon(new ImageIcon(img));
-	    } catch (IOException ex) {
-	    	javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤Jbag button¹ÏÀÉ¿ù»~");
-	    }
-	    display.add(bagButton);
-	    
 	}
 	
 	public void open(){
+		int i;
 		visiable = !visiable;
-		for(int i=0; i<5; i++) bagMenuButtons.get(i).setVisible(visiable);
+		for(i=0; i<5; i++) bagMenuButtons.get(i).setVisible(visiable);
+		for(i=0; i<24; i++) itemButtons.get(i).setVisible(visiable);
+		dragButton.setVisible(visiable);
+		closeButton.setVisible(visiable);
 	}
 	
 	public boolean visiable(){
@@ -97,26 +79,78 @@ public class Bag{
 	public void setButtons()
 	{
 		JButton temp;
-		for(int i=0; i<5; i++)
+		int i;
+		for(i=0; i<5; i++)
 		{
 			temp = new JButton();
 		    temp.setContentAreaFilled(false);
 		    temp.setBounds(x+8+i*37, y+25, 37, 21);
-		    //System.out.println(x+" "+ y);
 		    temp.setFocusable(false);
-		    temp.addMouseListener(new myMouseAdapter(i));
-	        try {
-		        Image img = ImageIO.read(getClass().getResource("/bag/empty.png"));
-		        img = img.getScaledInstance( 20, 30,  java.awt.Image.SCALE_SMOOTH ) ;
-		        temp.setIcon(new ImageIcon(img));
-		    } catch (IOException ex) {
-		    	javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤Jbag button¹ÏÀÉ¿ù»~");
-		    }
+		    temp.addMouseListener(new menuMouseAdapter(i));
 	        temp.setVisible(false);
-            setNumber++;
             bagMenuButtons.add(temp);
             display.add(temp);
 		}
+		for(i=0; i<24; i++)
+		{
+			temp = new JButton();
+		    temp.setContentAreaFilled(false);
+		    temp.setBounds(x+10+i%4*42, y+51+i/4*36, 40, 35);
+		    temp.setFocusable(false);
+		    temp.addMouseListener(new itemMouseAdapter(i));
+	        temp.setVisible(false);
+            itemButtons.add(temp);
+            display.add(temp);
+		}
+		
+		bagButton = new JButton();
+	    bagButton.setContentAreaFilled(false);
+	    bagButton.setBounds(860, 655, 60, 60);
+	    bagButton.setFocusable(false);
+	    bagButton.addMouseListener(new MouseAdapter(){
+	        public void mouseClicked(MouseEvent e){
+	            if(e.getClickCount()==2){
+	                open();
+	            }
+	        }
+	    });
+	    try {
+	        Image img = ImageIO.read(getClass().getResource("/bag/bag_button.png"));
+	        img = img.getScaledInstance( 60, 60,  java.awt.Image.SCALE_SMOOTH ) ;
+	        bagButton.setIcon(new ImageIcon(img));
+	    } catch (IOException ex) {
+	    	javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤Jbag button¹ÏÀÉ¿ù»~");
+	    }
+	    display.add(bagButton);
+	    
+	    dragButton = new JButton();
+	    dragButton.setContentAreaFilled(false);
+	    dragButton.setBounds(x, y, 172, 20);
+	    dragButton.setFocusable(false);
+	    dragButton.addMouseMotionListener(new MouseMotionAdapter(){
+	        public void mouseDragged(MouseEvent e){
+	        	x += e.getX() - 100;
+	            y += e.getY() - 5;
+	            moveBag();
+	        }
+	    });
+	    dragButton.setBorderPainted(false);
+	    dragButton.setVisible(false);
+	    display.add(dragButton);
+	    
+	    closeButton = new JButton();
+	    closeButton.setContentAreaFilled(false);
+	    closeButton.setBounds(x+172, y+2, 20, 20);
+	    closeButton.setFocusable(false);
+	    closeButton.addMouseListener(new MouseAdapter(){
+	        public void mousePressed(MouseEvent e){
+	            open();
+	        }
+	    });
+	    closeButton.setBorderPainted(false);
+	    closeButton.setVisible(false);
+	    display.add(closeButton);
+	    
 	}
 	
 	public int getMenu()
@@ -124,10 +158,20 @@ public class Bag{
 		return menuNumber;
 	}
 	
-	class myMouseAdapter extends MouseAdapter
+	public void moveBag()
+	{
+		int i;
+		for(i=0; i<5; i++) bagMenuButtons.get(i).setBounds(x+8+i*37, y+25, 37, 21);
+		for(i=0; i<24; i++) itemButtons.get(i).setBounds(x+10+i%4*42, y+51+i/4*36, 40, 35);
+		dragButton.setBounds(x, y, 172, 20);
+		closeButton.setBounds(x+172, y+2, 20, 20);
+		display.repaint();
+	}
+	
+	class menuMouseAdapter extends MouseAdapter
 	{
 		int num;
-		public myMouseAdapter(int i)
+		public menuMouseAdapter(int i)
 		{
 			super();
 			num = i;
@@ -138,10 +182,20 @@ public class Bag{
         }
 	}
 	
-	/*@Override
-	protected void paintComponent(java.awt.Graphics g) { //paint pictures (using TA's code)
-		super.paintComponent(g);
-		g.setColor(Color.BLUE);
-		g.drawLine(0, 0, 100, 100);
-	}*/
+	class itemMouseAdapter extends MouseAdapter
+	{
+		int num;
+		public itemMouseAdapter(int i)
+		{
+			super();
+			num = i;
+		}
+		public void mouseClicked(MouseEvent e)
+		{
+			if(e.getClickCount()==2)
+			{
+				//use item
+			}
+		}
+	}
 }
