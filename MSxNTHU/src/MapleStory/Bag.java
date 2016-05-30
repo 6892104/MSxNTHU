@@ -4,6 +4,7 @@ import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.imageio.ImageIO;
@@ -19,25 +20,36 @@ public class Bag{
 	private ItemDatabase dataBase;
 	private Vector<Item> items;
 	
-	private int x, y;
+	private int x, y, setNumber, menuNumber;
 	private int width, height;
 	private boolean visiable;
 	
 	private JButton bagButton;
+	private ArrayList<JButton> bagMenuButtons;
+	private ArrayList<JButton> itemButtons;
 	
 	public Bag(DisplayPanel display, ItemDatabase dataBase){
 		this.dataBase = dataBase;
+		this.display = display;
 		items = new Vector<Item>();
-		items.setSize(20);
+		items.setSize(24);
+		bagMenuButtons = new ArrayList<JButton>();
+		itemButtons = new ArrayList<JButton>();
+		
+		
 		x = 100;
 		y = 100;
 		width = 200;
 		height = 300;
 		visiable = false;
+		setNumber=1;
+		menuNumber=1;
+		setButtons();
 		
 		bagButton = new JButton();
 	    bagButton.setContentAreaFilled(false);
 	    bagButton.setBounds(860, 655, 60, 60);
+	    bagButton.setFocusable(false);
 	    bagButton.addMouseListener(new MouseAdapter(){
 	        @Override
 	        public void mouseClicked(MouseEvent e){
@@ -54,10 +66,12 @@ public class Bag{
 	    	javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤Jbag button¹ÏÀÉ¿ù»~");
 	    }
 	    display.add(bagButton);
+	    
 	}
 	
 	public void open(){
 		visiable = !visiable;
+		for(int i=0; i<5; i++) bagMenuButtons.get(i).setVisible(visiable);
 	}
 	
 	public boolean visiable(){
@@ -79,6 +93,45 @@ public class Bag{
 	public int height(){
 		return height;
 	}
+	
+	public void setButtons()
+	{
+		JButton temp;
+		for(int i=0; i<5; i++)
+		{
+			temp = new JButton();
+		    temp.setContentAreaFilled(false);
+		    temp.setBounds(x+8+i*37, y+25, 37, 21);
+		    System.out.println(x+" "+ y);
+		    temp.setFocusable(false);
+		    temp.addMouseListener(new MouseAdapter(){
+		        @Override
+		        public void mouseClicked(MouseEvent e){
+		            if(e.getClickCount()==2){
+		                menuNumber = setNumber;
+		            }
+		        }
+		    });
+	        try {
+		        Image img = ImageIO.read(getClass().getResource("/bag/empty.png"));
+		        img = img.getScaledInstance( 20, 30,  java.awt.Image.SCALE_SMOOTH ) ;
+		        temp.setIcon(new ImageIcon(img));
+		    } catch (IOException ex) {
+		    	javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤Jbag button¹ÏÀÉ¿ù»~");
+		    }
+	        temp.setVisible(false);
+            setNumber++;
+            bagMenuButtons.add(temp);
+            display.add(temp);
+		}
+	}
+	
+	public int getMenu()
+	{
+		return menuNumber;
+	}
+	
+	
 	/*@Override
 	protected void paintComponent(java.awt.Graphics g) { //paint pictures (using TA's code)
 		super.paintComponent(g);
