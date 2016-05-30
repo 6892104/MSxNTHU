@@ -25,7 +25,7 @@ public class Control extends Thread{
 
 	public Control(DisplayPanel display){
 		this.display = display;
-		map = new MapWithObsticle(display);
+		map = new MapWithObsticle(display, "map1");
 	    display.setMap(map);
 	    character = new Beginner("ชüจ}จ}ค์", display, map);
 	    display.setCharacter(character);

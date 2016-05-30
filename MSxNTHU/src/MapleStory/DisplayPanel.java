@@ -10,7 +10,13 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import item.Consumable;
+import item.Equipment;
 import item.Item;
+import item.OtherItem;
+import processing.core.PApplet;
+import processing.data.JSONArray;
+import processing.data.JSONObject;
 import role.Beginner;
 import role.Monster;
 import role.Role;
@@ -77,7 +83,7 @@ public class DisplayPanel extends JPanel {
 			}
 		}
 		if(character != null){
-			//System.out.println("fuck : "+  character.x()+ " "+ character.y() + " " + map.getShift_x() + " " + map.getShift_y());
+			System.out.println("fuck : "+  character.x()+ " "+ character.y() + " " + map.getShift_x() + " " + map.getShift_y());
 			if(character.isDead()){
 				//System.out.println(character.tomb.getY() - map.getShift_y() );
 				g.drawImage(chPic.getTombImage(), character.x() - map.getShift_x()  , character.tomb.getY() - map.getShift_y()  , character.width() , character.height(), null);
@@ -153,10 +159,50 @@ public class DisplayPanel extends JPanel {
 		ItemPic(){
 			itemPicture = new HashMap<String, Image>();
 			try {
-				Image apple = ImageIO.read(this.getClass().getResourceAsStream("/item/apple.png"));
-				itemPicture.put("apple", apple);
+				Image apple = ImageIO.read(this.getClass().getResourceAsStream("/item/consumable/蘋果.png"));
+				itemPicture.put("蘋果", apple);
 			}catch (Exception ie){
 				javax.swing.JOptionPane.showMessageDialog(null, "載入apple圖檔錯誤");
+			}
+			
+			JSONObject data;
+			JSONArray data_array;
+			try{
+				String file = "item/item_data.json";
+				data = new PApplet().loadJSONObject(file);
+			
+				data_array = data.getJSONArray("Consumables");
+				for(int i =0; i< data_array.size(); i++) {
+					String name = data_array.getJSONObject(i).getString("name");
+					try { 
+						itemPicture.put(name, ImageIO.read(this.getClass().getResourceAsStream("/item/consumable/" + name + ".png")));
+					}catch (Exception ie){
+						javax.swing.JOptionPane.showMessageDialog(null, "載入"+name+"圖檔錯誤");
+					}
+				}
+				
+				/*data_array = data.getJSONArray("Equipments");
+				for(int i =0; i< data_array.size(); i++) {
+					String name = data_array.getJSONObject(i).getString("name");
+					try { 
+						itemPicture.put(name, ImageIO.read(this.getClass().getResourceAsStream("/item/consumable/" + name + ".png")));
+					}catch (Exception ie){
+						javax.swing.JOptionPane.showMessageDialog(null, "載入"+name+"圖檔錯誤");
+					}
+				}
+				
+				data_array = data.getJSONArray("Other Items");
+				for(int i =0; i< data_array.size(); i++) {
+					String name = data_array.getJSONObject(i).getString("name");
+					try { 
+						itemPicture.put(name, ImageIO.read(this.getClass().getResourceAsStream("/item/consumable/" + name + ".png")));
+					}catch (Exception ie){
+						javax.swing.JOptionPane.showMessageDialog(null, "載入"+name+"圖檔錯誤");
+					}
+				}*/
+			
+			}catch (NullPointerException ie){
+				javax.swing.JOptionPane.showMessageDialog(null, "載入物品data錯誤");
 			}
 		}
 		
