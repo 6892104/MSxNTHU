@@ -34,6 +34,7 @@ public class DisplayPanel extends JPanel {
 	private PigPic pigPic;
 	
 	public DisplayPanel(){
+		this.setLayout(null);
 		status = new Status();
 		chPic = new CharacterPic();
 		pigPic = new PigPic();

@@ -31,7 +31,7 @@ public class Control extends Thread{
 	    display.setMonsters(monsters);
 	    skills = new ArrayList<Skill>();
 	    dataBase = new ItemDatabase();
-	    bag = new Bag(dataBase);
+	    bag = new Bag(display, dataBase);
 	    bagDelay = 0;
 	    display.setBag(bag);
 	}
