@@ -18,6 +18,7 @@ public class Pig extends Monster{
 	    damage = 10;
 	    
 	    treasure.add("Ä«ªG");
+	    treasure.add("¬õÃÄ¤ô");
 	}
 	
 	@Override
