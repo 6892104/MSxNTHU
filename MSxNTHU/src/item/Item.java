@@ -20,4 +20,8 @@ public class Item {
 		this.def = def;
 		this.mdef = mdef;
 	}
+	
+	public String name(){
+		return name;
+	}
 }

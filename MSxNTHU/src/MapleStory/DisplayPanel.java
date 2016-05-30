@@ -5,10 +5,12 @@ import java.awt.Font;
 import java.awt.Image;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import item.Item;
 import role.Beginner;
 import role.Monster;
 import role.Role;
@@ -20,31 +22,39 @@ public class DisplayPanel extends JPanel {
 	private Image mapImage;
 	private Image chImage;
 	private Image pigImage;
-	private Image bagImage;
+	private ArrayList<Image> bagImage;
 	
 	private boolean drawName;
 	
 	private MapWithObsticle map;
 	private Beginner character;
 	private ArrayList<Monster> monsters;
+	private ArrayList<Item> items;
 	private Bag bag;
 	
 	private Status status;
 	private CharacterPic chPic;
 	private PigPic pigPic;
+	private ItemPic itemPic;
 	
 	public DisplayPanel(){
 		this.setLayout(null);
 		status = new Status();
 		chPic = new CharacterPic();
 		pigPic = new PigPic();
+		itemPic = new ItemPic();
 		try {
 			mapImage = ImageIO.read(this.getClass().getResourceAsStream("/background.png"));
 		}catch (IOException ie){
 			javax.swing.JOptionPane.showMessageDialog(null, "載入地圖圖檔錯誤");
 		}
 		try {
-			bagImage = ImageIO.read(this.getClass().getResourceAsStream("/bag/bag1.jpg"));
+			bagImage = new ArrayList<Image>();
+			bagImage.add(ImageIO.read(this.getClass().getResourceAsStream("/bag/bag1.jpg")));
+			bagImage.add(ImageIO.read(this.getClass().getResourceAsStream("/bag/bag2.jpg")));
+			bagImage.add(ImageIO.read(this.getClass().getResourceAsStream("/bag/bag3.jpg")));
+			bagImage.add(ImageIO.read(this.getClass().getResourceAsStream("/bag/bag4.jpg")));
+			bagImage.add(ImageIO.read(this.getClass().getResourceAsStream("/bag/bag5.jpg")));
 		}catch (IOException ie){
 			javax.swing.JOptionPane.showMessageDialog(null, "載入背包圖檔錯誤");
 		}
@@ -78,8 +88,17 @@ public class DisplayPanel extends JPanel {
 			if(character.levelEffect() > 0)
 				g.drawImage(chPic.getLevelUPImage(), character.x() - map.getShift_x()  , character.y() - map.getShift_y()  , character.width() , character.height(), null);
 		}
+		if(items != null){
+			for(int i = 0 ; i < items.size() ; i++){
+				Item item = items.get(i);
+				/*int x = item.x - map.getShift_x();
+				int y = item.y - map.getShift_y();
+				System.out.println("fuck" + x + " " + y);*/
+				g.drawImage(itemPic.getImage(item.name()), item.x - map.getShift_x(), item.y - map.getShift_y(), 50, 50, null);
+			}
+		}
 		if(status != null && character != null) status.paintStatus(g);
-		if(bag != null && bag.visiable()) g.drawImage(bagImage, bag.x(), bag.y(), bag.width(), bag.height(), null);
+		if(bag != null && bag.visiable()) g.drawImage(bagImage.get(bag.getMenu()), bag.x(), bag.y(), bag.width(), bag.height(), null);
 	}
 	
 	private void drawName(java.awt.Graphics g, Role role){
@@ -90,6 +109,10 @@ public class DisplayPanel extends JPanel {
 		g.fillRect(nameX, role.y() - map.getShift_y() + role.height(), (int)(role.name().length()*fontSize*1.1), (int)(fontSize*1.3));
 		g.setColor(Color.BLACK);
 		g.drawString(role.name(), nameX , role.y() - map.getShift_y() + role.height() + fontSize);
+	}
+	
+	public void setItem(ArrayList<Item> items){
+		this.items = items;
 	}
 	
 	public int getCharacterPictureNumber(){
@@ -124,6 +147,24 @@ public class DisplayPanel extends JPanel {
 //----------------------------------------------------------------	
 //-----------------inner classes----------------------------------
 //----------------------------------------------------------------
+	private class ItemPic{
+		private HashMap<String, Image> itemPicture;
+		
+		ItemPic(){
+			itemPicture = new HashMap<String, Image>();
+			try {
+				Image apple = ImageIO.read(this.getClass().getResourceAsStream("/item/apple.png"));
+				itemPicture.put("apple", apple);
+			}catch (Exception ie){
+				javax.swing.JOptionPane.showMessageDialog(null, "載入apple圖檔錯誤");
+			}
+		}
+		
+		private Image getImage(String name){
+			return itemPicture.get(name);
+		}
+	}
+	
 	private class Status{
 		
 		private int y;

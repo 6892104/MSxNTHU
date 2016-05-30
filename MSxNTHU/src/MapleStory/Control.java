@@ -3,6 +3,7 @@ package MapleStory;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import item.Item;
 import item.ItemDatabase;
 import role.Beginner;
 import role.Monster;
@@ -14,6 +15,7 @@ public class Control extends Thread{
 	private Beginner character;
 	private ArrayList<Monster> monsters;
 	private ArrayList<Skill> skills;
+	private ArrayList<Item> items;
 	private Bag bag;
 	private int bagDelay;
 	private ItemDatabase dataBase;
@@ -34,6 +36,9 @@ public class Control extends Thread{
 	    bag = new Bag(display, dataBase);
 	    bagDelay = 0;
 	    display.setBag(bag);
+	    
+	    items = new ArrayList<Item>();
+	    
 	    /*JButton button = new JButton();
 	    button.setBorderPainted(false);
 	    button.setBorder(null);
@@ -91,8 +96,10 @@ public class Control extends Thread{
 							Monster mon = monsters.get(j);
 							if(sk.hit(mon.x(), mon.y(), mon.width(), mon.height())){
 								boolean isDead = mon.beAttacked(sk.damage(), character.dir());
-								if(isDead)
+								if(isDead){
 									character.gainEXP(mon.exp());
+									createTreasure( mon.getTreasureList(), mon.x() + mon.width()/2, mon.y() + mon.height());
+								}
 							}
 						}
 					}
@@ -103,10 +110,23 @@ public class Control extends Thread{
 				}
 				
 				bagDelay--;
+				
+				display.setItem(items);
 				display.repaint();
 				//System.out.println(keyControl.get("right"));
 			} catch(InterruptedException e){
 				e.printStackTrace();
+			}
+		}
+	}
+	
+	private void createTreasure(ArrayList<String> list, int x, int y){
+		for(int i = 0; i < list.size() ; i++){
+			Item item = dataBase.createItem(list.get(i));
+			if(item != null){
+				item.x = x + i*2;
+				item.y = y;
+				items.add(item);
 			}
 		}
 	}

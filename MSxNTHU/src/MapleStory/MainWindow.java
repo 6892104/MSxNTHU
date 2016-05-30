@@ -64,7 +64,7 @@ public class MainWindow extends JFrame {
 		try {
 			Image backGround = ImageIO.read(this.getClass().getResourceAsStream("/attack.0.png"));
 			this.setIconImage(backGround);
-		}catch (IOException ie){
+		}catch (Exception ie){
 			javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤J¹ÏÀÉ¿ù»~");
 		}
 	    this.setTitle("MapleStory");

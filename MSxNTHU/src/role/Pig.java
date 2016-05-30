@@ -16,7 +16,8 @@ public class Pig extends Monster{
 	    move_pace=10;
 	    exp = 50;
 	    damage = 10;
-
+	    
+	    treasure.add("apple");
 	}
 	
 	@Override

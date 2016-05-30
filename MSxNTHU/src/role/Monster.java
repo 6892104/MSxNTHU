@@ -1,5 +1,6 @@
 package role;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import MapleStory.DisplayPanel;
@@ -8,6 +9,7 @@ import role.RoleMode.Mode;
 
 public abstract class Monster extends Role{
 	
+	protected ArrayList<String> treasure;
 	protected int damage;
 	protected Random ran;
 	
@@ -26,6 +28,8 @@ public abstract class Monster extends Role{
 	    damage = 10;
 	    
 	    ran = new Random();
+	    
+	    treasure = new ArrayList<String>();
 	}
 	
 	public abstract void RandomMove();
@@ -39,6 +43,10 @@ public abstract class Monster extends Role{
 	    	return new RoleMode(Mode.move, move_mod);
 	    else
 	    	return new RoleMode(Mode.stand, 0);
+	}
+	
+	public ArrayList<String> getTreasureList(){
+		return treasure;
 	}
 	
 	public void setRange(int left, int right){

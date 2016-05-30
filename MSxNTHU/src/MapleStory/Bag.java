@@ -42,8 +42,8 @@ public class Bag{
 		width = 200;
 		height = 300;
 		visiable = false;
-		setNumber=1;
-		menuNumber=1;
+		setNumber=0;
+		menuNumber=0;
 		setButtons();
 		
 		bagButton = new JButton();
@@ -102,14 +102,12 @@ public class Bag{
 			temp = new JButton();
 		    temp.setContentAreaFilled(false);
 		    temp.setBounds(x+8+i*37, y+25, 37, 21);
-		    System.out.println(x+" "+ y);
+		    //System.out.println(x+" "+ y);
 		    temp.setFocusable(false);
 		    temp.addMouseListener(new MouseAdapter(){
 		        @Override
 		        public void mouseClicked(MouseEvent e){
-		            if(e.getClickCount()==2){
-		                menuNumber = setNumber;
-		            }
+		        	menuNumber = bagMenuButtons.indexOf();
 		        }
 		    });
 	        try {
@@ -131,6 +129,12 @@ public class Bag{
 		return menuNumber;
 	}
 	
+	class mjfielwjf extends MouseAdapter{
+		int i;
+		mjfielwjf(int i){
+			super();
+		}
+	}
 	
 	/*@Override
 	protected void paintComponent(java.awt.Graphics g) { //paint pictures (using TA's code)
