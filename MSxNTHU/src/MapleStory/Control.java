@@ -34,6 +34,16 @@ public class Control extends Thread{
 	    bag = new Bag(display, dataBase);
 	    bagDelay = 0;
 	    display.setBag(bag);
+	    /*JButton button = new JButton();
+	    button.setBorderPainted(false);
+	    button.setBorder(null);
+	    button.setFocusable(false);
+	    button.setMargin(new Insets(0, 0, 0, 0));
+	    button.setContentAreaFilled(false);
+	    button.setIcon(myIcon1);
+	    button.setRolloverIcon(myIcon2);
+	    button.setPressedIcon(myIcon3);
+	    button.setDisabledIcon(myIcon4);*/
 	}
 	
 	@Override
