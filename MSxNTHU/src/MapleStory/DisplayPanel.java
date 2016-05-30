@@ -44,7 +44,7 @@ public class DisplayPanel extends JPanel {
 			javax.swing.JOptionPane.showMessageDialog(null, "載入地圖圖檔錯誤");
 		}
 		try {
-			bagImage = ImageIO.read(this.getClass().getResourceAsStream("/bag.png"));
+			bagImage = ImageIO.read(this.getClass().getResourceAsStream("/bag/bag1.jpg"));
 		}catch (IOException ie){
 			javax.swing.JOptionPane.showMessageDialog(null, "載入背包圖檔錯誤");
 		}

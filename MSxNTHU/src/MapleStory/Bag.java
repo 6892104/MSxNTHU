@@ -47,7 +47,7 @@ public class Bag{
 	        }
 	    });
 	    try {
-	        Image img = ImageIO.read(getClass().getResource("/bag_button.png"));
+	        Image img = ImageIO.read(getClass().getResource("/bag/bag_button.png"));
 	        img = img.getScaledInstance( 60, 60,  java.awt.Image.SCALE_SMOOTH ) ;
 	        bagButton.setIcon(new ImageIcon(img));
 	    } catch (IOException ex) {
