@@ -127,6 +127,10 @@ public class DisplayPanel extends JPanel {
 		g.drawString(role.name(), nameX , role.y() - map.getShift_y() + role.height() + fontSize);
 	}
 	
+	public Image getItemImage(String name){
+		return itemPic.getImage(name);
+	}
+	
 	public void setItem(ArrayList<Item> items){
 		this.items = items;
 	}
