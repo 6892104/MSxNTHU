@@ -1,7 +1,7 @@
 {
   "Consumables": [
     {
-      "name": "Ä«ªG",
+      "name": "è˜‹æžœ",
       "lvRequired":  0,
       "HP" : 30,
       "MP" : 0,
@@ -10,7 +10,7 @@
       "probability": 95
     },
     {
-      "name": "¬õÃÄ¤ô",
+      "name": "ï¿½ï¿½ï¿½Ä¤ï¿½",
       "lvRequired":  10,
       "HP" : 50,
       "MP" : 0,
@@ -19,7 +19,7 @@
       "probability": 50
     },
     {
-      "name": "ÂÅÃÄ¤ô",
+      "name": "ï¿½ï¿½ï¿½Ä¤ï¿½",
       "lvRequired":  10,
       "HP" : 0,
       "MP" : 50,
@@ -28,7 +28,7 @@
       "probability": 50
     },
     {
-      "name": "¾ïÃÄ¤ô",
+      "name": "ï¿½ï¿½ï¿½Ä¤ï¿½",
       "lvRequired":  20,
       "HP" : 150,
       "MP" : 0,
@@ -37,7 +37,7 @@
       "probability": 30
     },
     {
-      "name": "¶W¯ÅÃÄ¤ô",
+      "name": "ï¿½Wï¿½ï¿½ï¿½Ä¤ï¿½",
       "lvRequired":  50,
       "HP" : 9999999,
       "MP" : 9999999,
@@ -70,7 +70,7 @@
   ],
   "Other Items": [
     {
-      "name": "ÂÅÄ_´ß",
+      "name": "ï¿½ï¿½ï¿½_ï¿½ï¿½",
       "lvRequired":  0,
       "maxNum": 200,
       "price": 50,
