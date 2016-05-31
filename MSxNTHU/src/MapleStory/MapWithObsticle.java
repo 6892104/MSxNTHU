@@ -7,6 +7,7 @@ import java.util.Vector;
 import processing.core.PApplet;
 import processing.data.JSONArray;
 import processing.data.JSONObject;
+import role.Green;
 import role.Monster;
 import role.Pig;
 
@@ -66,8 +67,9 @@ public class MapWithObsticle {
 			int width = data_array.getJSONObject(i).getInt("width");
 			int height = data_array.getJSONObject(i).getInt("height");
 			int limit = data_array.getJSONObject(i).getInt("limit");
+			String name = data_array.getJSONObject(i).getString("monster");
 
-			BAML.add(new BlockAndMonsterLimit(x,  y,  width, height, limit));
+			BAML.add(new BlockAndMonsterLimit(x,  y,  width, height, limit, name));
 		}
 		
 		screen_size_x = 1280;
@@ -261,12 +263,16 @@ public class MapWithObsticle {
 		for(int i = 0 ; i < BAML.size() ; i++){
 			BlockAndMonsterLimit baml = BAML.get(i);
 			for(int j = 0 ; j < baml.limit ; j++){
-				Monster piggy = new Pig("ªÎªÎ", display, this);
-				piggy.setRange(baml.start_x, baml.end_x);
-				int tmpX = baml.start_x + ran.nextInt(baml.end_x -piggy.width() - baml.start_x + 1);
-				int tmpY = baml.start_y - piggy.height() - 10;
-				piggy.setStartPosition(tmpX, tmpY);
-				monsters.add(piggy);
+				Monster mon;
+				if(baml.monster.equals("Pig"))
+					mon = new Pig("ªÎªÎ", display, this);
+				else
+					mon = new Green("ºñ¤ôÆF", display, this);
+				mon.setRange(baml.start_x, baml.end_x);
+				int tmpX = baml.start_x + ran.nextInt(baml.end_x -mon.width() - baml.start_x + 1);
+				int tmpY = baml.start_y - mon.height() - 10;
+				mon.setStartPosition(tmpX, tmpY);
+				monsters.add(mon);
 				//piggy[pig_num]->show();
 				/*connect(Timer,SIGNAL(timeout()),piggy[pig_num],SLOT(update()));
 				connect(Timer,SIGNAL(timeout()),piggy[pig_num],SLOT(RoleAction()));
@@ -318,9 +324,10 @@ public class MapWithObsticle {
 	{
 		private String monster;
 		private int limit;
-		private BlockAndMonsterLimit(int sx , int sy , int ex , int ey , int limit){
+		private BlockAndMonsterLimit(int sx , int sy , int ex , int ey , int limit, String monster){
 			super(sx, sy, ex, ey);
 			this.limit = limit;
+			this.monster = monster;
 		}
 	};
 }
