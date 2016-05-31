@@ -10,7 +10,7 @@
       "probability": 95
     },
     {
-      "name": "���Ĥ�",
+      "name": "紅藥水",
       "lvRequired":  10,
       "HP" : 50,
       "MP" : 0,
@@ -19,7 +19,7 @@
       "probability": 50
     },
     {
-      "name": "���Ĥ�",
+      "name": "藍藥水",
       "lvRequired":  10,
       "HP" : 0,
       "MP" : 50,
@@ -28,7 +28,7 @@
       "probability": 50
     },
     {
-      "name": "���Ĥ�",
+      "name": "橘藥水",
       "lvRequired":  20,
       "HP" : 150,
       "MP" : 0,
@@ -37,7 +37,7 @@
       "probability": 30
     },
     {
-      "name": "�W���Ĥ�",
+      "name": "超級藥水",
       "lvRequired":  50,
       "HP" : 9999999,
       "MP" : 9999999,
@@ -70,7 +70,7 @@
   ],
   "Other Items": [
     {
-      "name": "���_��",
+      "name": "藍寶殼",
       "lvRequired":  0,
       "maxNum": 200,
       "price": 50,
