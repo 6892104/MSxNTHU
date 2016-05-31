@@ -48,7 +48,7 @@ public class ItemDatabase {
 
 			Consumable c = new Consumable(name, lvRequired, price, probability, hp, mp, maxNum);
 			consumables.put(name, c);
-			System.out.println(c.name);
+			//System.out.println(c.name);
 		}
 		
 		data_array = data.getJSONArray("Equipments");
@@ -81,7 +81,7 @@ public class ItemDatabase {
 	
 	public Item createItem(String itemName) {
 		if(consumables.containsKey(itemName)) {
-			System.out.println("hi");
+			//System.out.println("hi");
 			if(isHit(consumables.get(itemName).probability)) {
 				Consumable i = new Consumable(consumables.get(itemName));
 				return i;
