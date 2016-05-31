@@ -146,7 +146,7 @@ public class Control extends Thread{
 			Item item = it.next();
 			if(character.x() + character.width()/2 > item.x && character.x() + character.width()/2 < item.x + item.width()){
 				if(character.y() + character.height() > item.y - item.height() && character.y() < item.y){
-					System.out.println("fuck");
+					//System.out.println("fuck");
 					bag.putItem(item);
 					it.remove();
 				}

@@ -2,7 +2,10 @@ package MapleStory;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -134,8 +137,26 @@ public class DisplayPanel extends JPanel {
 		g.drawString(role.name(), nameX , role.y() - map.getShift_y() + role.height() + fontSize);
 	}
 	
-	public Image getItemImage(String name){
-		return itemPic.getImage(name);
+	private Image mergeImage(Image image1, Image image2){
+		// create the new image, canvas size is the max. of both image sizes
+		int w = Math.max(image1.getWidth(null), image2.getWidth(null));
+		int h = Math.max(image1.getHeight(null), image2.getHeight(null));
+		BufferedImage combined = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+
+		// paint both images, preserving the alpha channels
+		Graphics g = combined.getGraphics();
+		g.drawImage(image1, 0, 0, null);
+		g.drawImage(image2, image1.getWidth(null) - image2.getWidth(null), image1.getHeight(null) - image2.getHeight(null), null);
+
+		return combined;
+	}
+	
+	public Image getItemImage(String name, int amount){
+		//System.out.println(amount);
+		if(amount == 1)
+			return itemPic.getImage(name);
+		else
+			return mergeImage(itemPic.getImage(name), itemPic.getNumber(amount));
 	}
 	
 	public void setItem(ArrayList<Item> items){
@@ -195,7 +216,7 @@ public class DisplayPanel extends JPanel {
 			}
 		}
 		
-		public Image getImage(int amount){
+		private Image getImage(int amount){
 			if(amount < 50)
 				return money_10;
 			else if(amount < 100)
@@ -209,15 +230,10 @@ public class DisplayPanel extends JPanel {
 	
 	private class ItemPic{
 		private HashMap<String, Image> itemPicture;
+		private ArrayList<Image> numberImage;
 		
 		private ItemPic(){
 			itemPicture = new HashMap<String, Image>();
-			try {
-				Image apple = ImageIO.read(this.getClass().getResourceAsStream("/item/consumable/蘋果.png"));
-				itemPicture.put("蘋果", apple);
-			}catch (Exception ie){
-				javax.swing.JOptionPane.showMessageDialog(null, "載入apple圖檔錯誤");
-			}
 			
 			JSONObject data;
 			JSONArray data_array;
@@ -254,6 +270,16 @@ public class DisplayPanel extends JPanel {
 						javax.swing.JOptionPane.showMessageDialog(null, "載入"+name+"圖檔錯誤");
 					}
 				}*/
+				
+				numberImage = new ArrayList<Image>();
+				try { 
+					for(int i = 0 ; i < 10 ; i++){
+						numberImage.add(ImageIO.read(this.getClass().getResourceAsStream("/itemNumber/ItemNo." + i + ".png")));
+					}
+				}catch (Exception ie){
+					javax.swing.JOptionPane.showMessageDialog(null, "載入item number圖檔錯誤");
+					ie.printStackTrace();
+				}
 			
 			}catch (NullPointerException ie){
 				javax.swing.JOptionPane.showMessageDialog(null, "載入物品data錯誤");
@@ -261,7 +287,17 @@ public class DisplayPanel extends JPanel {
 		}
 		
 		private Image getImage(String name){
-			return itemPicture.get(name);
+			if(itemPicture.containsKey(name))
+				return itemPicture.get(name);
+			else
+				return null;
+		}
+		
+		private Image getNumber(int number){
+			if(number >= 0 && number < 10){
+				return numberImage.get(number);
+			}else
+				return null;
 		}
 	}
 	

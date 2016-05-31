@@ -223,18 +223,20 @@ public class Bag{
 		{
 			
 			items.get(0).add(in);
-			itemButtons.get(0).get(items.get(0).indexOf(in)).setIcon(new ImageIcon(display.getItemImage(in.name())));
+			itemButtons.get(0).get(items.get(0).indexOf(in)).setIcon(new ImageIcon(display.getItemImage(in.name(), in.amount)));
 			
 		}
 		else if(in.type() == ItemType.consumable)
 		{
 			for(i=0; i<items.get(1).size(); i++)
 			{
-				if(items.get(1).get(i).name().equals(in.name()))
+				Item item = items.get(1).get(i);
+				if(item.name().equals(in.name()))
 				{
-					if(consumableItemNumber[i]<items.get(1).get(i).maxNum())
+					if(item.amount < item.maxNum())
 					{
-						consumableItemNumber[i]++;
+						item.amount++;
+						itemButtons.get(1).get(i).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
 						break;
 					}
 				}
@@ -243,7 +245,7 @@ public class Bag{
 			{
 				items.get(1).add(in);
 				consumableItemNumber[items.get(1).indexOf(in)]++;
-				itemButtons.get(1).get(items.get(1).indexOf(in)).setIcon(new ImageIcon(display.getItemImage(in.name())));
+				itemButtons.get(1).get(items.get(1).indexOf(in)).setIcon(new ImageIcon(display.getItemImage(in.name(), in.amount)));
 			}
 		}
 		else if(in.type()==ItemType.otherItem)
@@ -263,7 +265,7 @@ public class Bag{
 			{
 				items.get(2).add(in);
 				consumableItemNumber[items.get(2).indexOf(in)]++;
-				itemButtons.get(2).get(items.get(2).indexOf(in)).setIcon(new ImageIcon(display.getItemImage(in.name())));
+				itemButtons.get(2).get(items.get(2).indexOf(in)).setIcon(new ImageIcon(display.getItemImage(in.name(), in.amount)));
 			}
 		}
 		

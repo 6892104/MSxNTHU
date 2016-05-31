@@ -8,6 +8,7 @@ public class Item {
 	public int x, y;
 	private int width, height;
 	protected int maxNum;
+	public int amount;
 	protected int price;
 	protected int probability;
 	
@@ -19,13 +20,14 @@ public class Item {
 		this.height = 40;
 		
 		this.maxNum = 1;
+		this.amount = 1;
 
 		this.name = name;
 		this.lvRequired = lvRequired;
 		this.price = price;
 		this.probability = probability;
 	}
-	
+
 	public String name() {
 		return this.name;
 	}
