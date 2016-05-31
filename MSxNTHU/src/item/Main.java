@@ -8,7 +8,8 @@ public class Main {
 //		itemDatabase.setFocusable(true);
 
         
-        OtherItem bread = (OtherItem) itemDatabase.createItem("bread");
-        System.out.println(bread.hp);
+        Item water = itemDatabase.createItem("Ä«ªG");
+        if(water != null) System.out.println(water.name);
+        else System.out.println("No Apple");;
     }
 }

@@ -1,22 +1,22 @@
 package item;
 
-import java.util.Random;
 
 public class Consumable extends Item {
-	public Consumable(String name, int lvRequired, int atk, int matk, int def, int mdef) {
-		super(name, lvRequired, atk, matk, def, mdef);
+	private int hp, mp;
+	private int maxNum;
+	
+	public Consumable(String name, int lvRequired, int price, int probability, int hp, int mp,int maxNum) {
+		super(name, lvRequired, price, probability);
+		this.hp = hp;
+		this.mp = mp;
+		this.maxNum = maxNum;
+		this.itemType = ItemType.consumable;
 	}
 
 	public Consumable(Consumable c) {
-		super(c.name, c.lvRequired, c.atk, c.matk, c.def, c.mdef);
-		this.atk = setRandom(this.atk);
-		this.matk = setRandom(this.matk);
-		this.def = setRandom(this.def);
-		this.mdef = setRandom(this.mdef);
-	}
-	private int setRandom(int value) {
-		Random r = new Random();
-		int i = r.nextInt(21) -10;
-		return value + value*i/100;
+		super(c.name, c.lvRequired, c.price, c.probability);
+		this.hp = c.hp;
+		this.mp = c.mp;
+			this.maxNum = c.maxNum;
 	}
 }

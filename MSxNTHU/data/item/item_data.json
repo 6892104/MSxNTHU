@@ -1,28 +1,49 @@
 {
   "Consumables": [
     {
-      "name": "è˜‹æœ",
+      "name": "Ä«ªG",
       "lvRequired":  0,
-      "atk": 0,
-      "matk": 0,
-      "def": 0,
-      "mdef": 0
+      "HP" : 30,
+      "MP" : 0,
+      "maxNum": 200,
+      "price": 30,
+      "probability": 95
     },
     {
-      "name": "ç´…è—¥æ°´",
+      "name": "¬õÃÄ¤ô",
       "lvRequired":  10,
-      "atk": 0,
-      "matk": 0,
-      "def": 0,
-      "mdef": 0
+      "HP" : 50,
+      "MP" : 0,
+      "maxNum": 200,
+      "price": 50,
+      "probability": 50
     },
     {
-      "name": "è—è—¥æ°´",
+      "name": "ÂÅÃÄ¤ô",
       "lvRequired":  10,
-      "atk": 0,
-      "matk": 0,
-      "def": 0,
-      "mdef": 0
+      "HP" : 0,
+      "MP" : 50,
+      "maxNum": 200,
+      "price": 100,
+      "probability": 50
+    },
+    {
+      "name": "¾ïÃÄ¤ô",
+      "lvRequired":  20,
+      "HP" : 150,
+      "MP" : 0,
+      "maxNum": 200,
+      "price": 150,
+      "probability": 30
+    },
+    {
+      "name": "¶W¯ÅÃÄ¤ô",
+      "lvRequired":  50,
+      "HP" : 9999999,
+      "MP" : 9999999,
+      "maxNum": 200,
+      "price": 150,
+      "probability": 10
     }
   ],
   "Equipments": [
@@ -32,7 +53,9 @@
       "atk": 30,
       "matk": 20,
       "def": 80,
-      "mdef": 50
+      "mdef": 50,
+      "price": 200,
+      "probability": 30
     },
     {
       "name": "shoes",
@@ -40,31 +63,25 @@
       "atk": 30,
       "matk": 20,
       "def": 50,
-      "mdef": 35
+      "mdef": 35,
+      "price": 200,
+      "probability": 30
     }
   ],
   "Other Items": [
     {
-      "name": "water",
+      "name": "ÂÅÄ_´ß",
       "lvRequired":  0,
-      "HP": 20,
-      "MP": 10,
-      "atk": 0,
-      "matk": 0,
-      "def": 0,
-      "mdef": 0,
-      "maxNum": 100
+      "maxNum": 200,
+      "price": 50,
+      "probability": 30
     },
     {
       "name": "bread",
       "lvRequired":  0,
-      "HP": 50,
-      "MP": 30,
-      "atk": 10,
-      "matk": 5,
-      "def": 10,
-      "mdef": 10,
-      "maxNum": 100
+      "maxNum": 200,
+      "price": 50,
+      "probability": 80
     }
   ]
 }

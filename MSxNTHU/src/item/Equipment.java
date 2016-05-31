@@ -3,16 +3,26 @@ package item;
 import java.util.Random;
 
 public class Equipment extends Item {
-	public Equipment(String name, int lvRequired, int atk, int matk, int def, int mdef) {
-		super(name, lvRequired, atk, matk, def, mdef);
+	private int atk, matk;
+	private int def, mdef;
+	
+	public Equipment(String name, int lvRequired, int atk, int matk, int def, int mdef, int price, int probability) {
+		super(name, lvRequired, price, probability);
+		
+		this.atk = atk;
+		this.matk = matk;
+		this.def = def;
+		this.mdef = mdef;
+		this.itemType = ItemType.equipment;
+		
 	}
 
 	public Equipment(Equipment e) {
-		super(e.name, e.lvRequired, e.atk, e.matk, e.def, e.mdef);
-		this.atk = setRandom(this.atk);
-		this.matk = setRandom(this.matk);
-		this.def = setRandom(this.def);
-		this.mdef = setRandom(this.mdef);
+		super(e.name, e.lvRequired, e.price, e.probability);
+		this.atk = setRandom(e.atk);
+		this.matk = setRandom(e.matk);
+		this.def = setRandom(e.def);
+		this.mdef = setRandom(e.mdef);
 	}
 	private int setRandom(int value) {
 		Random r = new Random();
