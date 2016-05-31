@@ -514,4 +514,51 @@ public class DisplayPanel extends JPanel {
 		    	return std_pic[piggy.dir()];
 		}
 	}
+	
+	private class GreenPic extends RolePic{
+		private GreenPic(){
+			super();
+			try {
+				// 0  left   1  right
+				pic_num=7;
+				std_pic[0] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Green/move.1.png"));
+				move_pic[0][6] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Green/move.0.png"));
+				move_pic[0][5] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Green/move.1.png"));
+				move_pic[0][4] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Green/move.2.png"));
+				move_pic[0][3] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Green/move.3.png"));
+				move_pic[0][2] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Green/move.4.png"));
+				move_pic[0][1] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Green/move.5.png"));
+				move_pic[0][0] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Green/move.6.png"));
+				std_pic[1] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Green/Right/move.1.png"));
+				move_pic[1][6] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Green/Right/move.0.png"));
+				move_pic[1][5] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Green/Right/move.1.png"));
+				move_pic[1][4] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Green/Right/move.2.png"));
+				move_pic[1][3] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Green/Right/move.3.png"));
+				move_pic[1][2] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Green/Right/move.4.png"));
+				move_pic[1][1] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Green/Right/move.5.png"));
+				move_pic[1][0] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Green/Right/move.6.png"));
+				
+				jump_pic[0] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Green/jump.0.png"));
+				jump_pic[1] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Green/Right/jump.0.png"));
+				
+				be_hit_pic[0] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Green/hit1.0.png"));
+				be_hit_pic[1] = ImageIO.read(this.getClass().getResourceAsStream("/Monster/Green/Right/hit1.0.png"));
+			}catch (IOException ie){
+				javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤Jºñ¤ôÆF¹ÏÀÉ¿ù»~");
+			}
+		}
+		
+		public Image getImage(Monster piggy){
+			RoleMode rm = piggy.getMode();
+			RoleMode.Mode mode = rm.mode;
+		    if(mode == RoleMode.Mode.be_hit)
+		        return be_hit_pic[piggy.dir()];
+		    else if(mode == RoleMode.Mode.jump)
+		        return jump_pic[piggy.dir()];
+		    else if(mode == RoleMode.Mode.move)
+		        return move_pic[piggy.dir()][rm.value%pic_num];
+		    else
+		    	return std_pic[piggy.dir()];
+		}
+	}
 }

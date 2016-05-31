@@ -314,10 +314,11 @@ public class MapWithObsticle {
 		}
 	};
 	
-	class BlockAndMonsterLimit extends BlockOnMap
+	private class BlockAndMonsterLimit extends BlockOnMap
 	{
-		public int limit;
-		public BlockAndMonsterLimit(int sx , int sy , int ex , int ey , int limit){
+		private String monster;
+		private int limit;
+		private BlockAndMonsterLimit(int sx , int sy , int ex , int ey , int limit){
 			super(sx, sy, ex, ey);
 			this.limit = limit;
 		}

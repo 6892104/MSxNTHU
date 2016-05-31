@@ -1,24 +1,22 @@
 package role;
 
-
-
 import MapleStory.DisplayPanel;
 import MapleStory.MapWithObsticle;
 
-public class Pig extends Monster{
-	public Pig(String name, DisplayPanel display,MapWithObsticle map){
+public class Green extends Monster{
+	public Green(String name, DisplayPanel display,MapWithObsticle map){
 		super(name, display, map);
 		human = false;
 	    //this->setFixedSize(100,70);
 	    width = 100;
 	    height = 70;
 	    
-	    max_hp=100;
-	    hp=max_hp;
+	    max_hp = 200;
+	    hp = max_hp;
 
 	    move_pace=10;
-	    exp = 50;
-	    damage = 10;
+	    exp = 100;
+	    damage = 20;
 	    
 	    treasure.add("Ä«ªG");
 	    treasure.add("¬õÃÄ¤ô");
