@@ -27,7 +27,7 @@ public class Bag{
 	
 	private JButton bagButton, dragButton, closeButton;
 	private ArrayList<JButton> bagMenuButtons;
-	private ArrayList<JButton> itemButtons;
+	private ArrayList<ArrayList<JButton>> itemButtons;
 	
 	public Bag(DisplayPanel display, ItemDatabase dataBase){
 		this.dataBase = dataBase;
@@ -35,7 +35,7 @@ public class Bag{
 		items = new Vector<Item>();
 		items.setSize(24);
 		bagMenuButtons = new ArrayList<JButton>();
-		itemButtons = new ArrayList<JButton>();
+		itemButtons = new ArrayList<ArrayList<JButton>>();
 		
 		x = 100;
 		y = 100;
@@ -51,7 +51,7 @@ public class Bag{
 		int i;
 		visiable = !visiable;
 		for(i=0; i<5; i++) bagMenuButtons.get(i).setVisible(visiable);
-		for(i=0; i<24; i++) itemButtons.get(i).setVisible(visiable);
+		for(i=0; i<24; i++) itemButtons.get(menuNumber).get(i).setVisible(visiable);
 		dragButton.setVisible(visiable);
 		closeButton.setVisible(visiable);
 	}
@@ -79,7 +79,8 @@ public class Bag{
 	public void setButtons()
 	{
 		JButton temp;
-		int i;
+		ArrayList<JButton> temp2;
+		int i, j;
 		for(i=0; i<5; i++)
 		{
 			temp = new JButton();
@@ -91,16 +92,21 @@ public class Bag{
             bagMenuButtons.add(temp);
             display.add(temp);
 		}
-		for(i=0; i<24; i++)
+		for(i=0; i<5; i++)
 		{
-			temp = new JButton();
-		    temp.setContentAreaFilled(false);
-		    temp.setBounds(x+10+i%4*42, y+51+i/4*36, 40, 35);
-		    temp.setFocusable(false);
-		    temp.addMouseListener(new itemMouseAdapter(i));
-	        temp.setVisible(false);
-            itemButtons.add(temp);
-            display.add(temp);
+			temp2 = new ArrayList<JButton>();
+			itemButtons.add(temp2);
+			for(j=0; j<24; j++)
+			{
+				temp = new JButton();
+			    temp.setContentAreaFilled(false);
+			    temp.setBounds(x+10+j%4*42, y+51+j/4*36, 40, 35);
+			    temp.setFocusable(false);
+			    temp.addMouseListener(new itemMouseAdapter(j));
+		        temp.setVisible(false);
+	            itemButtons.get(i).add(temp);
+	            display.add(temp);
+			}
 		}
 		
 		bagButton = new JButton();
@@ -109,9 +115,7 @@ public class Bag{
 	    bagButton.setFocusable(false);
 	    bagButton.addMouseListener(new MouseAdapter(){
 	        public void mouseClicked(MouseEvent e){
-	            if(e.getClickCount()==2){
 	                open();
-	            }
 	        }
 	    });
 	    try {
@@ -160,9 +164,9 @@ public class Bag{
 	
 	public void moveBag()
 	{
-		int i;
+		int i, j;
 		for(i=0; i<5; i++) bagMenuButtons.get(i).setBounds(x+8+i*37, y+25, 37, 21);
-		for(i=0; i<24; i++) itemButtons.get(i).setBounds(x+10+i%4*42, y+51+i/4*36, 40, 35);
+		for(i=0; i<5; i++) for(j=0; j<24; j++) itemButtons.get(i).get(j).setBounds(x+10+j%4*42, y+51+j/4*36, 40, 35);
 		dragButton.setBounds(x, y, 172, 20);
 		closeButton.setBounds(x+172, y+2, 20, 20);
 		display.repaint();
@@ -170,7 +174,7 @@ public class Bag{
 	
 	class menuMouseAdapter extends MouseAdapter
 	{
-		int num;
+		private int num;
 		public menuMouseAdapter(int i)
 		{
 			super();
@@ -178,7 +182,10 @@ public class Bag{
 		}
 		public void mouseClicked(MouseEvent e)
 		{
+			int i;
+			for(i=0; i<24; i++) itemButtons.get(menuNumber).get(i).setVisible(false);
         	menuNumber = num;
+        	for(i=0; i<24; i++) itemButtons.get(menuNumber).get(i).setVisible(true);
         }
 	}
 	
