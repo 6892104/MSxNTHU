@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import item.Item;
+import item.Item.ItemType;
 import item.ItemDatabase;
 
 public class Bag{
@@ -208,6 +209,21 @@ public class Bag{
 	
 	public void putItem(Item in)
 	{
-		items.get(menuNumber).add(in);
+		if(in.type()==ItemType.equipment)
+		{
+			items.get(0).add(in);
+			itemButtons.get(0).get(items.get(0).indexOf(in)).setIcon(new ImageIcon(display.getItemImage(in.name())));
+		}
+		else if(in.type()==ItemType.consumable)
+		{
+			items.get(1).add(in);
+			itemButtons.get(1).get(items.get(1).indexOf(in)).setIcon(new ImageIcon(display.getItemImage(in.name())));
+		}
+		else if(in.type()==ItemType.otherItem)
+		{
+			items.get(2).add(in);
+			itemButtons.get(2).get(items.get(2).indexOf(in)).setIcon(new ImageIcon(display.getItemImage(in.name())));
+		}
+		
 	}
 }
