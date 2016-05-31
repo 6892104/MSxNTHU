@@ -43,6 +43,7 @@ public class DisplayPanel extends JPanel {
 	private Status status;
 	private CharacterPic chPic;
 	private PigPic pigPic;
+	private GreenPic greenPic;
 	private ItemPic itemPic;
 	private MoneyPic moneyPic;
 	
@@ -51,6 +52,7 @@ public class DisplayPanel extends JPanel {
 		status = new Status();
 		chPic = new CharacterPic();
 		pigPic = new PigPic();
+		greenPic = new GreenPic();
 		itemPic = new ItemPic();
 		moneyPic = new MoneyPic();
 		try {
@@ -77,12 +79,17 @@ public class DisplayPanel extends JPanel {
 		if(map != null) g.drawImage(mapImage, (-1)*map.getShift_x() , (-1)*map.getShift_y() , map.getMax_x() , map.getMax_y(), null);
 		if(monsters != null){
 			for(int i = 0 ; i < monsters.size() ; i++){
-				Monster piggy = monsters.get(i);
+				Monster mon = monsters.get(i);
 				//System.out.println(piggy.x() + " " + piggy.y());
-				if(piggy.visiable()){
-					pigImage = pigPic.getImage(piggy);
-					g.drawImage(pigImage, piggy.x() - map.getShift_x(), piggy.y() - map.getShift_y(), piggy.width(), piggy.height(), null);
-					if(drawName) drawName(g, piggy);
+				if(mon.visiable()){
+					if(mon.name().equals("ªÎªÎ")){
+						pigImage = pigPic.getImage(mon);
+						g.drawImage(pigImage, mon.x() - map.getShift_x(), mon.y() - map.getShift_y(), mon.width(), mon.height(), null);
+						if(drawName) drawName(g, mon);
+					}else if(mon.name().equals("ºñ¤ôÆF")){
+						g.drawImage(greenPic.getImage(mon), mon.x() - map.getShift_x(), mon.y() - map.getShift_y(), mon.width(), mon.height(), null);
+						if(drawName) drawName(g, mon);
+					}
 				}
 			}
 		}
