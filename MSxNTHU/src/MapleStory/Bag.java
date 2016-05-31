@@ -19,7 +19,6 @@ public class Bag{
 	
 	private DisplayPanel display;
 	private ItemDatabase dataBase;
-	private Vector<Item> items;
 	
 	private int x, y, menuNumber;
 	private int width, height;
@@ -28,12 +27,12 @@ public class Bag{
 	private JButton bagButton, dragButton, closeButton;
 	private ArrayList<JButton> bagMenuButtons;
 	private ArrayList<ArrayList<JButton>> itemButtons;
+	private ArrayList<Vector<Item>> items;
 	
 	public Bag(DisplayPanel display, ItemDatabase dataBase){
 		this.dataBase = dataBase;
 		this.display = display;
-		items = new Vector<Item>();
-		items.setSize(24);
+		items = new ArrayList<Vector<Item>>();
 		bagMenuButtons = new ArrayList<JButton>();
 		itemButtons = new ArrayList<ArrayList<JButton>>();
 		
@@ -96,6 +95,7 @@ public class Bag{
 		{
 			temp2 = new ArrayList<JButton>();
 			itemButtons.add(temp2);
+			items.add(new Vector<Item>(24));
 			for(j=0; j<24; j++)
 			{
 				temp = new JButton();
@@ -204,5 +204,10 @@ public class Bag{
 				//use item
 			}
 		}
+	}
+	
+	public void putItem(Item in)
+	{
+		items.get(menuNumber).add(in);
 	}
 }

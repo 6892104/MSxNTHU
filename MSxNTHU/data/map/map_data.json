@@ -217,5 +217,19 @@
       "height": 305,
       "limit" : 3
     }
+  ],
+  "TransPoints" : [
+  	{
+  	  "x": 180,
+  	  "y": 270,
+  	  "width": 90,
+  	  "height": 180
+  	},
+  	{
+  	  "x": 2650,
+  	  "y": 1220,
+  	  "width": 90,
+  	  "height": 180
+  	}
   ]
 }
