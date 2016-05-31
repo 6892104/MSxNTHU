@@ -294,10 +294,23 @@ public class DisplayPanel extends JPanel {
 		}
 		
 		private Image getNumber(int number){
-			if(number >= 0 && number < 10){
-				return numberImage.get(number);
-			}else
+			if(number < 0)
 				return null;
+			if(number < 10)
+				return numberImage.get(number);
+			return mergeImage(getNumber(number / 10), numberImage.get(number % 10));
+		}
+		
+		private Image mergeImage(Image image1, Image image2){
+			// create the new image, canvas size is the max. of both image sizes
+			BufferedImage combined = new BufferedImage(image1.getWidth(null) * 2, image1.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+
+			// paint both images, preserving the alpha channels
+			Graphics g = combined.getGraphics();
+			g.drawImage(image1, 0, 0, null);
+			g.drawImage(image2, image1.getWidth(null), 0, null);
+
+			return combined;
 		}
 	}
 	
