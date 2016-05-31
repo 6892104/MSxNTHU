@@ -8,6 +8,7 @@ import item.ItemDatabase;
 import item.Money;
 import role.Beginner;
 import role.Monster;
+import role.NPC;
 import skill.Skill;
 
 public class Control extends Thread{
@@ -15,6 +16,7 @@ public class Control extends Thread{
 	private MapWithObsticle map;
 	private Beginner character;
 	private ArrayList<Monster> monsters;
+	private ArrayList<NPC> npcs;
 	private ArrayList<Skill> skills;
 	private ArrayList<Item> items;
 	private ArrayList<Money> moneys;

@@ -26,6 +26,9 @@ public class Item {
 	public String name() {
 		return this.name;
 	}
+	public ItemType type(){
+		return this.itemType;
+	}
 	public int width() {
 		return this.width;
 	}
