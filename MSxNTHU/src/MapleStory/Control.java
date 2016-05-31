@@ -138,12 +138,27 @@ public class Control extends Thread{
 		moneys.add(new Money(money, x, y));
 	}
 	
+	private void pickUp(){
+		/*Iterator<Item> it = items.iterator();
+		while(it.hasNext()){
+			Item item = it.next();
+			if(character.x() + character.width()/2 > item.x && character.x() + character.width()/2 < item.y){
+				if(character.y() + character.height() > item.y - item.height() && character.y() + character.height() < item.y){
+					bag.putIn(item);
+					it.remove();
+				}
+			}
+		}*/
+		
+	}
+	
 	private void keyDetect(){
 		if(keyControl.get("right"))      character.RoleMove(1);
 		if(keyControl.get("left"))       character.RoleMove(0);
 		if(keyControl.get("space"))      character.jump();
 	    if(keyControl.get("up"))         character.climb(0);
 	    if(keyControl.get("down"))     	 character.climb(1);
+	    if(keyControl.get("z"))			 pickUp();
 	    if(keyControl.get("i")){		 
 	    	if(bagDelay <= 0){
 	    		bag.open();
