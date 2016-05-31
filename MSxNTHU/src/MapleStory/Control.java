@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import item.Item;
 import item.ItemDatabase;
+import item.Money;
 import role.Beginner;
 import role.Monster;
 import skill.Skill;
@@ -16,6 +17,7 @@ public class Control extends Thread{
 	private ArrayList<Monster> monsters;
 	private ArrayList<Skill> skills;
 	private ArrayList<Item> items;
+	private ArrayList<Money> moneys;
 	private Bag bag;
 	private int bagDelay;
 	private ItemDatabase dataBase;
@@ -38,6 +40,7 @@ public class Control extends Thread{
 	    display.setBag(bag);
 	    
 	    items = new ArrayList<Item>();
+	    moneys = new ArrayList<Money>();
 	    
 	    /*JButton button = new JButton();
 	    button.setBorderPainted(false);
@@ -98,7 +101,7 @@ public class Control extends Thread{
 								boolean isDead = mon.beAttacked(sk.damage(), character.dir());
 								if(isDead){
 									character.gainEXP(mon.exp());
-									createTreasure( mon.getTreasureList(), mon.x() + mon.width()/2, mon.y() + mon.height());
+									createTreasure( mon.getTreasureList(), mon.money(), mon.x() + mon.width()/2, mon.y() + mon.height());
 								}
 							}
 						}
@@ -112,6 +115,7 @@ public class Control extends Thread{
 				bagDelay--;
 				
 				display.setItem(items);
+				display.setMoney(moneys);
 				display.repaint();
 				//System.out.println(keyControl.get("right"));
 			} catch(InterruptedException e){
@@ -120,15 +124,18 @@ public class Control extends Thread{
 		}
 	}
 	
-	private void createTreasure(ArrayList<String> list, int x, int y){
+	private void createTreasure(ArrayList<String> list, int money, int x, int y){
 		for(int i = 0; i < list.size() ; i++){
 			Item item = dataBase.createItem(list.get(i));
 			if(item != null){
-				item.x = x + i*2;
+				item.x = x;
 				item.y = y;
 				items.add(item);
+				//x = x + item.width();
 			}
 		}
+		
+		moneys.add(new Money(money, x, y));
 	}
 	
 	private void keyDetect(){

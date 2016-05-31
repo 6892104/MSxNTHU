@@ -23,7 +23,6 @@ public abstract class Role {
 	    /*enum{left=0,right=1};
 	    enum{up=0,down=1};*/
 
-	    //mode
     protected int move_mod;
     protected int jump_mod;
     protected int climb_mod;
@@ -40,7 +39,7 @@ public abstract class Role {
     protected boolean human;
     
 
-
+    protected int money;
 	protected int [] g;
 	  
 	public Role(String name, DisplayPanel display,MapWithObsticle map){
@@ -73,6 +72,8 @@ public abstract class Role {
 	    level=1;
 	    //climb_pic_num=0;
 
+	    money = 0;
+	    
 	    g = new int[21];
 	    for(int i=2 ; i<23 ; i++){
 	        g[i-2]=(int)(i*i/4);
@@ -259,6 +260,10 @@ public abstract class Role {
     
     public int exp(){
     	return exp;
+    }
+    
+    public int money(){
+    	return money;
     }
     
     public int dir(){

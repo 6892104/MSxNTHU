@@ -19,6 +19,8 @@ public class Pig extends Monster{
 	    
 	    treasure.add("Ä«ªG");
 	    treasure.add("¬õÃÄ¤ô");
+	    
+	    money = 30;
 	}
 	
 	@Override

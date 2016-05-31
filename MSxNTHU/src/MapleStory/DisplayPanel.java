@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import item.Consumable;
 import item.Equipment;
 import item.Item;
+import item.Money;
 import item.OtherItem;
 import processing.core.PApplet;
 import processing.data.JSONArray;
@@ -36,12 +37,14 @@ public class DisplayPanel extends JPanel {
 	private Beginner character;
 	private ArrayList<Monster> monsters;
 	private ArrayList<Item> items;
+	private ArrayList<Money> moneys;
 	private Bag bag;
 	
 	private Status status;
 	private CharacterPic chPic;
 	private PigPic pigPic;
 	private ItemPic itemPic;
+	private MoneyPic moneyPic;
 	
 	public DisplayPanel(){
 		this.setLayout(null);
@@ -49,6 +52,7 @@ public class DisplayPanel extends JPanel {
 		chPic = new CharacterPic();
 		pigPic = new PigPic();
 		itemPic = new ItemPic();
+		moneyPic = new MoneyPic();
 		try {
 			mapImage = ImageIO.read(this.getClass().getResourceAsStream("/background.png"));
 		}catch (IOException ie){
@@ -83,7 +87,7 @@ public class DisplayPanel extends JPanel {
 			}
 		}
 		if(character != null){
-			System.out.println("fuck : "+  character.x()+ " "+ character.y() + " " + map.getShift_x() + " " + map.getShift_y());
+			//System.out.println("fuck : "+  character.x()+ " "+ character.y() + " " + map.getShift_x() + " " + map.getShift_y());
 			if(character.isDead()){
 				//System.out.println(character.tomb.getY() - map.getShift_y() );
 				g.drawImage(chPic.getTombImage(), character.x() - map.getShift_x()  , character.tomb.getY() - map.getShift_y()  , character.width() , character.height(), null);
@@ -103,6 +107,12 @@ public class DisplayPanel extends JPanel {
 				g.drawImage(itemPic.getImage(item.name()), item.x - map.getShift_x(), item.y - map.getShift_y(), 50, 50, null);
 			}
 		}
+		if(moneys != null){
+			for(int i = 0 ; i < moneys.size() ; i++){
+				Money money = moneys.get(i);
+				g.drawImage(moneyPic.getImage(money.amount()), money.x() - map.getShift_x(), money.y() - map.getShift_y() - money.height(), money.width(), money.height(), null);
+			}
+		}
 		if(status != null && character != null) status.paintStatus(g);
 		if(bag != null && bag.visiable()) g.drawImage(bagImage.get(bag.getMenu()), bag.x(), bag.y(), bag.width(), bag.height(), null);
 	}
@@ -119,6 +129,10 @@ public class DisplayPanel extends JPanel {
 	
 	public void setItem(ArrayList<Item> items){
 		this.items = items;
+	}
+	
+	public void setMoney(ArrayList<Money> moneys){
+		this.moneys = moneys;
 	}
 	
 	public int getCharacterPictureNumber(){
@@ -153,10 +167,39 @@ public class DisplayPanel extends JPanel {
 //----------------------------------------------------------------	
 //-----------------inner classes----------------------------------
 //----------------------------------------------------------------
+	private class MoneyPic{
+		private Image money_10;
+		private Image money_50;
+		private Image money_100;
+		private Image money_1000;
+		
+		private MoneyPic(){
+			try {
+				money_10 = ImageIO.read(this.getClass().getResourceAsStream("/item/money/money_10.png"));
+				money_50 = ImageIO.read(this.getClass().getResourceAsStream("/item/money/money_50.png"));
+				money_100 = ImageIO.read(this.getClass().getResourceAsStream("/item/money/money_100.png"));
+				money_1000 = ImageIO.read(this.getClass().getResourceAsStream("/item/money/money_1000.png"));
+			}catch (Exception ie){
+				javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤Jmoney¹ÏÀÉ¿ù»~");
+			}
+		}
+		
+		public Image getImage(int amount){
+			if(amount < 50)
+				return money_10;
+			else if(amount < 100)
+				return money_50;
+			else if(amount < 1000)
+				return money_100;
+			else
+				return money_1000;
+		}
+	}
+	
 	private class ItemPic{
 		private HashMap<String, Image> itemPicture;
 		
-		ItemPic(){
+		private ItemPic(){
 			itemPicture = new HashMap<String, Image>();
 			try {
 				Image apple = ImageIO.read(this.getClass().getResourceAsStream("/item/consumable/Ä«ªG.png"));
@@ -218,7 +261,7 @@ public class DisplayPanel extends JPanel {
 		private Image hp, mp, exp;
 		private Image[] LvNumber;
 		
-		public Status(){
+		private Status(){
 			y = 620;
 			try {
 				stbg = ImageIO.read(this.getClass().getResourceAsStream("/stbg.png"));
@@ -277,7 +320,7 @@ public class DisplayPanel extends JPanel {
 	    protected int pic_num;
 		protected int climb_pic_num;
 	    
-	    public RolePic(){
+		private RolePic(){
 	    	std_pic = new Image[2];
 	    	jump_pic = new Image[2];
 	    	move_pic = new Image[2][10];
@@ -308,7 +351,7 @@ public class DisplayPanel extends JPanel {
 
 		private int tomb_effect;
 		
-		public CharacterPic(){
+		private CharacterPic(){
 			super();
 			try {
 				// 0  left   1  right
@@ -429,7 +472,7 @@ public class DisplayPanel extends JPanel {
 	}
 	
 	private class PigPic extends RolePic{
-		public PigPic(){
+		private PigPic(){
 			super();
 			try {
 				// 0  left   1  right
