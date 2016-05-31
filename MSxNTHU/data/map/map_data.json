@@ -220,12 +220,14 @@
   ],
   "TransPoints" : [
   	{
+  	  "name": "map1",
   	  "x": 180,
   	  "y": 270,
   	  "width": 90,
   	  "height": 180
   	},
   	{
+  	  "name": "map2",
   	  "x": 2650,
   	  "y": 1220,
   	  "width": 90,

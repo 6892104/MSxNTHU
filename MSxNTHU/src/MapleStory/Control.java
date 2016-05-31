@@ -133,7 +133,7 @@ public class Control extends Thread{
 				item.x = x;
 				item.y = y;
 				items.add(item);
-				//x = x + item.width();
+				x = x + item.width();
 			}
 		}
 		

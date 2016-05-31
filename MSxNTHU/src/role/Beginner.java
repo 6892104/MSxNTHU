@@ -13,7 +13,6 @@ public class Beginner extends Role {
 	private int[] max_exp;
 	private int max_mp;
 	private int mp;
-	private int original_mp;
 	public int atk_mod;
 	private int level_effect;
 	

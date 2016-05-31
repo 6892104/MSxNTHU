@@ -104,13 +104,13 @@ public class DisplayPanel extends JPanel {
 				/*int x = item.x - map.getShift_x();
 				int y = item.y - map.getShift_y();
 				System.out.println("fuck" + x + " " + y);*/
-				g.drawImage(itemPic.getImage(item.name()), item.x - map.getShift_x(), item.y - map.getShift_y(), 50, 50, null);
+				g.drawImage(itemPic.getImage(item.name()), item.x - map.getShift_x(), item.y - map.getShift_y() - item.width(), item.width(), item.height(), null);
 			}
 		}
 		if(moneys != null){
 			for(int i = 0 ; i < moneys.size() ; i++){
 				Money money = moneys.get(i);
-				g.drawImage(moneyPic.getImage(money.amount()), money.x() - map.getShift_x(), money.y() - map.getShift_y() - money.height(), money.width(), money.height(), null);
+				g.drawImage(moneyPic.getImage(money.amount()), money.x() - map.getShift_x(), money.y() - map.getShift_y() - money.height() - 10, money.width(), money.height(), null);
 			}
 		}
 		if(status != null && character != null) status.paintStatus(g);
