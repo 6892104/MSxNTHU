@@ -29,6 +29,8 @@ public class Bag{
 	private ArrayList<JButton> bagMenuButtons;
 	private ArrayList<ArrayList<JButton>> itemButtons;
 	private ArrayList<Vector<Item>> items;
+	private int[] consumableItemNumber;
+	private int[] otherItemNumber;
 	
 	public Bag(DisplayPanel display, ItemDatabase dataBase){
 		this.dataBase = dataBase;
@@ -36,6 +38,13 @@ public class Bag{
 		items = new ArrayList<Vector<Item>>();
 		bagMenuButtons = new ArrayList<JButton>();
 		itemButtons = new ArrayList<ArrayList<JButton>>();
+		consumableItemNumber = new int[24];
+		otherItemNumber = new int[24];
+		for(int i=0; i<24; i++)
+		{
+			consumableItemNumber[i]=0;
+			otherItemNumber[i]=0;
+		}
 		
 		x = 100;
 		y = 100;
@@ -209,22 +218,53 @@ public class Bag{
 	
 	public void putItem(Item in)
 	{
-		System.out.println(in.name());
+		int i;
 		if(in.type()==ItemType.equipment)
 		{
+			
 			items.get(0).add(in);
 			itemButtons.get(0).get(items.get(0).indexOf(in)).setIcon(new ImageIcon(display.getItemImage(in.name())));
+			
 		}
 		else if(in.type() == ItemType.consumable)
 		{
-			System.out.println(in.name());
-			items.get(1).add(in);
-			itemButtons.get(1).get(items.get(1).indexOf(in)).setIcon(new ImageIcon(display.getItemImage(in.name())));
+			for(i=0; i<items.get(1).size(); i++)
+			{
+				if(items.get(1).get(i).name().equals(in.name()))
+				{
+					if(consumableItemNumber[i]<items.get(1).get(i).maxNum())
+					{
+						consumableItemNumber[i]++;
+						break;
+					}
+				}
+			}
+			if(i==items.get(1).size())
+			{
+				items.get(1).add(in);
+				consumableItemNumber[items.get(1).indexOf(in)]++;
+				itemButtons.get(1).get(items.get(1).indexOf(in)).setIcon(new ImageIcon(display.getItemImage(in.name())));
+			}
 		}
 		else if(in.type()==ItemType.otherItem)
 		{
-			items.get(2).add(in);
-			itemButtons.get(2).get(items.get(2).indexOf(in)).setIcon(new ImageIcon(display.getItemImage(in.name())));
+			for(i=0; i<items.get(2).size(); i++)
+			{
+				if(items.get(2).get(i).name().equals(in.name()))
+				{
+					if(otherItemNumber[i]<items.get(2).get(i).maxNum())
+					{
+						consumableItemNumber[i]++;
+						break;
+					}
+				}
+			}
+			if(i==items.get(2).size())
+			{
+				items.get(2).add(in);
+				consumableItemNumber[items.get(2).indexOf(in)]++;
+				itemButtons.get(2).get(items.get(2).indexOf(in)).setIcon(new ImageIcon(display.getItemImage(in.name())));
+			}
 		}
 		
 	}

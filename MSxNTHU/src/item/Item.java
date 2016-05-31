@@ -7,6 +7,7 @@ public class Item {
 	public boolean usable;
 	public int x, y;
 	private int width, height;
+	protected int maxNum;
 	protected int price;
 	protected int probability;
 	
@@ -16,6 +17,8 @@ public class Item {
 		this.usable = false;
 		this.width = 40;
 		this.height = 40;
+		
+		this.maxNum = 1;
 
 		this.name = name;
 		this.lvRequired = lvRequired;
@@ -28,6 +31,9 @@ public class Item {
 	}
 	public ItemType type(){
 		return this.itemType;
+	}
+	public int maxNum(){
+		return maxNum;
 	}
 	public int width() {
 		return this.width;

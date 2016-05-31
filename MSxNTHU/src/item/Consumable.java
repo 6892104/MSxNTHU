@@ -3,7 +3,7 @@ package item;
 
 public class Consumable extends Item {
 	private int hp, mp;
-	private int maxNum;
+	
 	
 	public Consumable(String name, int lvRequired, int price, int probability, int hp, int mp,int maxNum) {
 		super(name, lvRequired, price, probability);
@@ -20,4 +20,6 @@ public class Consumable extends Item {
 		this.maxNum = c.maxNum;
 		this.itemType = ItemType.consumable;
 	}
+	
+	
 }
