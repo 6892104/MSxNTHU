@@ -209,13 +209,15 @@ public class Bag{
 	
 	public void putItem(Item in)
 	{
+		System.out.println(in.name());
 		if(in.type()==ItemType.equipment)
 		{
 			items.get(0).add(in);
 			itemButtons.get(0).get(items.get(0).indexOf(in)).setIcon(new ImageIcon(display.getItemImage(in.name())));
 		}
-		else if(in.type()==ItemType.consumable)
+		else if(in.type() == ItemType.consumable)
 		{
+			System.out.println(in.name());
 			items.get(1).add(in);
 			itemButtons.get(1).get(items.get(1).indexOf(in)).setIcon(new ImageIcon(display.getItemImage(in.name())));
 		}

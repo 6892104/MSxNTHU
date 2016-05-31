@@ -5,6 +5,7 @@ public class OtherItem extends Item {
 	public OtherItem(String name, int lvRequired, int price, int probability, int maxNum) {
 		super(name, lvRequired, price, probability);
 		this.maxNum = maxNum;
+		this.itemType = ItemType.otherItem;
 	}
 
 	public OtherItem(OtherItem o) {

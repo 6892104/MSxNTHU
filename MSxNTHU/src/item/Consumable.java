@@ -17,6 +17,7 @@ public class Consumable extends Item {
 		super(c.name, c.lvRequired, c.price, c.probability);
 		this.hp = c.hp;
 		this.mp = c.mp;
-			this.maxNum = c.maxNum;
+		this.maxNum = c.maxNum;
+		this.itemType = ItemType.consumable;
 	}
 }

@@ -141,16 +141,17 @@ public class Control extends Thread{
 	}
 	
 	private void pickUp(){
-		/*Iterator<Item> it = items.iterator();
+		Iterator<Item> it = items.iterator();
 		while(it.hasNext()){
 			Item item = it.next();
-			if(character.x() + character.width()/2 > item.x && character.x() + character.width()/2 < item.y){
-				if(character.y() + character.height() > item.y - item.height() && character.y() + character.height() < item.y){
-					bag.putIn(item);
+			if(character.x() + character.width()/2 > item.x && character.x() + character.width()/2 < item.x + item.width()){
+				if(character.y() + character.height() > item.y - item.height() && character.y() < item.y){
+					System.out.println("fuck");
+					bag.putItem(item);
 					it.remove();
 				}
 			}
-		}*/
+		}
 		
 	}
 	

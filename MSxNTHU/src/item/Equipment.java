@@ -23,6 +23,7 @@ public class Equipment extends Item {
 		this.matk = setRandom(e.matk);
 		this.def = setRandom(e.def);
 		this.mdef = setRandom(e.mdef);
+		this.itemType = ItemType.equipment;
 	}
 	private int setRandom(int value) {
 		Random r = new Random();
