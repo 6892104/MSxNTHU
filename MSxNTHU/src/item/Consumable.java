@@ -1,5 +1,6 @@
 package item;
 
+import role.Beginner;
 
 public class Consumable extends Item {
 	private int hp, mp;
@@ -19,6 +20,11 @@ public class Consumable extends Item {
 		this.mp = c.mp;
 		this.maxNum = c.maxNum;
 		this.itemType = ItemType.consumable;
+	}
+	@Override
+	public void use(Beginner ch) {
+		ch.gain_hp(this.hp);
+		ch.gain_mp(this.mp);
 	}
 	
 	

@@ -1,5 +1,7 @@
 package item;
 
+import role.Beginner;
+
 public class Item {
 	protected ItemType itemType;
 	protected String name;
@@ -28,6 +30,9 @@ public class Item {
 		this.probability = probability;
 	}
 
+	public void use(Beginner ch) {
+		
+	}
 	public String name() {
 		return this.name;
 	}
@@ -46,4 +51,6 @@ public class Item {
 	public enum ItemType {
 		consumable, equipment, otherItem
 	};
+
+
 }
