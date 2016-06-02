@@ -280,17 +280,17 @@ public class DisplayPanel extends JPanel {
 					}catch (Exception ie){
 						javax.swing.JOptionPane.showMessageDialog(null, "載入"+name+"圖檔錯誤");
 					}
-				}
+				}*/
 				
 				data_array = data.getJSONArray("Other Items");
 				for(int i =0; i< data_array.size(); i++) {
 					String name = data_array.getJSONObject(i).getString("name");
 					try { 
-						itemPicture.put(name, ImageIO.read(this.getClass().getResourceAsStream("/item/consumable/" + name + ".png")));
+						itemPicture.put(name, ImageIO.read(this.getClass().getResourceAsStream("/item/other/" + name + ".png")));
 					}catch (Exception ie){
 						javax.swing.JOptionPane.showMessageDialog(null, "載入"+name+"圖檔錯誤");
 					}
-				}*/
+				}
 				
 				numberImage = new ArrayList<Image>();
 				try { 
