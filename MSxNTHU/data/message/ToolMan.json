@@ -5,14 +5,22 @@
     {
       "dialog": "message",
       "type": "information",
-      "message": "有事嗎？",
+      "message": "有事嗎？"
     },
     {
       "dialog": "confirm",
       "type": "question",
-      "message": "想被肛？",
+      "message": "是不是很閒？",
       "option": "yes_no",
-      "yes": "fuck"
+      "yes": "task",
+      "task_number": 0
+    }
+  ],
+  "tasks" : [
+    {
+      "type": "collect",
+      "item": "菇菇傘",
+      "number": 200
     }
   ]
 }
