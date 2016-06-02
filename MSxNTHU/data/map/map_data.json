@@ -3,242 +3,242 @@
   "size_y" : 1748,
   "Floors" : [
     {
-      "x": 0,
-      "y": 1392,
-      "width": 2840,
-      "height": 1402
+      "startX": 0,
+      "startY": 1392,
+      "endX": 2840,
+      "endY": 1402
     },
     {
-      "x": 822,
-      "y": 1360,
-      "width": 930,
-      "height": 1368
+      "startX": 822,
+      "startY": 1360,
+      "endX": 930,
+      "endY": 1368
     },
     {
-      "x": 930,
-      "y": 1282,
-      "width": 1037,
-      "height": 1290
+      "startX": 930,
+      "startY": 1282,
+      "endX": 1037,
+      "endY": 1290
     },
     {
-      "x": 1043,
-      "y": 1206,
-      "width": 1898,
-      "height": 1216
+      "startX": 1043,
+      "startY": 1206,
+      "endX": 1898,
+      "endY": 1216
     },
     {
-      "x": 1903,
-      "y": 1283,
-      "width": 2009,
-      "height": 1291
+      "startX": 1903,
+      "startY": 1283,
+      "endX": 2009,
+      "endY": 1291
     },
     {
-      "x": 2012,
-      "y": 1359,
-      "width": 2123,
-      "height": 1367
+      "startX": 2012,
+      "startY": 1359,
+      "endX": 2123,
+      "endY": 1367
     },
     {
-      "x": 481,
-      "y": 1055,
-      "width": 756,
-      "height": 1066
+      "startX": 481,
+      "startY": 1055,
+      "endX": 756,
+      "endY": 1066
     },
     {
-      "x": 823,
-      "y": 1129,
-      "width": 987,
-      "height": 1139
+      "startX": 823,
+      "startY": 1129,
+      "endX": 987,
+      "endY": 1139
     },
     {
-      "x": 1960,
-      "y": 1131,
-      "width": 2124,
-      "height": 1141
+      "startX": 1960,
+      "startY": 1131,
+      "endX": 2124,
+      "endY": 1141
     },
     {
-      "x": 2188,
-      "y": 1056,
-      "width": 2349,
-      "height": 1065
+      "startX": 2188,
+      "startY": 1056,
+      "endX": 2349,
+      "endY": 1065
     },
     {
-      "x": 355,
-      "y": 822,
-      "width": 871,
-      "height": 832
+      "startX": 355,
+      "startY": 822,
+      "endX": 871,
+      "endY": 832
     },
     {
-      "x": 820,
-      "y": 748,
-      "width": 986,
-      "height": 758
+      "startX": 820,
+      "startY": 748,
+      "endX": 986,
+      "endY": 758
     },
 	    {
-      "x": 1038,
-      "y": 674,
-      "width": 1899,
-      "height": 684
+      "startX": 1038,
+      "startY": 674,
+      "endX": 1899,
+      "endY": 684
     },
     {
-      "x": 1954,
-      "y": 597,
-      "width": 2122,
-      "height": 607
+      "startX": 1954,
+      "startY": 597,
+      "endX": 2122,
+      "endY": 607
     },
     {
-      "x": 2067,
-      "y": 674,
-      "width": 2242,
-      "height": 684
+      "startX": 2067,
+      "startY": 674,
+      "endX": 2242,
+      "endY": 684
     },
     {
-      "x": 2180,
-      "y": 750,
-      "width": 2809,
-      "height": 760
+      "startX": 2180,
+      "startY": 750,
+      "endX": 2809,
+      "endY": 760
     },
     {
-      "x": 22,
-      "y": 446,
-      "width": 539,
-      "height": 456
+      "startX": 22,
+      "startY": 446,
+      "endX": 539,
+      "endY": 456
     },
     {
-      "x": 588,
-      "y": 522,
-      "width": 764,
-      "height": 532
+      "startX": 588,
+      "startY": 522,
+      "endX": 764,
+      "endY": 532
     },
     {
-      "x": 814,
-      "y": 597,
-      "width": 990,
-      "height": 607
+      "startX": 814,
+      "startY": 597,
+      "endX": 990,
+      "endY": 607
     },
     {
-      "x": 1043,
-      "y": 295,
-      "width": 1900,
-      "height": 305
+      "startX": 1043,
+      "startY": 295,
+      "endX": 1900,
+      "endY": 305
     },
     {
-      "x": 2293,
-      "y": 443,
-      "width": 2810,
-      "height": 453
+      "startX": 2293,
+      "startY": 443,
+      "endX": 2810,
+      "endY": 453
     }
   ],
   "Slopes": [
     {
-      "x": 675,
-      "y": 993,
-      "width": 690,
-      "height": 1311
+      "startX": 675,
+      "startY": 993,
+      "endX": 690,
+      "endY": 1311
     },
     {
-      "x": 777,
-      "y": 759,
-      "width": 815,
-      "height": 1044
+      "startX": 777,
+      "startY": 759,
+      "endX": 815,
+      "endY": 1044
     },
     {
-      "x": 2220,
-      "y": 689,
-      "width": 2260,
-      "height": 969
+      "startX": 2220,
+      "startY": 689,
+      "endX": 2260,
+      "endY": 969
     },
     {
-      "x": 336,
-      "y": 389,
-      "width": 371,
-      "height": 736
+      "startX": 336,
+      "startY": 389,
+      "endX": 371,
+      "endY": 736
     },
     {
-      "x": 1465,
-      "y": 226,
-      "width": 1500,
-      "height": 625
+      "startX": 1465,
+      "startY": 226,
+      "endX": 1500,
+      "endY": 625
     },
     {
-      "x": 2536,
-      "y": 382,
-      "width": 2571,
-      "height": 666
+      "startX": 2536,
+      "startY": 382,
+      "endX": 2571,
+      "endY": 666
     }
   ],
   "BAML": [
     {
       "monster": "Pig",
-      "x": 0,
-      "y": 1392,
-      "width": 2840,
-      "height": 1402,
+      "startX": 0,
+      "startY": 1392,
+      "endX": 2840,
+      "endY": 1402,
       "limit" : 4
     },
     {
       "monster": "Pig",
-      "x": 1043,
-      "y":  1206,
-      "width":  1898,
-      "height":  1216,
+      "startX": 1043,
+      "startY":  1206,
+      "endX":  1898,
+      "endY":  1216,
       "limit" : 2
     },
     {
       "monster": "Green",
-      "x": 481,
-      "y": 1055,
-      "width": 756,
-      "height": 1066,
+      "startX": 481,
+      "startY": 1055,
+      "endX": 756,
+      "endY": 1066,
       "limit" : 1
     },
     {
       "monster": "Pig",
-      "x": 355,
-      "y": 822,
-      "width": 871,
-      "height": 832,
+      "startX": 355,
+      "startY": 822,
+      "endX": 871,
+      "endY": 832,
       "limit" : 1
     },
     {
       "monster": "Pig",
-      "x": 1038,
-      "y": 674,
-      "width": 1899,
-      "height": 684,
+      "startX": 1038,
+      "startY": 674,
+      "endX": 1899,
+      "endY": 684,
       "limit" : 2
     },
     {
       "monster": "Pig",
-      "x": 2180,
-      "y": 750,
-      "width": 2809,
-      "height": 760,
+      "startX": 2180,
+      "startY": 750,
+      "endX": 2809,
+      "endY": 760,
       "limit" : 2
     },
     {
       "monster": "Green",
-      "x": 1043,
-      "y": 295,
-      "width": 1900,
-      "height": 305,
+      "startX": 1043,
+      "startY": 295,
+      "endX": 1900,
+      "endY": 305,
       "limit" : 3
     }
   ],
   "TransPoints" : [
   	{
   	  "name": "map1",
-  	  "x": 180,
-  	  "y": 270,
-  	  "width": 90,
-  	  "height": 180
+  	  "startX": 180,
+  	  "startY": 270,
+  	  "endX": 90,
+  	  "endY": 180
   	},
   	{
   	  "name": "map2",
-  	  "x": 2650,
-  	  "y": 1220,
-  	  "width": 90,
-  	  "height": 180
+  	  "startX": 2650,
+  	  "startY": 1220,
+  	  "endX": 90,
+  	  "endY": 180
   	}
   ]
 }

@@ -21,6 +21,7 @@ public class MapWithObsticle {
 	private Vector<BlockOnMap> floors;
 	private Vector<BlockOnMap> slopes;
 	private Vector<BlockAndMonsterLimit> BAML;
+	private Vector<TransPoint> transPoints;
 
 	JSONObject data;
 	JSONArray data_array;
@@ -31,6 +32,7 @@ public class MapWithObsticle {
 		floors = new Vector<BlockOnMap>();
 		slopes = new Vector<BlockOnMap>();
 		BAML = new Vector<BlockAndMonsterLimit>();
+		transPoints = new Vector<TransPoint>();
 		
 		try{
 			file = "map/map_data.json";
@@ -44,34 +46,45 @@ public class MapWithObsticle {
 		data_array = data.getJSONArray("Floors");
 
 		for(int i=0; i<data_array.size(); i++) {
-			int x = data_array.getJSONObject(i).getInt("x");
-			int y = data_array.getJSONObject(i).getInt("y");
-			int width = data_array.getJSONObject(i).getInt("width");
-			int height = data_array.getJSONObject(i).getInt("height");
+			int startX = data_array.getJSONObject(i).getInt("startX");
+			int startY = data_array.getJSONObject(i).getInt("startY");
+			int endX = data_array.getJSONObject(i).getInt("endX");
+			int endY = data_array.getJSONObject(i).getInt("endY");
 			
-			floors.add(new BlockOnMap(x,  y,  width,  height));
+			floors.add(new BlockOnMap(startX, startY, endX, endY));
 		}
 		data_array = data.getJSONArray("Slopes");
 		for(int i=0; i<data_array.size(); i++) {
-			int x = data_array.getJSONObject(i).getInt("x");
-			int y = data_array.getJSONObject(i).getInt("y");
-			int width = data_array.getJSONObject(i).getInt("width");
-			int height = data_array.getJSONObject(i).getInt("height");
-			
-			slopes.add(new BlockOnMap(x,  y,  width,  height));
+			int startX = data_array.getJSONObject(i).getInt("startX");
+			int startY = data_array.getJSONObject(i).getInt("startY");
+			int endX = data_array.getJSONObject(i).getInt("endX");
+			int endY = data_array.getJSONObject(i).getInt("endY");
+
+			slopes.add(new BlockOnMap(startX, startY, endX, endY));
 		}
 		data_array = data.getJSONArray("BAML");
 		for(int i=0; i<data_array.size(); i++) {
-			int x = data_array.getJSONObject(i).getInt("x");
-			int y = data_array.getJSONObject(i).getInt("y");
-			int width = data_array.getJSONObject(i).getInt("width");
-			int height = data_array.getJSONObject(i).getInt("height");
+			int startX = data_array.getJSONObject(i).getInt("startX");
+			int startY = data_array.getJSONObject(i).getInt("startY");
+			int endX = data_array.getJSONObject(i).getInt("endX");
+			int endY = data_array.getJSONObject(i).getInt("endY");
 			int limit = data_array.getJSONObject(i).getInt("limit");
 			String name = data_array.getJSONObject(i).getString("monster");
 
-			BAML.add(new BlockAndMonsterLimit(x,  y,  width, height, limit, name));
+			BAML.add(new BlockAndMonsterLimit(startX, startY, endX, endY, limit, name));
 		}
-		
+
+		data_array = data.getJSONArray("TransPoints");
+		for(int i=0; i<data_array.size(); i++) {
+			int startX = data_array.getJSONObject(i).getInt("startX");
+			int startY = data_array.getJSONObject(i).getInt("startY");
+			int endX = data_array.getJSONObject(i).getInt("endX");
+			int endY = data_array.getJSONObject(i).getInt("endY");
+			String name = data_array.getJSONObject(i).getString("name");
+
+			transPoints.add(new TransPoint(startX, startY, endX, endY, name));
+		}
+
 		screen_size_x = 1280;
 		screen_size_y = 720;
 
@@ -329,5 +342,13 @@ public class MapWithObsticle {
 			this.limit = limit;
 			this.monster = monster;
 		}
+	};
+	
+	private class TransPoint extends BlockOnMap {
+		private String mapName;
+			public TransPoint(int sx, int sy, int ex, int ey, String name) {
+				super(sx, sy, ex, ey);
+				this.mapName = name;
+			}
 	};
 }
