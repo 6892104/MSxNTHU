@@ -36,10 +36,11 @@ public class NPC extends Role{
 	    button.setFocusable(false);
 	    button.addMouseListener(new MouseAdapter(){
 	        public void mouseClicked(MouseEvent e){
-	        	JOptionPane.showMessageDialog(null, "有事嗎？", "ToolMan :", JOptionPane.INFORMATION_MESSAGE );
+	        	/*JOptionPane.showMessageDialog(null, "有事嗎？", "ToolMan :", JOptionPane.INFORMATION_MESSAGE );
 	        	int option = JOptionPane.showConfirmDialog(null, "想被肛？", "ToolMan :", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 	        	if(option == JOptionPane.YES_OPTION)
-	        		System.exit(0);
+	        		System.exit(0);*/
+	        	new Task(name);
 	        }
         });
         display.add(button);
