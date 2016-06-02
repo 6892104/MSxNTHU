@@ -14,12 +14,13 @@ import javax.swing.JButton;
 
 import item.Item;
 import item.Item.ItemType;
+import role.Beginner;
 import item.ItemDatabase;
 
 public class Bag{
 	
 	private DisplayPanel display;
-	private ItemDatabase dataBase;
+	private Beginner character;
 	
 	private int x, y, menuNumber;
 	private int width, height;
@@ -29,22 +30,20 @@ public class Bag{
 	private ArrayList<JButton> bagMenuButtons;
 	private ArrayList<ArrayList<JButton>> itemButtons;
 	private ArrayList<Vector<Item>> items;
-	private int[] consumableItemNumber;
-	private int[] otherItemNumber;
 	
-	public Bag(DisplayPanel display, ItemDatabase dataBase){
-		this.dataBase = dataBase;
+	public Bag(DisplayPanel display, Beginner character){
+		this.character = character;
 		this.display = display;
 		items = new ArrayList<Vector<Item>>();
 		bagMenuButtons = new ArrayList<JButton>();
 		itemButtons = new ArrayList<ArrayList<JButton>>();
-		consumableItemNumber = new int[24];
+		/*consumableItemNumber = new int[24];
 		otherItemNumber = new int[24];
 		for(int i=0; i<24; i++)
 		{
 			consumableItemNumber[i]=0;
 			otherItemNumber[i]=0;
-		}
+		}*/
 		
 		x = 100;
 		y = 100;
@@ -105,14 +104,17 @@ public class Bag{
 		{
 			temp2 = new ArrayList<JButton>();
 			itemButtons.add(temp2);
-			items.add(new Vector<Item>(24));
+			Vector<Item> vec = new Vector<Item>();
+			vec.setSize(24);
+			items.add(vec);
+			//System.out.println(items.get(0).size());
 			for(j=0; j<24; j++)
 			{
 				temp = new JButton();
 			    temp.setContentAreaFilled(false);
 			    temp.setBounds(x+10+j%4*42, y+51+j/4*36, 40, 35);
 			    temp.setFocusable(false);
-			    temp.addMouseListener(new itemMouseAdapter(j));
+			    temp.addMouseListener(new itemMouseAdapter(i,j));
 		        temp.setVisible(false);
 	            itemButtons.get(i).add(temp);
 	            display.add(temp);
@@ -182,7 +184,90 @@ public class Bag{
 		display.repaint();
 	}
 	
-	class menuMouseAdapter extends MouseAdapter
+	
+	
+	public void putItem(Item in)
+	{
+		int i;
+		if(in.type()==ItemType.equipment)
+		{
+			
+			items.get(0).add(in);
+			itemButtons.get(0).get(items.get(0).indexOf(in)).setIcon(new ImageIcon(display.getItemImage(in.name(), in.amount)));
+			
+		}
+		else if(in.type() == ItemType.consumable)
+		{
+			boolean found = false;
+			for(i=0; i<items.get(1).size(); i++)
+			{
+				Item item = items.get(1).get(i);
+				if(item != null){
+					if(item.name().equals(in.name()))
+					{
+						if(item.amount < item.maxNum())
+						{
+							item.amount++;
+							itemButtons.get(1).get(i).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
+							found = true;
+							break;
+						}
+					}
+				}
+			}
+			if(!found)
+			{
+				int victim = 0;
+				for(int j = 0 ; j < items.get(1).size() ; j++){
+					if(items.get(1).get(j) == null){
+						victim = j;
+						break;
+					}
+				}
+				if(items.get(1).get(victim) == null){
+					items.get(1).set(victim, in);
+					itemButtons.get(1).get(victim).setIcon(new ImageIcon(display.getItemImage(in.name(), in.amount)));
+				}
+			}
+		}
+		else if(in.type()==ItemType.otherItem)
+		{
+			boolean found = false;
+			for(i=0; i<items.get(2).size(); i++)
+			{
+				Item item = items.get(2).get(i);
+				if(item != null){
+					if(item.name().equals(in.name()))
+					{
+						if(item.amount < item.maxNum())
+						{
+							item.amount++;
+							itemButtons.get(2).get(i).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
+							found = true;
+							break;
+						}
+					}
+				}
+			}
+			if(!found)
+			{
+				int victim = 0;
+				for(int j = 0 ; j < items.get(2).size() ; j++){
+					if(items.get(2).get(j) == null){
+						victim = j;
+						break;
+					}
+				}
+				if(items.get(2).get(victim) == null){
+					items.get(2).set(victim, in);
+					itemButtons.get(2).get(victim).setIcon(new ImageIcon(display.getItemImage(in.name(), in.amount)));
+				}
+			}
+		}
+		
+	}
+	
+	private class menuMouseAdapter extends MouseAdapter
 	{
 		private int num;
 		public menuMouseAdapter(int i)
@@ -199,75 +284,32 @@ public class Bag{
         }
 	}
 	
-	class itemMouseAdapter extends MouseAdapter
+	private class itemMouseAdapter extends MouseAdapter
 	{
+		int type;
 		int num;
-		public itemMouseAdapter(int i)
+		public itemMouseAdapter(int type, int i)
 		{
 			super();
+			this.type = type;
 			num = i;
 		}
 		public void mouseClicked(MouseEvent e)
 		{
 			if(e.getClickCount()==2)
 			{
-				//use item
-			}
-		}
-	}
-	
-	public void putItem(Item in)
-	{
-		int i;
-		if(in.type()==ItemType.equipment)
-		{
-			
-			items.get(0).add(in);
-			itemButtons.get(0).get(items.get(0).indexOf(in)).setIcon(new ImageIcon(display.getItemImage(in.name(), in.amount)));
-			
-		}
-		else if(in.type() == ItemType.consumable)
-		{
-			for(i=0; i<items.get(1).size(); i++)
-			{
-				Item item = items.get(1).get(i);
-				if(item.name().equals(in.name()))
-				{
-					if(item.amount < item.maxNum())
-					{
-						item.amount++;
-						itemButtons.get(1).get(i).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
-						break;
+				Item item = items.get(type).get(num);
+				if(item != null){
+					item.use(character);
+					if(item.amount > 1){
+						item.amount--;
+						itemButtons.get(type).get(num).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
+					}else{
+						items.get(type).set(num, null);
+						itemButtons.get(type).get(num).setIcon(null);
 					}
 				}
 			}
-			if(i==items.get(1).size())
-			{
-				items.get(1).add(in);
-				consumableItemNumber[items.get(1).indexOf(in)]++;
-				itemButtons.get(1).get(items.get(1).indexOf(in)).setIcon(new ImageIcon(display.getItemImage(in.name(), in.amount)));
-			}
 		}
-		else if(in.type()==ItemType.otherItem)
-		{
-			for(i=0; i<items.get(2).size(); i++)
-			{
-				if(items.get(2).get(i).name().equals(in.name()))
-				{
-					if(otherItemNumber[i]<items.get(2).get(i).maxNum())
-					{
-						consumableItemNumber[i]++;
-						break;
-					}
-				}
-			}
-			if(i==items.get(2).size())
-			{
-				items.get(2).add(in);
-				consumableItemNumber[items.get(2).indexOf(in)]++;
-				itemButtons.get(2).get(items.get(2).indexOf(in)).setIcon(new ImageIcon(display.getItemImage(in.name(), in.amount)));
-			}
-		}
-		
 	}
 }
