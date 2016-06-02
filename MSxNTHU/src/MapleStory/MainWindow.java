@@ -127,7 +127,7 @@ public class MainWindow extends JFrame {
 	
 	    this->gameMenu();*/
 		minim = new Minim(new PApplet());
-		startBGM = minim.loadFile(this.getClass().getResource("sound/bgm.mp3").getPath());
+		startBGM = minim.loadFile(this.getClass().getResource("/bgm.mp3").getPath());
 		startBGM.play();
 	    gameStart();
 	}

@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import MapleStory.DisplayPanel;
 import MapleStory.MapWithObsticle;
@@ -35,7 +36,10 @@ public class NPC extends Role{
 	    button.setFocusable(false);
 	    button.addMouseListener(new MouseAdapter(){
 	        public void mouseClicked(MouseEvent e){
-                //open();
+	        	JOptionPane.showMessageDialog(null, "有事嗎？", "ToolMan :", JOptionPane.INFORMATION_MESSAGE );
+	        	int option = JOptionPane.showConfirmDialog(null, "想被肛？", "ToolMan :", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+	        	if(option == JOptionPane.YES_OPTION)
+	        		System.exit(0);
 	        }
         });
         display.add(button);
