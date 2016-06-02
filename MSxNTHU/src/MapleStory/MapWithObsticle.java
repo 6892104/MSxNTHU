@@ -9,6 +9,7 @@ import processing.data.JSONArray;
 import processing.data.JSONObject;
 import role.Green;
 import role.Monster;
+import role.NPC;
 import role.Pig;
 
 
@@ -22,6 +23,7 @@ public class MapWithObsticle {
 	private Vector<BlockOnMap> slopes;
 	private Vector<BlockAndMonsterLimit> BAML;
 	private Vector<TransPoint> transPoints;
+	private Vector<NPCpoint> npcs;
 
 	JSONObject data;
 	JSONArray data_array;
@@ -33,6 +35,7 @@ public class MapWithObsticle {
 		slopes = new Vector<BlockOnMap>();
 		BAML = new Vector<BlockAndMonsterLimit>();
 		transPoints = new Vector<TransPoint>();
+		npcs = new Vector<NPCpoint>();
 		
 		try{
 			file = "map/map_data.json";
@@ -83,6 +86,17 @@ public class MapWithObsticle {
 			String name = data_array.getJSONObject(i).getString("name");
 
 			transPoints.add(new TransPoint(startX, startY, endX, endY, name));
+		}
+		
+		data_array = data.getJSONArray("NPCpoints");
+		for(int i=0; i<data_array.size(); i++) {
+			int x = data_array.getJSONObject(i).getInt("x");
+			int y = data_array.getJSONObject(i).getInt("y");
+			int width = data_array.getJSONObject(i).getInt("width");
+			int height = data_array.getJSONObject(i).getInt("height");
+			String name = data_array.getJSONObject(i).getString("name");
+
+			npcs.add(new NPCpoint(x, y, width, height, name));
 		}
 
 		screen_size_x = 1280;
@@ -268,9 +282,6 @@ public class MapWithObsticle {
 	}
 	
 	public ArrayList<Monster> createMonster(){
-		//pig_num = 0;
-		/*vector <BlockAndMonsterLimit> blk = map.get_each_BlockAndMonsterLimit();
-		std::vector <BlockAndMonsterLimit>::iterator it;*/
 		Random ran = new Random();
 		ArrayList<Monster> monsters = new ArrayList<Monster>();
 		for(int i = 0 ; i < BAML.size() ; i++){
@@ -286,42 +297,26 @@ public class MapWithObsticle {
 				int tmpY = baml.start_y - mon.height() - 10;
 				mon.setStartPosition(tmpX, tmpY);
 				monsters.add(mon);
-				//piggy[pig_num]->show();
-				/*connect(Timer,SIGNAL(timeout()),piggy[pig_num],SLOT(update()));
-				connect(Timer,SIGNAL(timeout()),piggy[pig_num],SLOT(RoleAction()));
-				connect(Timer,SIGNAL(timeout()),piggy[pig_num],SLOT(RandomMove()));
-				connect(role,SIGNAL(atk(int,int,int,int,int,int)),piggy[pig_num],SLOT(Be_atk(int,int,int,int,int,int)));
-				connect(piggy[pig_num],SIGNAL(atk(int,int,int,int,int,int)),role,SLOT(Be_atk(int,int,int,int,int,int)));
-				connect(piggy[pig_num],SIGNAL(dead(int)),role,SLOT(gain_exp(int)));
-				connect(piggy[pig_num],SIGNAL(create_treasure(int,int,std::string)),this,SLOT(tcreator(int,int,std::string)));
-				pig_num++;*/
 			}
 		}
-		/*green_num = 0;
-		for(it=blk.begin();it!=blk.end() && which == green;it++){
-			for(int i=0;i<(*it).limit;i++){
-				greens[green_num] = new Green(map, this);
-				greens[green_num]->move_range_left = (*it).start_x;
-				greens[green_num]->move_range_right = (*it).end_x;
-				greens[green_num]->x = (*it).start_x + rand()%((*it).end_x -greens[green_num]->width() - (*it).start_x + 1);
-				greens[green_num]->y = (*it).start_y - greens[green_num]->height() - 10;
-				greens[green_num]->show();
-				connect(Timer,SIGNAL(timeout()),greens[green_num],SLOT(update()));
-				connect(Timer,SIGNAL(timeout()),greens[green_num],SLOT(RoleAction()));
-				connect(Timer,SIGNAL(timeout()),greens[green_num],SLOT(RandomMove()));
-				connect(role,SIGNAL(atk(int,int,int,int,int,int)),greens[green_num],SLOT(Be_atk(int,int,int,int,int,int)));
-				connect(greens[green_num],SIGNAL(atk(int,int,int,int,int,int)),role,SLOT(Be_atk(int,int,int,int,int,int)));
-				connect(greens[green_num],SIGNAL(dead(int)),role,SLOT(gain_exp(int)));
-				connect(greens[green_num],SIGNAL(create_treasure(int,int,std::string)),this,SLOT(tcreator(int,int,std::string)));
-				green_num++;
-			}
-		}*/
 		return monsters;
+	}
+	
+	public ArrayList<NPC> createNPC(){
+		ArrayList<NPC> npclist = new ArrayList<NPC>();
+		for(int i = 0 ; i < npcs.size() ; i++){
+			NPCpoint npcpoint = npcs.get(i);
+			NPC npc = new NPC(npcpoint.name, display, this);
+			//System.out.println(npcpoint.x +" " +npcpoint.y);
+			npc.set(npcpoint.x - npcpoint.width/2, npcpoint.y - npcpoint.height, npcpoint.width, npcpoint.height);
+			npclist.add(npc);
+		}
+		return npclist;
 	}
 //----------------------------------------------------------------	
 //-----------------inner classes----------------------------------
 //----------------------------------------------------------------
-	class BlockOnMap
+	private class BlockOnMap
 	{
 		public int start_x , start_y;
 		public int end_x , end_y;
@@ -346,9 +341,22 @@ public class MapWithObsticle {
 	
 	private class TransPoint extends BlockOnMap {
 		private String mapName;
-			public TransPoint(int sx, int sy, int ex, int ey, String name) {
-				super(sx, sy, ex, ey);
-				this.mapName = name;
-			}
+		private TransPoint(int sx, int sy, int ex, int ey, String name) {
+			super(sx, sy, ex, ey);
+			this.mapName = name;
+		}
 	};
+	
+	private class NPCpoint{
+		private String name;
+		private int x, y;
+		private int width, height;
+		private NPCpoint(int x, int y, int width, int height, String name){
+			this.x = x;
+			this.y = y;
+			this.width = width;
+			this.height = height;
+			this.name = name;
+		}
+	}
 }

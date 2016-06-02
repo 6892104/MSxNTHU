@@ -21,6 +21,11 @@ public abstract class Role {
     protected int dir;            // 0  Left  1  Right
 	    /*enum{left=0,right=1};
 	    enum{up=0,down=1};*/
+    
+    protected int atk;
+    protected int matk;
+    protected int def;
+    protected int mdef;
 
     protected int move_mod;
     protected int jump_mod;
@@ -54,6 +59,11 @@ public abstract class Role {
 	    move_range_right=map.getMax_x();
 
 
+	    atk = 0;
+	    matk = 0;
+	    def = 0;
+	    mdef = 0;
+	    
 	    dir=0;
 	    jump_mod=0;
 	    move_mod=0;
@@ -263,6 +273,10 @@ public abstract class Role {
     
     public int money(){
     	return money;
+    }
+    
+    public int atk(){
+    	return atk;
     }
     
     public int dir(){

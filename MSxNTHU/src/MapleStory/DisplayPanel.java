@@ -23,6 +23,7 @@ import processing.data.JSONArray;
 import processing.data.JSONObject;
 import role.Beginner;
 import role.Monster;
+import role.NPC;
 import role.Role;
 import role.RoleMode;
 
@@ -39,6 +40,7 @@ public class DisplayPanel extends JPanel {
 	private MapWithObsticle map;
 	private Beginner character;
 	private ArrayList<Monster> monsters;
+	private ArrayList<NPC> npcs;
 	private ArrayList<Item> items;
 	private ArrayList<Money> moneys;
 	private Bag bag;
@@ -47,6 +49,7 @@ public class DisplayPanel extends JPanel {
 	private CharacterPic chPic;
 	private PigPic pigPic;
 	private GreenPic greenPic;
+	private NPCPic npcPic;
 	private ItemPic itemPic;
 	private MoneyPic moneyPic;
 	
@@ -56,6 +59,7 @@ public class DisplayPanel extends JPanel {
 		chPic = new CharacterPic();
 		pigPic = new PigPic();
 		greenPic = new GreenPic();
+		npcPic = new NPCPic();
 		itemPic = new ItemPic();
 		moneyPic = new MoneyPic();
 		try {
@@ -94,6 +98,15 @@ public class DisplayPanel extends JPanel {
 						if(drawName) drawName(g, mon);
 					}
 				}
+			}
+		}
+		if(npcs != null){
+			for(int i = 0 ; i < npcs.size() ; i++){
+				NPC npc = npcs.get(i);
+				int x = npc.x() - map.getShift_x();
+				int y = npc.y() - map.getShift_y();
+				//System.out.println(npc.x() + " " + npc.y());
+				g.drawImage(npcPic.getImage(npc.name()), npc.x() - map.getShift_x(), npc.y() - map.getShift_y(), npc.width(), npc.height(), null);
 			}
 		}
 		if(character != null){
@@ -165,6 +178,14 @@ public class DisplayPanel extends JPanel {
 	
 	public void setMoney(ArrayList<Money> moneys){
 		this.moneys = moneys;
+	}
+	
+	/*public void setNPC(ArrayList<NPC> npcs){
+		this.npcs = npcs;
+	}*/
+	
+	public Image getNPCImage(String name){
+		return npcPic.getImage(name);
 	}
 	
 	public int getCharacterPictureNumber(){
@@ -369,7 +390,7 @@ public class DisplayPanel extends JPanel {
 		}
 	}
 	
-	private class RolePic{
+	private abstract class RolePic{
 		
 	    protected Image[] std_pic;
 	    protected Image[] jump_pic;
@@ -615,6 +636,29 @@ public class DisplayPanel extends JPanel {
 		        return move_pic[piggy.dir()][rm.value%pic_num];
 		    else
 		    	return std_pic[piggy.dir()];
+		}
+	}
+	
+	private class NPCPic{
+		private HashMap<String, Image> images;
+		
+		private NPCPic(){
+			images = new HashMap<String, Image>();
+		}
+		
+		public Image getImage(String name){
+			if(images.containsKey(name))
+				return images.get(name);
+			else{
+				try {
+					Image image = ImageIO.read(this.getClass().getResourceAsStream("/NPC/" + name + ".png"));
+					images.put(name, image);
+					return image;
+				}catch (IOException ie){
+					javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤JNPC: " + name + " ¹ÏÀÉ¿ù»~");
+				}
+			}
+			return null;
 		}
 	}
 }

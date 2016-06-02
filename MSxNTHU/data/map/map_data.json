@@ -240,5 +240,14 @@
   	  "endX": 90,
   	  "endY": 180
   	}
+  ],
+  "NPCpoints" : [
+  	{
+  	  "name": "ToolMan",
+  	  "x": 2500,
+  	  "y": 443,
+  	  "width": 70,
+  	  "height": 100
+  	}
   ]
 }

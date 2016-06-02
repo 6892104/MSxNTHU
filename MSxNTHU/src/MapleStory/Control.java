@@ -35,6 +35,8 @@ public class Control extends Thread{
 	    display.setCharacter(character);
 	    monsters = map.createMonster();
 	    display.setMonsters(monsters);
+	    npcs = map.createNPC();
+	    //display.setNPC(npcs);
 	    skills = new ArrayList<Skill>();
 	    dataBase = new ItemDatabase();
 	    bag = new Bag(display, character);
@@ -91,6 +93,11 @@ public class Control extends Thread{
 					if(mon.visiable()){
 						character.beBumped(mon.x(), mon.y(), mon.width(), mon.height(), mon.damage());
 					}
+				}
+				
+				for(int i = 0 ; i < npcs.size() ; i++){
+					NPC npc = npcs.get(i);
+					npc.move(npc.x() - map.getShift_x(), npc.y()- map.getShift_y());
 				}
 				
 				Iterator<Skill> it = skills.iterator();
