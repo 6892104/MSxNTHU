@@ -1,0 +1,18 @@
+{
+  "size_x" : 2840,
+  "size_y" : 1748,
+  "messages" : [
+    {
+      "dialog": "message",
+      "type": "information",
+      "message": "有事嗎？",
+    },
+    {
+      "dialog": "confirm",
+      "type": "question",
+      "message": "想被肛？",
+      "option": "yes_no",
+      "yes": "fuck"
+    }
+  ]
+}

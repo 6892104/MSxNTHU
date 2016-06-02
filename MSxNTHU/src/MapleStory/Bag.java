@@ -251,6 +251,7 @@ public class Bag{
 			{
 				Item item = items.get(2).get(i);
 				if(item != null){
+					System.out.println(item.name() + " " + in.name() + " " + item.name().equals(in.name()));
 					if(item.name().equals(in.name()))
 					{
 						if(item.amount < item.maxNum())
@@ -265,6 +266,7 @@ public class Bag{
 			}
 			if(!found)
 			{
+				System.out.println("fuck");
 				int victim = 0;
 				for(int j = 0 ; j < items.get(2).size() ; j++){
 					if(items.get(2).get(j) == null){

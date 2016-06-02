@@ -1,7 +1,6 @@
 package item;
 
 public class OtherItem extends Item {
-	private int maxNum;
 	public OtherItem(String name, int lvRequired, int price, int probability, int maxNum) {
 		super(name, lvRequired, price, probability);
 		this.maxNum = maxNum;

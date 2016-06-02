@@ -72,7 +72,7 @@ public class ItemDatabase {
 			int price = data_array.getJSONObject(i).getInt("price");
 			int probability = data_array.getJSONObject(i).getInt("probability");
 			int maxNum =data_array.getJSONObject(i).getInt("maxNum");
-			
+			System.out.println(name + " " + maxNum);
 			OtherItem o = new OtherItem(name, lvRequired, price, probability, maxNum);
 			otherItems.put(name,  o);
 		}
