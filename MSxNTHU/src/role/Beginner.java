@@ -174,6 +174,10 @@ public class Beginner extends Role {
 	    {
 	        /*if(play_soundEffect)
 	            level_up->play();*/
+	    	if(soundOn) {
+	    		lvUp.rewind();
+	    		lvUp.play();
+	    	}
 	        exp-=max_exp[level];
 	        level++;
 	        max_hp+=20;
