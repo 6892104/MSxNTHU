@@ -39,7 +39,7 @@ public class Bag{
 		items = new ArrayList<Vector<Item>>();
 		bagMenuButtons = new ArrayList<JButton>();
 		itemButtons = new ArrayList<ArrayList<JButton>>();
-		moneyLabel = new JLabel();
+		moneyLabel = new JLabel("0", 4);
 		
 		
 		/*consumableItemNumber = new int[24];
@@ -57,8 +57,7 @@ public class Bag{
 		visiable = false;
 		menuNumber=0;
 		setButtons();
-		moneyLabel.setBounds(x+60, y+272, 200, 20);
-		moneyLabel.setText("0");
+		moneyLabel.setBounds(x+60, y+272, 82, 20);
 		moneyLabel.setVisible(false);
 		display.add(moneyLabel);
 	}
