@@ -13,7 +13,7 @@ public class Pig extends Monster{
 	    width = 100;
 	    height = 70;
 	    
-	    max_hp=10;
+	    max_hp=100;
 	    hp=max_hp;
 
 	    move_pace=10;
