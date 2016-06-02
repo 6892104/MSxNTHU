@@ -62,6 +62,8 @@ public class MainWindow extends JFrame {
 	AudioPlayer drop;
 	AudioPlayer pick;
 	AudioPlayer tombFall;
+	public boolean soundOn;
+	
 	
 	public MainWindow(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -127,8 +129,12 @@ public class MainWindow extends JFrame {
 	
 	    this->gameMenu();*/
 		minim = new Minim(new PApplet());
+		soundOn = true;
 		startBGM = minim.loadFile(this.getClass().getResource("/bgm.mp3").getPath());
-		startBGM.play();
+		drop = minim.loadFile(this.getClass().getResource("/DropItem.mp3").getPath());
+		pick = minim.loadFile(this.getClass().getResource("/PickUpItem.mp3").getPath());
+		tombFall = minim.loadFile(this.getClass().getResource("/dead.mp3").getPath());
+		
 	    gameStart();
 	}
 	    //~MainWindow();
@@ -142,6 +148,7 @@ public class MainWindow extends JFrame {
 	    //menu->hide();
 	    //gameMod = StartMod;
 	    //if(play_bgm) start_bgm->play();
+		if(soundOn) startBGM.play();
 
 	    /*Timer = new QTimer(this);
 	    Timer->start(40);*/
