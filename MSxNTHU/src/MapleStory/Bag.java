@@ -3,12 +3,14 @@ package MapleStory;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -123,6 +125,8 @@ public class Bag{
 			    temp.setBounds(x+10+j%4*42, y+51+j/4*36, 40, 35);
 			    temp.setFocusable(false);
 			    temp.addMouseListener(new itemMouseAdapter(i,j));
+			    
+			    temp.addMouseMotionListener(new itemMoveAdapter(temp));	
 		        temp.setVisible(false);
 	            itemButtons.get(i).add(temp);
 	            display.add(temp);
@@ -326,6 +330,58 @@ public class Bag{
 					}
 				}
 			}
+		}
+		public void mouseReleased(MouseEvent e)
+		{
+			int i;
+			JButton button = itemButtons.get(type).get(num);
+			JButton temp, temp2;
+			Item temp3, temp4;
+			Icon temp5;
+			for(i=0; i<24; i++)
+			{
+				if(i!=num)
+				{
+					if(button.getX()>=x+10+i%4*42 && button.getX()<=x+50+i%4*42 && button.getY()>=y+51+i/4*36 && button.getY()<=y+86+i/4*36)
+					{
+						temp = itemButtons.get(type).get(i);
+						temp2 = itemButtons.get(type).get(num);	
+						
+						
+						
+						temp3 = items.get(type).get(i);
+						temp4 = items.get(type).get(num);
+						items.get(type).set(i, temp4);
+						items.get(type).set(num, temp3);
+
+
+		
+						temp5 = temp.getIcon();
+						temp.setIcon(temp2.getIcon());
+						temp2.setIcon(temp5);
+						
+						break;
+					}
+				}
+			}
+
+				button.setBounds(x+10+num%4*42, y+51+num/4*36, 40, 35);
+
+		}
+
+	}
+	
+	private class itemMoveAdapter extends MouseMotionAdapter
+	{
+		private JButton button;
+		public itemMoveAdapter(JButton in)
+		{
+			super();
+			button = in;
+		}
+		public void mouseDragged(MouseEvent e)
+		{
+			button.setBounds(button.getX() + e.getX()-10, button.getY()-10 + e.getY(), 40, 35);
 		}
 	}
 }
