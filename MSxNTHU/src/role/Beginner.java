@@ -32,7 +32,10 @@ public class Beginner extends Role {
 	    move_range_left=0-shift;
 	    move_range_right=map.getMax_x()+shift;
 
-
+	    atk = 20;
+	    matk = 0;
+	    def = 0;
+	    mdef = 0;
 
 	    atk_mod = 0;
 	    //this->setFixedSize(200,100);
@@ -106,9 +109,9 @@ public class Beginner extends Role {
 	      able = false;
 	    // 0  left   1  right
 	      if(dir == 0){
-	    	  return new NormalAttack(x+width()/2 - 100 , y , 100 , height() , 20 , Direction.left , true);
+	    	  return new NormalAttack(x+width()/2 - 100 , y , 100 , height() , atk , Direction.left , true);
 	      }else{
-	    	  return new NormalAttack(x+width()/2 , y , 100 , height() , 20 , Direction.right , true);
+	    	  return new NormalAttack(x+width()/2 , y , 100 , height() , atk , Direction.right , true);
 	      }
 	      //if(play_soundEffect) nor_attack->play();
 		}
@@ -153,6 +156,8 @@ public class Beginner extends Role {
 	        max_mp+=20;
 	        mp=max_mp;
 	        level_effect = 60;
+	        
+	        atk += 10;
 	    }
 	}
 	
