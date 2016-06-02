@@ -1,0 +1,293 @@
+{
+  "size_x" : ,
+  "size_y" : ,
+  "Floors" : [
+    {
+      "startX": 0,
+      "startY": 508,
+      "endX": 387,
+      "endY": 518
+    },
+    {
+      "startX": 387,
+      "startY": 524,
+      "endX": 395,
+      "endY": 534
+    },
+    {
+      "startX": 395,
+      "startY": 534,
+      "endX": 407,
+      "endY": 541
+    },
+    {
+      "startX": 407,
+      "startY": 541,
+      "endX": 414,
+      "endY": 549
+    },
+    {
+      "startX": 414,
+      "startY": 549,
+      "endX": 423,
+      "endY": 552
+    },
+    {
+      "startX": 423,
+      "startY": 552,
+      "endX": 2046,
+      "endY": 560
+    },
+    {
+      "startX": 2046,
+      "startY": 560,
+      "endX": 2055,
+      "endY": 566
+    },
+    {
+      "startX": 2055,
+      "startY": 566,
+      "endX": 2063,
+      "endY": 575
+    },
+    {
+      "startX": 2063,
+      "startY": 575,
+      "endX": 2075,
+      "endY": 582
+    },
+    {
+      "startX": 2075,
+      "startY": 582,
+      "endX": 2083,
+      "endY": 589
+    },
+    {
+      "startX": 2083,
+      "startY": 589,
+      "endX": 2089,
+      "endY": 594
+    },
+    {
+      "startX": 2089,
+      "startY": 594,
+      "endX": 2169,
+      "endY": 600
+    },
+    {
+      "startX": 2169,
+      "startY": 600,
+      "endX": 2179,
+      "endY": 607
+    },
+    {
+      "startX": 2179,
+      "startY": 607,
+      "endX": 2187,
+      "endY": 616
+    },
+    {
+      "startX": 2187,
+      "startY": 616,
+      "endX": 2200,
+      "endY": 622
+    },
+    {
+      "startX": 2200,
+      "startY": 622,
+      "endX": 2207,
+      "endY": 633
+    },
+    {
+      "startX": 2207,
+      "startY": 633,
+      "endX": 4000,
+      "endY": 643
+    },
+    {
+      "startX": 347,
+      "startX": 385,
+      "endX": 441,
+      "endY": 395
+    },
+    {
+      "startX": 483,
+      "startY": 427,
+      "endX": 568,
+      "endY": 435
+    },
+    {
+      "startX": 598,
+      "startY": 385,
+      "endX": 751,
+      "endY": 394
+    },
+    {
+      "startX": 1986,
+      "startY": 406,
+      "endX": 2634,
+      "endY": 413
+    },
+    {
+      "startX": 2603,
+      "startY": 364,
+      "endX": 2691,
+      "endY": 374
+    },
+    {
+      "startX": 2665,
+      "startY": 324,
+      "endX": 2760,
+      "endY": 332
+    },
+    {
+      "startX": 2791,
+      "startY": 281,
+      "endX": 3375,
+      "endY": 290
+    },
+    {
+      "startX": 3317,
+      "startY": 304,
+      "endX": 3411,
+      "endY": 312
+    },
+    {
+      "startX": 3375,
+      "startY": 345,
+      "endX": 3473,
+      "endY": 353
+    },
+    {
+      "startX": 3314,
+      "startY": 385,
+      "endX": 3408,
+      "endY": 395
+    },
+    {
+      "startX": 3374,
+      "startY": 426,
+      "endX": 3473,
+      "endY": 433
+    },
+    {
+      "startX": 2634,
+      "startY": 446,
+      "endX": 2708,
+      "endY": 456
+    },
+    {
+      "startX": 2708,
+      "startY": 488,
+      "endX": 2759,
+      "endY": 497
+    },
+    {
+      "startX": 2759,
+      "startY": 531,
+      "endX": 2817,
+      "endY": 540
+    },
+    {
+      "startX": 2817,
+      "startY": 577,
+      "endX": 2879,
+      "endY": 585
+    },
+    {
+      "startX": 2879,
+      "startY": 610,
+      "endX": 2946,
+      "endY": 618
+    },
+    {
+      "startX": 551,
+      "startY": 460,
+      "endX": 622,
+      "endY": 462
+    },
+    {
+      "startX": 514,
+      "startY": 506,
+      "endX": 637,
+      "endY": 508
+    },
+    {
+      "startX": 1058,
+      "startY": 459,
+      "endX": 1127,
+      "endY": 461
+    },
+    {
+      "startX": 1021,
+      "startY": 504,
+      "endX": 1143,
+      "endY": 506
+    },
+    {
+      "startX": 1596,
+      "startY": 459,
+      "endX": 1665,
+      "endY": 461
+    },
+    {
+      "startX": 1559,
+      "startY": 504,
+      "endX": 1681,
+      "endY": 506
+    },
+    {
+      "startX": 2330,
+      "startY": 312,
+      "endX": 2400,
+      "endY": 314
+    },
+    {
+      "startX": 2293,
+      "startY": 359,
+      "endX": 2412,
+      "endY": 361
+    },
+    {
+      "startX": 3097,
+      "startY": 190,
+      "endX": 3166,
+      "endY": 192
+    },
+    {
+      "startX": 3060,
+      "startY": 235,
+      "endX": 3182,
+      "endY": 237
+    },
+    {
+      "startX": 3089,
+      "startY": 537,
+      "endX": 3159,
+      "endY": 539
+    },
+    {
+      "startX": 3052,
+      "startY": 584,
+      "endX": 3174,
+      "endY": 586
+    }
+  ],
+  "Slopes" : [
+    {
+      "startX": 3420,
+      "startY": 450,
+      "endX": 3447,
+      "endY": 580
+    },
+    {
+      "startX": 2013,
+      "startY": 400,
+      "endX": 2037,
+      "endY": 555
+    }
+  ],
+  "TransPoints" : [
+    {}
+  ]
+}
