@@ -11,6 +11,7 @@ import java.util.Vector;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 import item.Item;
 import item.Item.ItemType;
@@ -30,6 +31,7 @@ public class Bag{
 	private ArrayList<JButton> bagMenuButtons;
 	private ArrayList<ArrayList<JButton>> itemButtons;
 	private ArrayList<Vector<Item>> items;
+	private JLabel moneyLabel;
 	
 	public Bag(DisplayPanel display, Beginner character){
 		this.character = character;
@@ -37,6 +39,9 @@ public class Bag{
 		items = new ArrayList<Vector<Item>>();
 		bagMenuButtons = new ArrayList<JButton>();
 		itemButtons = new ArrayList<ArrayList<JButton>>();
+		moneyLabel = new JLabel();
+		
+		
 		/*consumableItemNumber = new int[24];
 		otherItemNumber = new int[24];
 		for(int i=0; i<24; i++)
@@ -52,7 +57,10 @@ public class Bag{
 		visiable = false;
 		menuNumber=0;
 		setButtons();
-		
+		moneyLabel.setBounds(x+60, y+272, 200, 20);
+		moneyLabel.setText("0");
+		moneyLabel.setVisible(false);
+		display.add(moneyLabel);
 	}
 	
 	public void open(){
@@ -62,6 +70,7 @@ public class Bag{
 		for(i=0; i<24; i++) itemButtons.get(menuNumber).get(i).setVisible(visiable);
 		dragButton.setVisible(visiable);
 		closeButton.setVisible(visiable);
+		moneyLabel.setVisible(visiable);
 	}
 	
 	public boolean visiable(){
@@ -181,10 +190,16 @@ public class Bag{
 		for(i=0; i<5; i++) for(j=0; j<24; j++) itemButtons.get(i).get(j).setBounds(x+10+j%4*42, y+51+j/4*36, 40, 35);
 		dragButton.setBounds(x, y, 172, 20);
 		closeButton.setBounds(x+172, y+2, 20, 20);
+		moneyLabel.setBounds(x+60, y+272, 200, 20);
 		display.repaint();
 	}
 	
-	
+	public void putMoney(int add)
+	{
+		 Integer now = Integer.valueOf(moneyLabel.getText());
+		 now = now + add;
+		 moneyLabel.setText(now.toString());
+	}
 	
 	public void putItem(Item in)
 	{
