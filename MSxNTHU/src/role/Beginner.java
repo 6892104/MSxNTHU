@@ -80,7 +80,7 @@ public class Beginner extends Role {
 	    lvUp = minim.loadFile(this.getClass().getResource("/LevelUp.mp3").getPath());
 	    norAtk = minim.loadFile(this.getClass().getResource("/normal_attack.mp3").getPath());
 	    jumpEffect = minim.loadFile(this.getClass().getResource("/Jump.mp3").getPath());
-	    
+	    soundOn = true;
 	}
 
 	    //easyMusic *nor_attack,*level_up, *jump_effect;
@@ -113,7 +113,10 @@ public class Beginner extends Role {
 	    {
 	        /*if(play_soundEffect)
 	            jump_effect.play();*/
-			if(soundOn) jumpEffect.play();
+			if(soundOn) {
+				jumpEffect.rewind();
+				jumpEffect.play();
+			}
 	        jump_mod = 10;
 	        climb_mod = 0;
 	    }
@@ -124,6 +127,11 @@ public class Beginner extends Role {
 	      atk_mod = display.getAtkParameter();
 	      move_mod = 0;
 	      able = false;
+	      if(soundOn) {
+	    	  norAtk.rewind();
+	    	  norAtk.play();
+	      }
+
 	    // 0  left   1  right
 	      if(dir == 0){
 	    	  return new NormalAttack(x+width()/2 - 100 , y , 100 , height() , atk , Direction.left , true);
