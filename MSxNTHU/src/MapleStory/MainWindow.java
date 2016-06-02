@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
+import ddf.minim.AudioPlayer;
+import ddf.minim.Minim;
+import processing.core.PApplet;
+
 public class MainWindow extends JFrame {
 	
 	/*private slots:
@@ -53,7 +57,12 @@ public class MainWindow extends JFrame {
 
 	    easyMusic *drop,*picks,*tombfall;*/
 	    //add the sound effect here
-
+	Minim minim;
+	AudioPlayer startBGM;
+	AudioPlayer drop;
+	AudioPlayer pick;
+	AudioPlayer tombFall;
+	
 	public MainWindow(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.setPreferredSize(new Dimension(1240, 760));
@@ -117,6 +126,9 @@ public class MainWindow extends JFrame {
 	    start_bgm->stop();
 	
 	    this->gameMenu();*/
+		minim = new Minim(new PApplet());
+		startBGM = minim.loadFile(this.getClass().getResource("sound/bgm.mp3").getPath());
+		startBGM.play();
 	    gameStart();
 	}
 	    //~MainWindow();
