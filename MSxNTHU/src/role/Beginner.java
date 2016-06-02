@@ -4,6 +4,9 @@ package role;
 
 import MapleStory.DisplayPanel;
 import MapleStory.MapWithObsticle;
+import ddf.minim.AudioPlayer;
+import ddf.minim.Minim;
+import processing.core.PApplet;
 import role.RoleMode.Mode;
 import skill.NormalAttack;
 import skill.Skill.Direction;
@@ -17,6 +20,13 @@ public class Beginner extends Role {
 	private int level_effect;
 	
 	public Tomb tomb;
+
+	Minim minim;
+	AudioPlayer lvUp;
+	AudioPlayer norAtk;
+	AudioPlayer jumpEffect;
+	public boolean soundOn;
+	
 	
 	public Beginner(String name, DisplayPanel display, MapWithObsticle map){
 		super(name, display, map);
@@ -59,12 +69,18 @@ public class Beginner extends Role {
 
 
 	    /*char slevel_up[30]="Sound/LevelUp.mp3";
-	    char snor_attack[30]="Sound/normal attack.mp3";
+	    char snor_attack[30]="normal_attack.mp3";
 	    level_up = new easyMusic(slevel_up,80,0);
 	    nor_attack = new easyMusic(snor_attack,50,0);
 
 	    char sjump_effect[30]="Sound/Jump.mp3";
 	    jump_effect = new easyMusic(sjump_effect,80,0);*/
+	    
+	    minim = new Minim(new PApplet());
+	    lvUp = minim.loadFile(this.getClass().getResource("/LevelUp.mp3").getPath());
+	    norAtk = minim.loadFile(this.getClass().getResource("/normal_attack.mp3").getPath());
+	    jumpEffect = minim.loadFile(this.getClass().getResource("/Jump.mp3").getPath());
+	    
 	}
 
 	    //easyMusic *nor_attack,*level_up, *jump_effect;
@@ -97,6 +113,7 @@ public class Beginner extends Role {
 	    {
 	        /*if(play_soundEffect)
 	            jump_effect.play();*/
+			if(soundOn) jumpEffect.play();
 	        jump_mod = 10;
 	        climb_mod = 0;
 	    }
