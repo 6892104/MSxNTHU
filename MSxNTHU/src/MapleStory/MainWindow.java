@@ -59,9 +59,7 @@ public class MainWindow extends JFrame {
 	    //add the sound effect here
 	Minim minim;
 	AudioPlayer startBGM;
-	AudioPlayer drop;
-	AudioPlayer pick;
-	AudioPlayer tombFall;
+	
 	public boolean soundOn;
 	
 	
@@ -129,11 +127,8 @@ public class MainWindow extends JFrame {
 	
 	    this->gameMenu();*/
 		minim = new Minim(new PApplet());
-		soundOn = true;
+		soundOn = false;
 		startBGM = minim.loadFile(this.getClass().getResource("/bgm.mp3").getPath());
-		drop = minim.loadFile(this.getClass().getResource("/DropItem.mp3").getPath());
-		pick = minim.loadFile(this.getClass().getResource("/PickUpItem.mp3").getPath());
-		tombFall = minim.loadFile(this.getClass().getResource("/dead.mp3").getPath());
 		
 	    gameStart();
 	}

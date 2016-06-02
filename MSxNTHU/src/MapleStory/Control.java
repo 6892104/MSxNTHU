@@ -3,9 +3,12 @@ package MapleStory;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import ddf.minim.AudioPlayer;
+import ddf.minim.Minim;
 import item.Item;
 import item.ItemDatabase;
 import item.Money;
+import processing.core.PApplet;
 import role.Beginner;
 import role.Monster;
 import role.NPC;
@@ -26,6 +29,11 @@ public class Control extends Thread{
 	
 	private DisplayPanel display;
 	private KeyControl keyControl;
+
+	Minim minim;
+	AudioPlayer drop;
+	AudioPlayer pick;
+	private boolean soundOn;
 
 	public Control(DisplayPanel display){
 		this.display = display;
@@ -56,6 +64,10 @@ public class Control extends Thread{
 	    button.setRolloverIcon(myIcon2);
 	    button.setPressedIcon(myIcon3);
 	    button.setDisabledIcon(myIcon4);*/
+	    minim = new Minim(new PApplet());
+	    drop = minim.loadFile(this.getClass().getResource("/DropItem.mp3").getPath());
+	    pick = minim.loadFile(this.getClass().getResource("/PickUpItem.mp3").getPath());
+	    soundOn = true;
 	}
 	
 	@Override
@@ -134,6 +146,10 @@ public class Control extends Thread{
 	}
 	
 	private void createTreasure(ArrayList<String> list, int money, int x, int y){
+		if(soundOn) {
+			drop.rewind();
+			drop.play();
+		}
 		for(int i = 0; i < list.size() ; i++){
 			Item item = dataBase.createItem(list.get(i));
 			if(item != null){
@@ -156,6 +172,10 @@ public class Control extends Thread{
 					//System.out.println("fuck");
 					bag.putItem(item);
 					it.remove();
+					if(soundOn) {
+						pick.rewind();
+						pick.play();
+					}
 				}
 			}
 		}
@@ -167,6 +187,10 @@ public class Control extends Thread{
 					//System.out.println("fuck");
 					bag.putMoney(money.amount());
 					money_it.remove();
+					if(soundOn) {
+						pick.rewind();
+						pick.play();
+					}
 				}
 			}
 		}

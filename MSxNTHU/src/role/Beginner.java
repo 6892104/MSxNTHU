@@ -25,6 +25,8 @@ public class Beginner extends Role {
 	AudioPlayer lvUp;
 	AudioPlayer norAtk;
 	AudioPlayer jumpEffect;
+	AudioPlayer tombFall;
+
 	public boolean soundOn;
 	
 	
@@ -80,6 +82,7 @@ public class Beginner extends Role {
 	    lvUp = minim.loadFile(this.getClass().getResource("/LevelUp.mp3").getPath());
 	    norAtk = minim.loadFile(this.getClass().getResource("/normal_attack.mp3").getPath());
 	    jumpEffect = minim.loadFile(this.getClass().getResource("/Jump.mp3").getPath());
+	    tombFall = minim.loadFile(this.getClass().getResource("/dead.mp3").getPath());
 	    soundOn = true;
 	}
 
@@ -229,6 +232,10 @@ public class Beginner extends Role {
 			x = x();
 			y = y() - 190;
 			tombEffect = 21;
+			if(soundOn) {
+				tombFall.rewind();
+				tombFall.play();
+			}
 		}
 		
 		public void move(){
