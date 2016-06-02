@@ -159,7 +159,17 @@ public class Control extends Thread{
 				}
 			}
 		}
-		
+		Iterator<Money> money_it = moneys.iterator();
+		while(money_it.hasNext()){
+			Money money = money_it.next();
+			if(character.x() + character.width()/2 > money.x() && character.x() + character.width()/2 < money.x() + money.width()){
+				if(character.y() + character.height() > money.y() - money.height() && character.y() < money.y()){
+					//System.out.println("fuck");
+					bag.putMoney(money.amount());
+					money_it.remove();
+				}
+			}
+		}
 	}
 	
 	private void keyDetect(){
