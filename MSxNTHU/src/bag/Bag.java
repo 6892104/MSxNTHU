@@ -3,7 +3,6 @@ package bag;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,7 +18,6 @@ import MapleStory.DisplayPanel;
 import item.Item;
 import item.Item.ItemType;
 import role.Beginner;
-import item.ItemDatabase;
 
 public class Bag{
 	
@@ -37,26 +35,17 @@ public class Bag{
 	private Vector<Item> fasts;
 	private JLabel moneyLabel;
 	private ArrayList<JButton> fastButtons;
+
 	
 	public Bag(DisplayPanel display, Beginner character){
 		this.character = character;
 		this.display = display;
 		items = new ArrayList<Vector<Item>>();
 		fasts = new Vector<Item>();
-		fasts.setSize(6);
 		bagMenuButtons = new ArrayList<JButton>();
 		itemButtons = new ArrayList<ArrayList<JButton>>();
 		fastButtons = new ArrayList<JButton>();
-		moneyLabel = new JLabel("0", 4);
-		
-		
-		/*consumableItemNumber = new int[24];
-		otherItemNumber = new int[24];
-		for(int i=0; i<24; i++)
-		{
-			consumableItemNumber[i]=0;
-			otherItemNumber[i]=0;
-		}*/
+		fasts.setSize(6);
 		
 		x = 100;
 		y = 100;
@@ -65,9 +54,7 @@ public class Bag{
 		visiable = false;
 		menuNumber=0;
 		setButtons();
-		moneyLabel.setBounds(x+60, y+272, 82, 20);
-		moneyLabel.setVisible(false);
-		display.add(moneyLabel);
+		setLabel();
 	}
 	
 	public void open(){
@@ -123,7 +110,6 @@ public class Bag{
 			Vector<Item> vec = new Vector<Item>();
 			vec.setSize(24);
 			items.add(vec);
-			//System.out.println(items.get(0).size());
 			for(j=0; j<24; j++)
 			{
 				temp = new JButton();
@@ -196,6 +182,23 @@ public class Bag{
             fastButtons.add(temp);
             display.add(temp);
 	    }
+	}
+	
+	public void setLabel()
+	{
+		int i;
+		JLabel temp;
+		for(i=0; i<6; i++)
+		{
+			temp = new JLabel(Integer.toString(i+1));
+			temp.setBounds(1112+i%3*42, 639+i/3*39, 20, 20);
+			temp.setVisible(true);
+			display.add(temp);
+		}
+		moneyLabel = new JLabel("0", 4);
+		moneyLabel.setBounds(x+60, y+272, 82, 20);
+		moneyLabel.setVisible(false);
+		display.add(moneyLabel);
 	}
 	
 	public int getMenu()
@@ -287,7 +290,6 @@ public class Bag{
 			}
 			if(!found)
 			{
-				//System.out.println("fuck");
 				int victim = 0;
 				for(int j = 0 ; j < items.get(2).size() ; j++){
 					if(items.get(2).get(j) == null){
@@ -302,6 +304,27 @@ public class Bag{
 			}
 		}
 		
+	}
+	
+	public void useFast(int num)
+	{
+		num--;
+		int i=0, type=1;
+		Item item = fasts.get(num);
+		if(item != null){
+			item.use(character);
+			for(i=0; i<24; i++) if(items.get(1).get(i)!=null && items.get(1).get(i).equals(item)) break;
+			if(item.amount > 1){
+				item.amount--;
+				itemButtons.get(type).get(i).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
+				fastButtons.get(num).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
+			}else{
+				items.get(type).set(i, null);
+				fasts.set(num, null);
+				itemButtons.get(type).get(i).setIcon(null);
+				fastButtons.get(num).setIcon(null);
+			}
+		}
 	}
 	
 	private class MenuMouseAdapter extends MouseAdapter
@@ -359,7 +382,7 @@ public class Bag{
 			{
 				if(i!=num)
 				{
-					if(button.getX()>=x+10+i%4*42 && button.getX()<=x+50+i%4*42 && button.getY()>=y+51+i/4*36 && button.getY()<=y+86+i/4*36)
+					if(button.getX()>x-10+i%4*42 && button.getX()<x+30+i%4*42 && button.getY()>y+34+i/4*36 && button.getY()<y+69+i/4*36)
 					{
 						temp = itemButtons.get(type).get(i);
 						temp2 = itemButtons.get(type).get(num);	
@@ -379,7 +402,7 @@ public class Bag{
 			{
 				for(i=0; i<6; i++)
 				{
-					if(button.getX()>=1110+i%3*42 && button.getX()<=1150+i%3*42 && button.getY()>=640+i/3*39 && button.getY()<=675+i/3*39)
+					if(button.getX()>=1090+i%3*42 && button.getX()<=1130+i%3*42 && button.getY()>=623+i/3*39 && button.getY()<=658+i/3*39)
 					{
 						temp3 = items.get(type).get(num);
 						temp2 = fastButtons.get(i);
@@ -449,27 +472,6 @@ public class Bag{
 						fastButtons.get(num).setIcon(null);
 					}
 				}
-			}
-		}
-	}
-	
-	public void useFast(int num)
-	{
-		num--;
-		int i=0, type=1;
-		Item item = fasts.get(num);
-		if(item != null){
-			item.use(character);
-			for(i=0; i<24; i++) if(items.get(1).get(i)!=null && items.get(1).get(i).equals(item)) break;
-			if(item.amount > 1){
-				item.amount--;
-				itemButtons.get(type).get(i).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
-				fastButtons.get(num).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
-			}else{
-				items.get(type).set(i, null);
-				fasts.set(num, null);
-				itemButtons.get(type).get(i).setIcon(null);
-				fastButtons.get(num).setIcon(null);
 			}
 		}
 	}
