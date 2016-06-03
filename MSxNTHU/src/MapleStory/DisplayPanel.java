@@ -62,11 +62,7 @@ public class DisplayPanel extends JPanel {
 		npcPic = new NPCPic();
 		itemPic = new ItemPic();
 		moneyPic = new MoneyPic();
-		try {
-			mapImage = ImageIO.read(this.getClass().getResourceAsStream("/background.png"));
-		}catch (IOException ie){
-			javax.swing.JOptionPane.showMessageDialog(null, "載入地圖圖檔錯誤");
-		}
+		
 		try {
 			bagImage = new ArrayList<Image>();
 			bagImage.add(ImageIO.read(this.getClass().getResourceAsStream("/bag/bag1.jpg")));
@@ -202,6 +198,11 @@ public class DisplayPanel extends JPanel {
 	
 	public void setMap(MapWithObsticle map){
 		this.map = map;
+		try {
+			mapImage = ImageIO.read(this.getClass().getResourceAsStream("/map_image/" + map.name() + ".png"));
+		}catch (IOException ie){
+			javax.swing.JOptionPane.showMessageDialog(null, "載入地圖圖檔錯誤");
+		}
 	}
 	
 	public void setCharacter(Beginner ch){

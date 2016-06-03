@@ -14,7 +14,7 @@ import role.Pig;
 
 
 public class MapWithObsticle {
-
+	private String name;
 	private DisplayPanel display;
 	private int size_x, size_y, screen_size_x, screen_size_y;
 	private int shift_x, shift_y, over_shift_x, over_shift_y;
@@ -30,6 +30,7 @@ public class MapWithObsticle {
 
 	public MapWithObsticle(DisplayPanel display, String file){
 		this.display = display;
+		this.name = file;
 		
 		floors = new Vector<BlockOnMap>();
 		slopes = new Vector<BlockOnMap>();
@@ -38,7 +39,7 @@ public class MapWithObsticle {
 		npcs = new Vector<NPCpoint>();
 		
 		try{
-			file = "map/map_data.json";
+			file = "map/" + name + "_data.json";
 			data = new PApplet().loadJSONObject(file);
 		}catch (NullPointerException ie){
 			javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤J¦a¹Ïdata¿ù»~");
@@ -102,8 +103,8 @@ public class MapWithObsticle {
 		screen_size_x = 1280;
 		screen_size_y = 720;
 
-		shift_x = size_x/2 - screen_size_x/2;
-		shift_y = size_y/2 - screen_size_y/2;
+		shift_x = size_x/2 - screen_size_x/2 + 100;
+		shift_y = size_y/2 - screen_size_y/2 + 50;
 		over_shift_x = 0;
 		over_shift_y = 0;
 		
@@ -174,6 +175,10 @@ public class MapWithObsticle {
 			}
 		}
 		return false;
+	}
+	
+	public String name(){
+		return name;
 	}
 
 	public int getMax_x(){

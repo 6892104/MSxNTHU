@@ -36,13 +36,17 @@ public class Beginner extends Role {
 		human = true;
 		width = 200;
 	    height = 100;
-	    x=1420;
+	    //x=1420;
+	    x = 0;
+	    map.change_shift_x(x - map.getMax_x()/2);
 	    //x = parent.getWidth()/2 - width/2;
-	    y=874;
+	    //y=874;
+	    y = 0;
+	    map.change_shift_y(y - map.getMax_y()/2);
 	    //y = parent.getHeight()/2 - height/2;
 	    shift=95;
 	    move_range_left=0-shift;
-	    move_range_right=map.getMax_x()+shift;
+	    move_range_right=map.getMax_x()-width/4+shift;
 
 	    atk = 20;
 	    matk = 0;

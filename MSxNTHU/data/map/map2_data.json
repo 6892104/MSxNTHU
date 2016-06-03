@@ -1,6 +1,6 @@
 {
-  "size_x" : ,
-  "size_y" : ,
+  "size_x" : 4000,
+  "size_y" : 712,
   "Floors" : [
     {
       "startX": 0,
@@ -106,7 +106,7 @@
     },
     {
       "startX": 347,
-      "startX": 385,
+      "startY": 385,
       "endX": 441,
       "endY": 395
     },
@@ -287,7 +287,10 @@
       "endY": 555
     }
   ],
+  "BAML" : [
+  ],
   "TransPoints" : [
-    {}
+  ],
+  "NPCpoints" : [
   ]
 }

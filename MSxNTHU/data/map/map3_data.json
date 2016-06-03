@@ -1,0 +1,26 @@
+{
+  "size_x" : 1835,
+  "size_y" : 1134,
+  "Floors" : [
+    {
+      "startX": 0,
+      "startY": 881,
+      "endX": 1835,
+      "endY": 1134
+    },
+    {
+      "startX": 334,
+      "startY": 728,
+      "endX": 497,
+      "endY": 798
+    }
+  ],
+  "Slopes" : [
+  ],
+  "BAML" : [
+  ],
+  "TransPoints" : [
+  ],
+  "NPCpoints" : [
+  ]
+}
