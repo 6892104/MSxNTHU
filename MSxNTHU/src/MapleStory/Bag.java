@@ -33,14 +33,19 @@ public class Bag{
 	private ArrayList<JButton> bagMenuButtons;
 	private ArrayList<ArrayList<JButton>> itemButtons;
 	private ArrayList<Vector<Item>> items;
+	private Vector<Item> fasts;
 	private JLabel moneyLabel;
+	private ArrayList<JButton> fastButtons;
 	
 	public Bag(DisplayPanel display, Beginner character){
 		this.character = character;
 		this.display = display;
 		items = new ArrayList<Vector<Item>>();
+		fasts = new Vector<Item>();
+		fasts.setSize(6);
 		bagMenuButtons = new ArrayList<JButton>();
 		itemButtons = new ArrayList<ArrayList<JButton>>();
+		fastButtons = new ArrayList<JButton>();
 		moneyLabel = new JLabel("0", 4);
 		
 		
@@ -179,6 +184,17 @@ public class Bag{
 	    closeButton.setVisible(false);
 	    display.add(closeButton);
 	    
+	    for(i=0; i<6; i++)
+	    {
+	    	temp = new JButton();
+		    temp.setContentAreaFilled(false);
+		    temp.setBounds(1110+i%3*42, 640+i/3*39, 40, 35);
+		    temp.setFocusable(false);
+		    temp.addMouseListener(new fastMouseAdapter(i));
+	        temp.setVisible(true);
+            fastButtons.add(temp);
+            display.add(temp);
+	    }
 	}
 	
 	public int getMenu()
@@ -333,7 +349,7 @@ public class Bag{
 		}
 		public void mouseReleased(MouseEvent e)
 		{
-			int i;
+			int i, j;
 			JButton button = itemButtons.get(type).get(num);
 			JButton temp, temp2;
 			Item temp3, temp4;
@@ -346,26 +362,43 @@ public class Bag{
 					{
 						temp = itemButtons.get(type).get(i);
 						temp2 = itemButtons.get(type).get(num);	
-						
-						
-						
 						temp3 = items.get(type).get(i);
 						temp4 = items.get(type).get(num);
 						items.get(type).set(i, temp4);
 						items.get(type).set(num, temp3);
-
-
-		
 						temp5 = temp.getIcon();
 						temp.setIcon(temp2.getIcon());
 						temp2.setIcon(temp5);
-						
 						break;
 					}
 				}
 			}
+			
+			if(type==1)
+			{
+				for(i=0; i<6; i++)
+				{
+					if(button.getX()>=1110+i%3*42 && button.getX()<=1150+i%3*42 && button.getY()>=640+i/3*39 && button.getY()<=675+i/3*39)
+					{
+						temp3 = items.get(type).get(num);
+						temp2 = fastButtons.get(i);
+						for(j=0; j<6; j++)
+						{
+							if(fasts.get(j)!=null && fasts.get(j).equals(temp3))
+							{
+								fasts.set(j, null);
+								fastButtons.get(j).setIcon(null);
+								break;
+							}
+						}
+						fasts.set(i, temp3);
+						temp2.setIcon(button.getIcon());
+						break;
+					}
 
-				button.setBounds(x+10+num%4*42, y+51+num/4*36, 40, 35);
+				}
+			}
+			button.setBounds(x+10+num%4*42, y+51+num/4*36, 40, 35);
 
 		}
 
@@ -382,6 +415,58 @@ public class Bag{
 		public void mouseDragged(MouseEvent e)
 		{
 			button.setBounds(button.getX() + e.getX()-10, button.getY()-10 + e.getY(), 40, 35);
+		}
+	}
+	
+	private class fastMouseAdapter extends MouseAdapter
+	{
+		int type;
+		int num;
+		public fastMouseAdapter(int i)
+		{
+			super();
+			this.type = 1;
+			num = i;
+		}
+		public void mouseClicked(MouseEvent e)
+		{
+			int i=0;
+			if(e.getClickCount()==2)
+			{
+				Item item = fasts.get(num);
+				if(item != null){
+					item.use(character);
+					for(i=0; i<24; i++) if(items.get(1).get(i)!=null && items.get(1).get(i).equals(item)) break;
+					if(item.amount > 1){
+						item.amount--;
+						itemButtons.get(type).get(i).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
+						fastButtons.get(num).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
+					}else{
+						items.get(type).set(i, null);
+						itemButtons.get(type).get(i).setIcon(null);
+						fastButtons.get(num).setIcon(null);
+					}
+				}
+			}
+		}
+	}
+	
+	public void useFast(int num)
+	{
+		int i=0, type=1;
+		Item item = fasts.get(num);
+		if(item != null){
+			item.use(character);
+			for(i=0; i<24; i++) if(items.get(1).get(i)!=null && items.get(1).get(i).equals(item)) break;
+			if(item.amount > 1){
+				item.amount--;
+				itemButtons.get(type).get(i).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
+				fastButtons.get(num).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
+			}else{
+				items.get(type).set(i, null);
+				itemButtons.get(type).get(i).setIcon(null);
+				fastButtons.get(num).setIcon(null);
+			}
 		}
 	}
 }
