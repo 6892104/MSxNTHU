@@ -43,12 +43,12 @@ public class Beginner extends Role {
 	    map.change_shift_x(x - map.getMax_x()/2);
 	    //x = parent.getWidth()/2 - width/2;
 	    //y=874;
-	    y = 0;
+	    y = 1000;
 	    map.change_shift_y(y - map.getMax_y()/2);
 	    //y = parent.getHeight()/2 - height/2;
 	    shift=95;
 	    move_range_left=0-shift;
-	    move_range_right=map.getMax_x()-width/4+shift;
+	    move_range_right=map.getMax_x()+shift-30;
 
 	    atk = 20;
 	    matk = 0;
@@ -204,7 +204,7 @@ public class Beginner extends Role {
 	    map.change_shift_x(x - map.getMax_x()/2);
 	    this.y = y;
 	    map.change_shift_y(y - map.getMax_y()/2);
-	    move_range_right = map.getMax_x() - width/4 + shift;
+	    move_range_right = map.getMax_x() + shift;
 	}
 	
 	public int levelEffect(){

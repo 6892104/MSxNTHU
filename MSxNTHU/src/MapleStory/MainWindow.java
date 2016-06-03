@@ -65,9 +65,11 @@ public class MainWindow extends JFrame {
 	
 	public MainWindow(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    this.setPreferredSize(new Dimension(1240, 760));
-	    this.setSize(1240, 760);
-	    this.setLayout(null);
+		this.setLayout(null);
+		this.getContentPane().setPreferredSize(new Dimension(1280, 720)); //inner space
+	   /* this.setPreferredSize(new Dimension(1280, 720));
+	    this.setMinimumSize(new Dimension(1280, 720));*/
+	    this.setSize(1280, 720);
 		this.setLocation(300, 100);
 		//read picture
 		try {
@@ -106,9 +108,10 @@ public class MainWindow extends JFrame {
 	    this.add(display);
 	    keyControl = new KeyControl();
 	    this.addKeyListener(keyControl);
+	    this.pack();
 	    this.setVisible(true);
-	    display.setBounds(0, 0, this.getWidth(), this.getHeight());
-	System.out.println("ass " + this.getWidth() + " "+ this.getHeight());
+	    display.setBounds(0, 0, this.getContentPane().getWidth(), this.getContentPane().getHeight());
+	System.out.println("ass " + this.getContentPane().getWidth() + " "+ this.getContentPane().getHeight());
 	    //which = pig;
 	
 	    /*play_bgm = true;

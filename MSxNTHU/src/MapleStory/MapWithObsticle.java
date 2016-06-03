@@ -146,7 +146,7 @@ public class MapWithObsticle {
 		screen_size_y = 720;
 
 		shift_x = size_x/2 - screen_size_x/2 + 100;
-		shift_y = size_y/2 - screen_size_y/2 + 50;
+		shift_y = size_y/2 - screen_size_y/2 + 100;
 		over_shift_x = 0;
 		over_shift_y = 0;
 	}

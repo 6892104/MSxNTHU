@@ -158,10 +158,13 @@ public class Control extends Thread{
 				item.x = x;
 				item.y = y;
 				items.add(item);
+				if(x + item.width() > map.getMax_x() - 20)
+					x -= item.width();
 				x = x + item.width();
 			}
 		}
-		
+		if(x + 50 > map.getMax_x())
+			x -= 50;
 		moneys.add(new Money(money, x, y));
 	}
 	
