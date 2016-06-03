@@ -34,6 +34,7 @@ public class NPC extends Role{
 	    button = new JButton();
 	    button.setContentAreaFilled(false);
 	    button.setFocusable(false);
+	    button.setBorderPainted(false);
 	    button.addMouseListener(new MouseAdapter(){
 	        public void mouseClicked(MouseEvent e){
 	        	/*JOptionPane.showMessageDialog(null, "¦³¨Æ¶Ü¡H", "ToolMan :", JOptionPane.INFORMATION_MESSAGE );
@@ -51,7 +52,7 @@ public class NPC extends Role{
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		button.setIcon(new ImageIcon(display.getNPCImage(name).getScaledInstance( width, height,  java.awt.Image.SCALE_SMOOTH )));
+		button.setIcon(new ImageIcon(display.getNPCImage(name).getScaledInstance( width - 2, height - 2,  java.awt.Image.SCALE_SMOOTH )));
 	}
 	
 	public void move(int x, int y){

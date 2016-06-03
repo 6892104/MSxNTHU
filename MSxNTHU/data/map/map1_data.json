@@ -227,18 +227,18 @@
   ],
   "TransPoints" : [
   	{
-  	  "name": "map1",
+  	  "name": "map2",
   	  "startX": 180,
   	  "startY": 270,
-  	  "endX": 90,
-  	  "endY": 180
+  	  "endX": 270,
+  	  "endY": 450
   	},
   	{
-  	  "name": "map2",
+  	  "name": "map3",
   	  "startX": 2650,
   	  "startY": 1220,
-  	  "endX": 90,
-  	  "endY": 180
+  	  "endX": 2740,
+  	  "endY": 1400
   	}
   ],
   "NPCpoints" : [

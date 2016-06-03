@@ -197,6 +197,14 @@ public class Beginner extends Role {
 	    }
 	}
 	
+	public void setPosition(int x, int y){
+		this.x = x;
+	    map.change_shift_x(x - map.getMax_x()/2);
+	    this.y = y;
+	    map.change_shift_y(y - map.getMax_y()/2);
+	    move_range_right = map.getMax_x() - width/4 + shift;
+	}
+	
 	public int levelEffect(){
 		return level_effect;
 	}

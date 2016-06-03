@@ -82,6 +82,13 @@
       "maxNum": 200,
       "price": 50,
       "probability": 80
+    },
+    {
+      "name": "綠水靈珠",
+      "lvRequired":  0,
+      "maxNum": 200,
+      "price": 100,
+      "probability": 70
     }
   ]
 }

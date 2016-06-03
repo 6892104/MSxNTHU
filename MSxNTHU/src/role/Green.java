@@ -18,6 +18,7 @@ public class Green extends Monster{
 	    exp = 100;
 	    damage = 20;
 	    
+	    treasure.add("ºñ¤ôÆF¯]");
 	    treasure.add("Ä«ªG");
 	    treasure.add("¬õÃÄ¤ô");
 	    

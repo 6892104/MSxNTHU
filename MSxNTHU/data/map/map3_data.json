@@ -22,5 +22,12 @@
   "TransPoints" : [
   ],
   "NPCpoints" : [
+    {
+  	  "name": "DangerDragon",
+  	  "x": 1600,
+  	  "y": 881,
+  	  "width": 210,
+  	  "height": 288
+  	}
   ]
 }

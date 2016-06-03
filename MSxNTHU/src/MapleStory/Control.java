@@ -38,7 +38,8 @@ public class Control extends Thread{
 
 	public Control(DisplayPanel display){
 		this.display = display;
-		map = new MapWithObsticle(display, "map1");
+		map = new MapWithObsticle(display);
+		map.loadData("map1");
 	    display.setMap(map);
 	    character = new Beginner("ชüจ}จ}ค์", display, map);
 	    display.setCharacter(character);
@@ -220,6 +221,18 @@ public class Control extends Thread{
 	    	Skill sk = character.normal_attack();
 	    	if(sk != null)
 	    		skills.add(sk);
+	    }
+	    if(keyControl.get("enter")){
+	    	String newMap = map.atTransPoint(character.x() + character.width()/2, character.y() + character.height()); 
+	    	if(newMap != null){
+	    		System.out.println("fuck");
+	    		map.loadData(newMap);
+	    		display.setMap(map);
+	    		character.setPosition(0, 0);
+	    		monsters = map.createMonster();
+	    	    display.setMonsters(monsters);
+	    	    npcs = map.createNPC();
+	    	}
 	    }
 	    /*if(key["esc"]){
 	        menuBar()->show();
