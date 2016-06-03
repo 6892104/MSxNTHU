@@ -21,7 +21,7 @@ public class Task {
 		JSONObject data;
 		JSONArray data_array;
 		try{
-			String file = "message/" + name + ".json";
+			String file = "message/" + name + "_task.json";
 			data = new PApplet().loadJSONObject(file);
 		
 			data_array = data.getJSONArray("messages");
@@ -53,7 +53,7 @@ public class Task {
 		if(task.getString("type").equals("collect")){
 			String item = task.getString("item");
 			int number = task.getInt("number");
-			int option = JOptionPane.showConfirmDialog(null, "幫我收集 "+item+" " +number+" 個好嗎？", name+" :", JOptionPane.YES_NO_OPTION, getPicture("question"));
+			JOptionPane.showMessageDialog(null, "請收集 "+item+" " +number+" 個。", name+" :", getPicture("error"));
 			/*if(option == JOptionPane.YES_OPTION){
 				String yes = data_array.getJSONObject(i).getString("yes");
 				if(yes.equals("task")){
