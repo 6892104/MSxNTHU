@@ -2,6 +2,8 @@ package role;
 
 
 
+import javax.swing.JOptionPane;
+
 import MapleStory.DisplayPanel;
 import MapleStory.MapWithObsticle;
 import ddf.minim.AudioPlayer;
@@ -241,6 +243,7 @@ public class Beginner extends Role {
 		}
 		
 		private void reset(){
+			JOptionPane.showMessageDialog(null, "UCCU\n你死去了。\n哈哈笑你～", "系統 :", JOptionPane.WARNING_MESSAGE );
 			x = x();
 			y = y() - 190;
 			tombEffect = 21;

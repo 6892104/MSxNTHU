@@ -10,12 +10,12 @@
     {
       "dialog": "message",
       "type": "information",
-      "message": "唉，不知道為什麼最近特別倒楣\n在我身上發生許多衰事…"
+      "message": "唉，不知道為什麼最近特別倒楣，\n在我身上發生許多衰事…"
     },
     {
       "dialog": "message",
       "type": "information",
-      "message": "上個星期，我手癢，買了一部藍寶堅尼跑車來開\n不過過了沒幾天，就前天吧，我腳癢\n把它油門直接踩到底\n它就這樣直接衝到海裡去了…"
+      "message": "上個星期，我手癢，買了一部藍寶堅尼跑車來開，\n不過過了沒幾天，就前天吧，我腳癢，\n把它油門直接踩到底，\n它就這樣直接衝到海裡去了…"
     },
     {
       "dialog": "message",
@@ -25,7 +25,7 @@
     {
       "dialog": "confirm",
       "type": "question",
-      "message": "所以能麻煩你去幫我收集200個藍寶殼\n來治療我的手癢腳癢嗎？\n感激不盡！\n（呼呼～～好癢好癢…）",
+      "message": "所以能麻煩你去幫我收集200個藍寶殼，\n來治療我的手癢腳癢嗎？\n感激不盡！\n（呼呼～～好癢好癢…）",
       "option": "yes_no",
       "yes": "task",
       "task_number": 0
