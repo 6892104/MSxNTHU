@@ -1,4 +1,4 @@
-package MapleStory;
+package bag;
 
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import MapleStory.DisplayPanel;
 import item.Item;
 import item.Item.ItemType;
 import role.Beginner;
@@ -110,7 +111,7 @@ public class Bag{
 		    temp.setContentAreaFilled(false);
 		    temp.setBounds(x+8+i*37, y+25, 37, 21);
 		    temp.setFocusable(false);
-		    temp.addMouseListener(new menuMouseAdapter(i));
+		    temp.addMouseListener(new MenuMouseAdapter(i));
 	        temp.setVisible(false);
             bagMenuButtons.add(temp);
             display.add(temp);
@@ -148,7 +149,7 @@ public class Bag{
 	        }
 	    });
 	    try {
-	        Image img = ImageIO.read(getClass().getResource("/bag/bag_button.png"));
+	        Image img = ImageIO.read(getClass().getResource("/bag_image/bag_button.png"));
 	        img = img.getScaledInstance( 60, 60,  java.awt.Image.SCALE_SMOOTH ) ;
 	        bagButton.setIcon(new ImageIcon(img));
 	    } catch (IOException ex) {
@@ -271,7 +272,7 @@ public class Bag{
 			{
 				Item item = items.get(2).get(i);
 				if(item != null){
-					System.out.println(item.name() + " " + in.name() + " " + item.name().equals(in.name()));
+					//System.out.println(item.name() + " " + in.name() + " " + item.name().equals(in.name()));
 					if(item.name().equals(in.name()))
 					{
 						if(item.amount < item.maxNum())
@@ -286,7 +287,7 @@ public class Bag{
 			}
 			if(!found)
 			{
-				System.out.println("fuck");
+				//System.out.println("fuck");
 				int victim = 0;
 				for(int j = 0 ; j < items.get(2).size() ; j++){
 					if(items.get(2).get(j) == null){
@@ -303,10 +304,10 @@ public class Bag{
 		
 	}
 	
-	private class menuMouseAdapter extends MouseAdapter
+	private class MenuMouseAdapter extends MouseAdapter
 	{
 		private int num;
-		public menuMouseAdapter(int i)
+		public MenuMouseAdapter(int i)
 		{
 			super();
 			num = i;
@@ -443,6 +444,7 @@ public class Bag{
 						fastButtons.get(num).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
 					}else{
 						items.get(type).set(i, null);
+						fasts.set(num, null);
 						itemButtons.get(type).get(i).setIcon(null);
 						fastButtons.get(num).setIcon(null);
 					}
@@ -453,6 +455,7 @@ public class Bag{
 	
 	public void useFast(int num)
 	{
+		num--;
 		int i=0, type=1;
 		Item item = fasts.get(num);
 		if(item != null){
@@ -464,6 +467,7 @@ public class Bag{
 				fastButtons.get(num).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
 			}else{
 				items.get(type).set(i, null);
+				fasts.set(num, null);
 				itemButtons.get(type).get(i).setIcon(null);
 				fastButtons.get(num).setIcon(null);
 			}

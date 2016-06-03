@@ -13,6 +13,7 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import bag.Bag;
 import item.Consumable;
 import item.Equipment;
 import item.Item;
@@ -65,11 +66,11 @@ public class DisplayPanel extends JPanel {
 		
 		try {
 			bagImage = new ArrayList<Image>();
-			bagImage.add(ImageIO.read(this.getClass().getResourceAsStream("/bag/bag1.jpg")));
-			bagImage.add(ImageIO.read(this.getClass().getResourceAsStream("/bag/bag2.jpg")));
-			bagImage.add(ImageIO.read(this.getClass().getResourceAsStream("/bag/bag3.jpg")));
-			bagImage.add(ImageIO.read(this.getClass().getResourceAsStream("/bag/bag4.jpg")));
-			bagImage.add(ImageIO.read(this.getClass().getResourceAsStream("/bag/bag5.jpg")));
+			bagImage.add(ImageIO.read(this.getClass().getResourceAsStream("/bag_image/bag1.jpg")));
+			bagImage.add(ImageIO.read(this.getClass().getResourceAsStream("/bag_image/bag2.jpg")));
+			bagImage.add(ImageIO.read(this.getClass().getResourceAsStream("/bag_image/bag3.jpg")));
+			bagImage.add(ImageIO.read(this.getClass().getResourceAsStream("/bag_image/bag4.jpg")));
+			bagImage.add(ImageIO.read(this.getClass().getResourceAsStream("/bag_image/bag5.jpg")));
 		}catch (IOException ie){
 			javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤J­I¥]¹ÏÀÉ¿ù»~");
 		}

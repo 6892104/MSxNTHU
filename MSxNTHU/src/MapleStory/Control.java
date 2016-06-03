@@ -3,6 +3,7 @@ package MapleStory;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import bag.Bag;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
 import item.Item;
@@ -37,7 +38,7 @@ public class Control extends Thread{
 
 	public Control(DisplayPanel display){
 		this.display = display;
-		map = new MapWithObsticle(display, "map3");
+		map = new MapWithObsticle(display, "map1");
 	    display.setMap(map);
 	    character = new Beginner("ชüจ}จ}ค์", display, map);
 	    display.setCharacter(character);
@@ -202,6 +203,12 @@ public class Control extends Thread{
 		if(keyControl.get("space"))      character.jump();
 	    if(keyControl.get("up"))         character.climb(0);
 	    if(keyControl.get("down"))     	 character.climb(1);
+	    if(keyControl.get("1"))    		 bag.useFast(1);
+	    if(keyControl.get("2"))    		 bag.useFast(2);
+	    if(keyControl.get("3"))    		 bag.useFast(3);
+	    if(keyControl.get("4"))    		 bag.useFast(4);
+	    if(keyControl.get("5"))    		 bag.useFast(5);
+	    if(keyControl.get("6"))    		 bag.useFast(6);
 	    if(keyControl.get("z"))			 pickUp();
 	    if(keyControl.get("i")){		 
 	    	if(bagDelay <= 0){
