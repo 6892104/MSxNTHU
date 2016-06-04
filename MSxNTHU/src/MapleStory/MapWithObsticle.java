@@ -12,6 +12,7 @@ import role.Green;
 import role.Monster;
 import role.NPC;
 import role.Pig;
+import role.QuestionNPC;
 
 
 public class MapWithObsticle {
@@ -329,7 +330,11 @@ public class MapWithObsticle {
 		ArrayList<NPC> npclist = new ArrayList<NPC>();
 		for(int i = 0 ; i < npcs.size() ; i++){
 			NPCpoint npcpoint = npcs.get(i);
-			NPC npc = new NPC(npcpoint.name, display, this);
+			NPC npc;
+			if(name.equals("map3"))
+				npc = new QuestionNPC(npcpoint.name, display, this);
+			else
+				npc = new NPC(npcpoint.name, display, this);
 			//System.out.println(npcpoint.x +" " +npcpoint.y);
 			npc.set(npcpoint.x - npcpoint.width/2, npcpoint.y - npcpoint.height, npcpoint.width, npcpoint.height);
 			npclist.add(npc);

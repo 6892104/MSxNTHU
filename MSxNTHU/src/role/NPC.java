@@ -13,6 +13,7 @@ import display.DisplayPanel;
 
 public class NPC extends Role{
 	JButton button;
+	MouseAdapter mouseListen;
 	int ScreenX, ScreenY;
 	
 	public NPC(String name, DisplayPanel display,MapWithObsticle map){
@@ -35,7 +36,7 @@ public class NPC extends Role{
 	    button.setContentAreaFilled(false);
 	    button.setFocusable(false);
 	    button.setBorderPainted(false);
-	    button.addMouseListener(new MouseAdapter(){
+	    mouseListen = new MouseAdapter(){
 	        public void mouseClicked(MouseEvent e){
 	        	/*JOptionPane.showMessageDialog(null, "有事嗎？", "ToolMan :", JOptionPane.INFORMATION_MESSAGE );
 	        	int option = JOptionPane.showConfirmDialog(null, "想被肛？", "ToolMan :", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -43,7 +44,8 @@ public class NPC extends Role{
 	        		System.exit(0);*/
 	        	new Task(name);
 	        }
-        });
+        };
+	    button.addMouseListener(mouseListen);
         display.add(button);
 	}
 	
