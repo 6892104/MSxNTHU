@@ -13,6 +13,24 @@
       "startY": 728,
       "endX": 497,
       "endY": 798
+    },
+    {
+      "startX": 633,
+      "startY": 728,
+      "endX": 800,
+      "endY": 798
+    },
+    {
+  	  "startX": 933,
+      "startY": 728,
+      "endX": 1105,
+      "endY": 798
+    },
+    {
+  	  "startX": 1239,
+      "startY": 728,
+      "endX": 1411,
+      "endY": 798
     }
   ],
   "Slopes" : [
