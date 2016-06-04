@@ -4,10 +4,10 @@ package role;
 
 import javax.swing.JOptionPane;
 
-import MapleStory.DisplayPanel;
 import MapleStory.MapWithObsticle;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
+import display.DisplayPanel;
 import processing.core.PApplet;
 import role.RoleMode.Mode;
 import skill.NormalAttack;
@@ -43,7 +43,7 @@ public class Beginner extends Role {
 	    map.change_shift_x(x - map.getMax_x()/2);
 	    //x = parent.getWidth()/2 - width/2;
 	    //y=874;
-	    y = 1000;
+	    y = 0;
 	    map.change_shift_y(y - map.getMax_y()/2);
 	    //y = parent.getHeight()/2 - height/2;
 	    shift=95;

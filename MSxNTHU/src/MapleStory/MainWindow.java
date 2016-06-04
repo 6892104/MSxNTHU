@@ -13,9 +13,11 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
+import display.DisplayPanel;
 import processing.core.PApplet;
 
 public class MainWindow extends JFrame {
@@ -64,7 +66,7 @@ public class MainWindow extends JFrame {
 	
 	
 	public MainWindow(){
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.setLayout(null);
 		this.getContentPane().setPreferredSize(new Dimension(1280, 720)); //inner space
 	   /* this.setPreferredSize(new Dimension(1280, 720));
@@ -79,6 +81,19 @@ public class MainWindow extends JFrame {
 			javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤J¹ÏÀÉ¿ù»~");
 		}
 	    this.setTitle("MapleStory");
+	    this.addWindowListener(new java.awt.event.WindowAdapter() {
+	        @Override
+	        public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+	            if (JOptionPane.showConfirmDialog(null, 
+	                "Are you sure to close this window?", "Really Closing?", 
+	                JOptionPane.YES_NO_OPTION,
+	                JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+	            	display.closeConnection();
+	                System.exit(0);
+	            }
+	        }
+	    });
+	    
 	    //this.setUndecorated(true); //no border
 	    //this.setExtendedState(JFrame.MAXIMIZED_BOTH); //full screen
 	    //this.setResizable(false);
@@ -107,7 +122,7 @@ public class MainWindow extends JFrame {
 	    
 	    this.add(display);
 	    keyControl = new KeyControl();
-	    this.addKeyListener(keyControl);
+	    display.addKeyListener(keyControl);
 	    this.pack();
 	    this.setVisible(true);
 	    display.setBounds(0, 0, this.getContentPane().getWidth(), this.getContentPane().getHeight());

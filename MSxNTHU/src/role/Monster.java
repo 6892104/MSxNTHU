@@ -3,8 +3,8 @@ package role;
 import java.util.ArrayList;
 import java.util.Random;
 
-import MapleStory.DisplayPanel;
 import MapleStory.MapWithObsticle;
+import display.DisplayPanel;
 import role.RoleMode.Mode;
 
 public abstract class Monster extends Role{

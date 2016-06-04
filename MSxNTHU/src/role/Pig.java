@@ -2,8 +2,8 @@ package role;
 
 
 
-import MapleStory.DisplayPanel;
 import MapleStory.MapWithObsticle;
+import display.DisplayPanel;
 
 public class Pig extends Monster{
 	public Pig(String name, DisplayPanel display,MapWithObsticle map){

@@ -56,7 +56,10 @@ public class KeyControl implements KeyListener {
 	}
 
 	public boolean get(String key){
-		return this.key.get(key);
+		boolean yes = this.key.get(key);
+		if(key.equals("enter"))
+			this.key.put("enter", false);
+		return yes;
 	}
 
 	@Override
@@ -106,6 +109,7 @@ public class KeyControl implements KeyListener {
 		if(e.getKeyCode() == KeyEvent.VK_7)        key.put("7", true);
 		if(e.getKeyCode() == KeyEvent.VK_8)        key.put("8", true);
 		if(e.getKeyCode() == KeyEvent.VK_F11)      key.put("F11", true);
+		e.consume();
 	}
 
 	@Override
@@ -157,7 +161,7 @@ public class KeyControl implements KeyListener {
 		if(e.getKeyCode() == KeyEvent.VK_7)        key.put("7", false);
 		if(e.getKeyCode() == KeyEvent.VK_8)        key.put("8", false);
 		if(e.getKeyCode() == KeyEvent.VK_F11)      key.put("F11", false);
-		
+		e.consume();
 	}
 	
 	@Override

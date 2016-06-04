@@ -6,6 +6,7 @@ import java.util.Iterator;
 import bag.Bag;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
+import display.DisplayPanel;
 import item.Item;
 import item.ItemDatabase;
 import item.Money;
@@ -205,7 +206,6 @@ public class Control extends Thread{
 		if(keyControl.get("right"))      character.RoleMove(1);
 		if(keyControl.get("left"))       character.RoleMove(0);
 		if(keyControl.get("space"))      character.jump();
-	    if(keyControl.get("up"))         character.climb(0);
 	    if(keyControl.get("down"))     	 character.climb(1);
 	    if(keyControl.get("1"))    		 bag.useFast(1);
 	    if(keyControl.get("2"))    		 bag.useFast(2);
@@ -226,6 +226,11 @@ public class Control extends Thread{
 	    		skills.add(sk);
 	    }
 	    if(keyControl.get("enter")){
+	    	//display.requestFocus();
+	    	//System.out.println(display.isRequestFocusEnabled());
+			display.transferFocusBackward();
+	    }
+	    if(keyControl.get("up")){
 	    	String newMap = map.atTransPoint(character.x() + character.width()/2, character.y() + character.height()); 
 	    	if(newMap != null){
 	    		System.out.println("fuck");
@@ -235,7 +240,8 @@ public class Control extends Thread{
 	    		monsters = map.createMonster();
 	    	    display.setMonsters(monsters);
 	    	    npcs = map.createNPC();
-	    	}
+	    	}else
+	    		character.climb(0);
 	    }
 	    /*if(key["esc"]){
 	        menuBar()->show();

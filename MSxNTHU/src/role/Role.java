@@ -1,7 +1,7 @@
 package role;
 
-import MapleStory.DisplayPanel;
 import MapleStory.MapWithObsticle;
+import display.DisplayPanel;
 
 public abstract class Role {
 	

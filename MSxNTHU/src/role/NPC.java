@@ -7,8 +7,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import MapleStory.DisplayPanel;
 import MapleStory.MapWithObsticle;
+import display.DisplayPanel;
 
 
 public class NPC extends Role{

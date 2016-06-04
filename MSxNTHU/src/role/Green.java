@@ -1,7 +1,7 @@
 package role;
 
-import MapleStory.DisplayPanel;
 import MapleStory.MapWithObsticle;
+import display.DisplayPanel;
 
 public class Green extends Monster{
 	public Green(String name, DisplayPanel display,MapWithObsticle map){

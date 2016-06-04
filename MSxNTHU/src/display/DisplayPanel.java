@@ -1,4 +1,4 @@
-package MapleStory;
+package display;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -13,6 +13,7 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import MapleStory.MapWithObsticle;
 import bag.Bag;
 import item.Consumable;
 import item.Equipment;
@@ -54,8 +55,15 @@ public class DisplayPanel extends JPanel {
 	private ItemPic itemPic;
 	private MoneyPic moneyPic;
 	
+	private ChatPanel chatPanel;
+	
 	public DisplayPanel(){
 		this.setLayout(null);
+		chatPanel = new ChatPanel(this);
+		chatPanel.setLocation(0, 645 - chatPanel.getHeight());
+		this.add(chatPanel);
+		
+		
 		status = new Status();
 		chPic = new CharacterPic();
 		pigPic = new PigPic();
@@ -169,17 +177,17 @@ public class DisplayPanel extends JPanel {
 			return mergeImage(itemPic.getImage(name), itemPic.getNumber(amount));
 	}
 	
-	public void setItem(ArrayList<Item> items){
-		this.items = items;
+	public void closeConnection(){
+		chatPanel.closeConnection();
 	}
 	
-	public void setMoney(ArrayList<Money> moneys){
-		this.moneys = moneys;
+	public void getKey(){
+		chatPanel.getKey();
 	}
 	
-	/*public void setNPC(ArrayList<NPC> npcs){
-		this.npcs = npcs;
-	}*/
+	public String getCharacterName(){
+		return character.name();
+	}
 	
 	public Image getNPCImage(String name){
 		return npcPic.getImage(name);
@@ -195,6 +203,14 @@ public class DisplayPanel extends JPanel {
 	
 	public int getAtkParameter(){
 		return chPic.atk_pic_num * chPic.atk_co;
+	}
+	
+	public void setItem(ArrayList<Item> items){
+		this.items = items;
+	}
+	
+	public void setMoney(ArrayList<Money> moneys){
+		this.moneys = moneys;
 	}
 	
 	public void setMap(MapWithObsticle map){
