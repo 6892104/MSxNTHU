@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JOptionPane;
 
+import MapleStory.Control;
 import MapleStory.MapWithObsticle;
 import display.DisplayPanel;
 import questionSystem.QuestionClient;
@@ -12,9 +13,11 @@ import questionSystem.QuestionClient;
 public class QuestionNPC extends NPC{
 	private boolean answering;
 	private QuestionClient client;
+	private Control parent;
 	
-	public QuestionNPC(String name, DisplayPanel display,MapWithObsticle map){
+	public QuestionNPC(String name, DisplayPanel display, MapWithObsticle map, Control parent){
 		super(name, display, map);
+		this.parent = parent;
 		answering = false;
 		button.removeMouseListener(mouseListen);
 		mouseListen = new MouseAdapter(){
@@ -49,5 +52,6 @@ public class QuestionNPC extends NPC{
 	public void closeConversation(){
 		answering = false;
 		client = null;
+		parent.resetMap("map1");
 	}
 }

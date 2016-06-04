@@ -40,7 +40,7 @@ public class Control extends Thread{
 
 	public Control(DisplayPanel display){
 		this.display = display;
-		map = new MapWithObsticle(display);
+		map = new MapWithObsticle(display, this);
 		map.loadData("map3");
 	    display.setMap(map);
 	    character = new Beginner("ชüจ}จ}ค์", display, map);
@@ -207,6 +207,15 @@ public class Control extends Thread{
 		}
 	}
 	
+	public void resetMap(String newMap){
+		map.loadData(newMap);
+		display.setMap(map);
+		character.setPosition(0, 0);
+		monsters = map.createMonster();
+	    display.setMonsters(monsters);
+	    npcs = map.createNPC();
+	}
+	
 	private void keyDetect(){
 		if(keyControl.get("right"))      character.RoleMove(1);
 		if(keyControl.get("left"))       character.RoleMove(0);
@@ -241,13 +250,8 @@ public class Control extends Thread{
 	    if(keyControl.get("up")){
 	    	String newMap = map.atTransPoint(character.x() + character.width()/2, character.y() + character.height()); 
 	    	if(newMap != null){
-	    		System.out.println("fuck");
-	    		map.loadData(newMap);
-	    		display.setMap(map);
-	    		character.setPosition(0, 0);
-	    		monsters = map.createMonster();
-	    	    display.setMonsters(monsters);
-	    	    npcs = map.createNPC();
+	    		//System.out.println("fuck");
+	    		resetMap(newMap);
 	    	}else
 	    		character.climb(0);
 	    }
