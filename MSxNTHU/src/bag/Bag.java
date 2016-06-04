@@ -286,7 +286,6 @@ public class Bag{
 			{
 				Item item = items.get(2).get(i);
 				if(item != null){
-					//System.out.println(item.name() + " " + in.name() + " " + item.name().equals(in.name()));
 					if(item.name().equals(in.name()))
 					{
 						if(item.amount < item.maxNum())
