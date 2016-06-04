@@ -286,7 +286,6 @@ public class Bag{
 			{
 				Item item = items.get(2).get(i);
 				if(item != null){
-					//System.out.println(item.name() + " " + in.name() + " " + item.name().equals(in.name()));
 					if(item.name().equals(in.name()))
 					{
 						if(item.amount < item.maxNum())
@@ -358,7 +357,7 @@ public class Bag{
 	
 	private class itemMouseAdapter extends MouseAdapter
 	{
-		int type, num, i, find;
+		int type, num, i, find=-1;
 		public itemMouseAdapter(int type, int i)
 		{
 			super();
@@ -383,13 +382,16 @@ public class Bag{
 					if(item.amount > 1){
 						item.amount--;
 						itemButtons.get(type).get(num).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
-						fastButtons.get(find).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
+						if(find!=-1) fastButtons.get(find).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
 					}else{
 						items.get(type).set(num, null);
 						itemButtons.get(type).get(num).setIcon(null);
-						fasts.set(find, null);
-						fastButtons.get(find).setIcon(null);
-						fastTable.set(find, -1);
+						if(find!=-1)
+						{
+							fasts.set(find, null);
+							fastButtons.get(find).setIcon(null);
+							fastTable.set(find, -1);
+						}
 					}
 				}
 			}
