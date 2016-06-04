@@ -68,9 +68,9 @@ public class ChatPanel extends JPanel{
 					if(writeBoard.getText().length() > 0){
 						client.sendMessage(display.getCharacterName() + " : " + writeBoard.getText());
 						writeBoard.setText("");
-						display.requestFocus();
-						writeBoard.transferFocus();
 					}
+					display.requestFocus();
+					writeBoard.transferFocus();
 					e.consume();
 				}
 			}
