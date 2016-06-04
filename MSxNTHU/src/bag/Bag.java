@@ -213,7 +213,7 @@ public class Bag{
 		for(i=0; i<5; i++) for(j=0; j<24; j++) itemButtons.get(i).get(j).setBounds(x+10+j%4*42, y+51+j/4*36, 40, 35);
 		dragButton.setBounds(x, y, 172, 20);
 		closeButton.setBounds(x+172, y+2, 20, 20);
-		moneyLabel.setBounds(x+60, y+272, 200, 20);
+		moneyLabel.setBounds(x+60, y+272, 82, 20);
 		display.repaint();
 	}
 	
@@ -348,6 +348,7 @@ public class Bag{
 	{
 		int type;
 		int num;
+		int j;
 		public itemMouseAdapter(int type, int i)
 		{
 			super();
@@ -361,12 +362,16 @@ public class Bag{
 				Item item = items.get(type).get(num);
 				if(item != null){
 					item.use(character);
+					for(j=0; j<8; j++) if(fasts.get(j)!=null && fasts.get(j).equals(item)) break;
 					if(item.amount > 1){
 						item.amount--;
 						itemButtons.get(type).get(num).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
+						fastButtons.get(j).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
 					}else{
 						items.get(type).set(num, null);
 						itemButtons.get(type).get(num).setIcon(null);
+						fasts.set(j, null);
+						fastButtons.get(j).setIcon(null);
 					}
 				}
 			}
@@ -402,7 +407,7 @@ public class Bag{
 			{
 				for(i=0; i<fasts.size(); i++)
 				{
-					if(button.getX()>=1090+i%4*41 && button.getX()<=1130+i%4*42 && button.getY()>=623+i/3*39 && button.getY()<=658+i/3*39)
+					if(button.getX()>=1090+i%4*41 && button.getX()<=1130+i%4*41 && button.getY()>=623+i/4*39 && button.getY()<=658+i/4*39)
 					{
 						temp3 = items.get(type).get(num);
 						temp2 = fastButtons.get(i);
