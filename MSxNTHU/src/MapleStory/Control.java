@@ -27,6 +27,7 @@ public class Control extends Thread{
 	private ArrayList<Money> moneys;
 	private Bag bag;
 	private int bagDelay;
+	private int[] fastDelay;
 	private ItemDatabase dataBase;
 	
 	private DisplayPanel display;
@@ -52,6 +53,7 @@ public class Control extends Thread{
 	    dataBase = new ItemDatabase();
 	    bag = new Bag(display, character);
 	    bagDelay = 0;
+	    fastDelay = new int[9];
 	    display.setBag(bag);
 	    
 	    items = new ArrayList<Item>();
@@ -137,6 +139,9 @@ public class Control extends Thread{
 				}
 				
 				bagDelay--;
+				for(int i = 1 ; i <= 8 ; i++){
+					fastDelay[i]--;
+			    }
 				
 				display.setItem(items);
 				display.setMoney(moneys);
@@ -207,12 +212,6 @@ public class Control extends Thread{
 		if(keyControl.get("left"))       character.RoleMove(0);
 		if(keyControl.get("space"))      character.jump();
 	    if(keyControl.get("down"))     	 character.climb(1);
-	    if(keyControl.get("1"))    		 bag.useFast(1);
-	    if(keyControl.get("2"))    		 bag.useFast(2);
-	    if(keyControl.get("3"))    		 bag.useFast(3);
-	    if(keyControl.get("4"))    		 bag.useFast(4);
-	    if(keyControl.get("5"))    		 bag.useFast(5);
-	    if(keyControl.get("6"))    		 bag.useFast(6);
 	    if(keyControl.get("z"))			 pickUp();
 	    if(keyControl.get("i")){		 
 	    	if(bagDelay <= 0){
@@ -220,6 +219,22 @@ public class Control extends Thread{
 	    		bagDelay = 3;
 	    	}
 	    }
+	    
+	    for(int i = 1 ; i <= 8 ; i++){
+	    	if(keyControl.get(new Integer(i).toString())){		 
+		    	if(fastDelay[i] <= 0){
+		    		bag.useFast(i);
+		    		fastDelay[i] = 5;
+		    	}
+		    }
+	    }
+	    if(keyControl.get("2"))    		 bag.useFast(2);
+	    if(keyControl.get("3"))    		 bag.useFast(3);
+	    if(keyControl.get("4"))    		 bag.useFast(4);
+	    if(keyControl.get("5"))    		 bag.useFast(5);
+	    if(keyControl.get("6"))    		 bag.useFast(6);
+	    if(keyControl.get("7"))    		 bag.useFast(7);
+	    if(keyControl.get("8"))    		 bag.useFast(8);
 	    if(keyControl.get("control")){
 	    	Skill sk = character.normal_attack();
 	    	if(sk != null)
