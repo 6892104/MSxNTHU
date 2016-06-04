@@ -40,6 +40,8 @@ public class QuestionOperator {
     }
 
     public void writeAnswer(String fileName, String inputAns) {
+    	if(inputAns.equals("0"))
+    		return;
         try {
         	System.out.println(inputAns);
             writer = new BufferedWriter(new FileWriter("resource/" + fileName + ".txt", true));
