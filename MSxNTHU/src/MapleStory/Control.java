@@ -228,13 +228,6 @@ public class Control extends Thread{
 		    	}
 		    }
 	    }
-	    if(keyControl.get("2"))    		 bag.useFast(2);
-	    if(keyControl.get("3"))    		 bag.useFast(3);
-	    if(keyControl.get("4"))    		 bag.useFast(4);
-	    if(keyControl.get("5"))    		 bag.useFast(5);
-	    if(keyControl.get("6"))    		 bag.useFast(6);
-	    if(keyControl.get("7"))    		 bag.useFast(7);
-	    if(keyControl.get("8"))    		 bag.useFast(8);
 	    if(keyControl.get("control")){
 	    	Skill sk = character.normal_attack();
 	    	if(sk != null)
