@@ -102,7 +102,7 @@ public class ChatClient {
 		try{
 			if(socket != null){
 				sendMessage("Close");
-				connection.reader.close();;
+				connection.reader.close();
 				socket.close();
 			}
 		}catch(IOException e){

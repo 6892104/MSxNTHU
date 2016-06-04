@@ -341,6 +341,20 @@ public class MapWithObsticle {
 		}
 		return npclist;
 	}
+	
+	public int atWhichFloor(int x, int y){
+		BlockOnMap it;
+		for(int i = 0 ; i < floors.size() ; i++)
+		{
+			it = floors.get(i);
+			if( x > it.start_x  &&  x < it.end_x ){
+				if( y > it.start_y  &&  y < it.end_y){
+					return i;
+				}
+			}
+		}
+		return 0;
+	}
 //----------------------------------------------------------------	
 //-----------------inner classes----------------------------------
 //----------------------------------------------------------------

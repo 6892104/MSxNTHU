@@ -66,7 +66,7 @@ public class ChatPanel extends JPanel{
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER){
 					if(writeBoard.getText().length() > 0){
-						client.sendMessage(display.getCharacterName() + " : " + writeBoard.getText());
+						client.sendMessage(display.getCharacter().name() + " : " + writeBoard.getText());
 						writeBoard.setText("");
 					}
 					display.requestFocus();

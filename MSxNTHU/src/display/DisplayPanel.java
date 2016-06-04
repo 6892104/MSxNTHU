@@ -185,8 +185,8 @@ public class DisplayPanel extends JPanel {
 		chatPanel.getKey();
 	}
 	
-	public String getCharacterName(){
-		return character.name();
+	public Beginner getCharacter(){
+		return character;
 	}
 	
 	public Image getNPCImage(String name){
