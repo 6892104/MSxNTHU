@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-import MapleStory.DisplayPanel;
+import display.DisplayPanel;
 import item.Item;
 import item.Item.ItemType;
 import role.Beginner;
@@ -45,7 +45,7 @@ public class Bag{
 		bagMenuButtons = new ArrayList<JButton>();
 		itemButtons = new ArrayList<ArrayList<JButton>>();
 		fastButtons = new ArrayList<JButton>();
-		fasts.setSize(6);
+		fasts.setSize(8);
 		
 		x = 100;
 		y = 100;
@@ -171,11 +171,11 @@ public class Bag{
 	    closeButton.setVisible(false);
 	    display.add(closeButton);
 	    
-	    for(i=0; i<6; i++)
+	    for(i=0; i<fasts.size(); i++)
 	    {
 	    	temp = new JButton();
 		    temp.setContentAreaFilled(false);
-		    temp.setBounds(1110+i%3*42, 640+i/3*39, 40, 35);
+		    temp.setBounds(1110+i%4*41, 640+i/4*39, 40, 35);
 		    temp.setFocusable(false);
 		    temp.addMouseListener(new fastMouseAdapter(i));
 	        temp.setVisible(true);
@@ -188,10 +188,10 @@ public class Bag{
 	{
 		int i;
 		JLabel temp;
-		for(i=0; i<6; i++)
+		for(i=0; i<fasts.size(); i++)
 		{
 			temp = new JLabel(Integer.toString(i+1));
-			temp.setBounds(1112+i%3*42, 639+i/3*39, 20, 20);
+			temp.setBounds(1112+i%4*41, 639+i/4*39, 20, 20);
 			temp.setVisible(true);
 			display.add(temp);
 		}
@@ -400,13 +400,13 @@ public class Bag{
 			
 			if(type==1)
 			{
-				for(i=0; i<6; i++)
+				for(i=0; i<fasts.size(); i++)
 				{
-					if(button.getX()>=1090+i%3*42 && button.getX()<=1130+i%3*42 && button.getY()>=623+i/3*39 && button.getY()<=658+i/3*39)
+					if(button.getX()>=1090+i%4*41 && button.getX()<=1130+i%4*42 && button.getY()>=623+i/3*39 && button.getY()<=658+i/3*39)
 					{
 						temp3 = items.get(type).get(num);
 						temp2 = fastButtons.get(i);
-						for(j=0; j<6; j++)
+						for(j=0; j<fasts.size(); j++)
 						{
 							if(fasts.get(j)!=null && fasts.get(j).equals(temp3))
 							{
