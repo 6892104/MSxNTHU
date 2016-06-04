@@ -26,7 +26,7 @@ public class MainWindow extends JFrame {
 	    void gameStart();
 	    void keyaction();
 	    void tcreator(int,int,std::string);
-	    void deadinfor(int);
+    void deadinfor(int);
 	    void deadanima();
 	    void green_mode();*/
 	//private ModForGame gameMod;
@@ -76,7 +76,7 @@ public class MainWindow extends JFrame {
 			Image backGround = ImageIO.read(this.getClass().getResourceAsStream("/attack.0.png"));
 			this.setIconImage(backGround);
 		}catch (Exception ie){
-			javax.swing.JOptionPane.showMessageDialog(null, "¸ü¤J¹ÏÀÉ¿ù»~");
+			javax.swing.JOptionPane.showMessageDialog(null, "ï¿½ï¿½ï¿½Jï¿½ï¿½ï¿½É¿ï¿½ï¿½~");
 		}
 	    this.setTitle("MapleStory");
 	    //this.setUndecorated(true); //no border
