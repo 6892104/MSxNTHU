@@ -10,8 +10,8 @@ import display.DisplayPanel;
 import questionSystem.QuestionClient;
 
 public class QuestionNPC extends NPC{
-	boolean answering;
-	QuestionClient client;
+	private boolean answering;
+	private QuestionClient client;
 	
 	public QuestionNPC(String name, DisplayPanel display,MapWithObsticle map){
 		super(name, display, map);
@@ -24,17 +24,30 @@ public class QuestionNPC extends NPC{
 	        	if(answering){
 	        		int option = JOptionPane.showConfirmDialog(null, "選擇好了嗎？", name+" :", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 					if(option == JOptionPane.YES_OPTION){
-						client.sendMessage(new Integer(map.atWhichFloor(display.getCharacter().x(), display.getCharacter().y())).toString());
+						int x = display.getCharacter().x() + display.getCharacter().width()/2;
+						int y = display.getCharacter().y() + display.getCharacter().height();
+						client.sendMessage(new Integer(map.atWhichFloor(x, y)).toString());
 						answering = false;
-						client.closeConnection();
+						//client.closeConnection();
 					}
 	        	}else{
-	        		client = new QuestionClient("127.0.0.1", 6000);
-	    			client.connect();
+	        		if(client == null){
+	        			createClient();
+	        		}
 	    			answering = true;
 	        	}
 	        }
         };
         button.addMouseListener(mouseListen);
+	}
+	
+	private void createClient(){
+		client = new QuestionClient("127.0.0.1", 6000, this);
+		client.connect();
+	}
+	
+	public void closeConversation(){
+		answering = false;
+		client = null;
 	}
 }

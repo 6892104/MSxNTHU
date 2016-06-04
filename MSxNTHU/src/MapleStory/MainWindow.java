@@ -160,7 +160,7 @@ public class MainWindow extends JFrame {
 	    //menu->hide();
 	    //gameMod = StartMod;
 	    //if(play_bgm) start_bgm->play();
-		if(soundOn) startBGM.play();
+		if(soundOn) startBGM.loop();
 
 	    /*Timer = new QTimer(this);
 	    Timer->start(40);*/

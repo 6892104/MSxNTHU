@@ -12,6 +12,7 @@ import java.net.UnknownHostException;
 import javax.swing.JOptionPane;
 
 import processing.data.JSONArray;
+import role.QuestionNPC;
 
 
 public class QuestionClient {
@@ -21,13 +22,13 @@ public class QuestionClient {
 		private Socket socket;
 		private PrintWriter writer;
 		private ClientThread connection;
-		//private ChatPanel chatPanel;
+		private QuestionNPC parent;
 		
 		
-		public QuestionClient(String IPAddress, int portNum) {
+		public QuestionClient(String IPAddress, int portNum, QuestionNPC parent) {
 			this.destinationIPAddr = IPAddress;
 			this.destinationPortNum = portNum;
-			//this.chatPanel = chatPanel;
+			this.parent = parent;
 		}
 		
 		public void sendMessage(String message) {
@@ -71,10 +72,15 @@ public class QuestionClient {
 			 public void run() {
 				 while(!socket.isClosed()) {
 					 try {
+						 System.out.println(socket.isClosed());
 						 String line = this.reader.readLine();
-						 //chatPanel.displayMessage(line);
-						 //System.out.println(line);
-						 javax.swing.JOptionPane.showMessageDialog(null, line);
+						 if(line.equals("Close")){
+							 reader.close();
+							 socket.close();
+							 parent.closeConversation();
+							 break;
+						 }else if(line != null)
+							 javax.swing.JOptionPane.showMessageDialog(null, line);
 					 } catch (IOException e){
 						 e.printStackTrace();
 					 }
@@ -86,7 +92,8 @@ public class QuestionClient {
 			try{
 				if(socket != null){
 					sendMessage("Close");
-					connection.reader.close();;
+					connection.interrupt();
+					connection.reader.close();
 					socket.close();
 				}
 			}catch(IOException e){
@@ -96,15 +103,15 @@ public class QuestionClient {
 		}
 
 		
-		public static void main(String[] args) {
+		/*public static void main(String[] args) {
 			
-			/*GameClient client = new GameClient();
-			client.setIPAddress("127.0.0.1").setPort(8000).connect();*/
+			//GameClient client = new GameClient();
+			//client.setIPAddress("127.0.0.1").setPort(8000).connect();
 			
 			//Equivalent of the above
 			QuestionClient client = new QuestionClient("127.0.0.1", 6000);
 			client.connect();
-		}
+		}*/
 
 }
 
