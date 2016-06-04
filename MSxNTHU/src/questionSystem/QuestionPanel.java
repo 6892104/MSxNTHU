@@ -1,31 +1,31 @@
 package questionSystem;
 
-import java.awt.AlphaComposite;
-import java.awt.Composite;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.io.File;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-
-import chat.ChatClient;
 import display.DisplayPanel;
 
 public class QuestionPanel extends JPanel
 {
 	private DisplayPanel display;
 	private Image image;
-	private JTextField writeBoard;
+	private JTextArea writeBoard;
+	private BufferedWriter writer;
+	private JButton enterButton, finishButton;
+	private QuestionPanel temp;
 	
 	public QuestionPanel(DisplayPanel display)
 	{
+		
+		temp = this;
 		this.display = display;
 		this.setLayout(null);
 		this.setOpaque(false);
@@ -35,8 +35,44 @@ public class QuestionPanel extends JPanel
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		writeBoard = new JTextField();
-		//writeBoard.setBounds(this.getWidth(), this.getHeight(), width, height);
+		
+		try {
+			writer = new BufferedWriter(new FileWriter("./userQuestion.txt"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		writeBoard = new JTextArea();
+		writeBoard.setLineWrap(true);
+		writeBoard.setBounds(40, 80, 340, 250);
+		writeBoard.addKeyListener(null);
+		this.add(writeBoard);
+		enterButton = new JButton();
+		enterButton.setBounds(380, 310, 60, 30);
+		enterButton.setText("¿é¤J");
+		enterButton.addMouseListener(new MouseAdapter(){
+	        public void mousePressed(MouseEvent e){
+	        	try {
+					writer.write(writeBoard.getText());
+					writer.newLine();
+					writer.flush();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+	        	
+	            writeBoard.setText("");
+	        }
+	    });
+		this.add(enterButton);
+		finishButton = new JButton();
+		finishButton.setBounds(450, 310, 60, 30);
+		finishButton.setText("§¹¦¨");
+		finishButton.addMouseListener(new MouseAdapter(){
+	        public void mousePressed(MouseEvent e){
+	        	temp.setVisible(false);
+	        }
+	    });
+		this.add(finishButton);
 	}
 	
 	protected void paintComponent(Graphics g)
