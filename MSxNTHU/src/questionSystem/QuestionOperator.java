@@ -16,13 +16,13 @@ public class QuestionOperator {
     public HashMap<String, String> questions;
     public QuestionOperator() {
         try {
-            reader = new BufferedReader(new FileReader(new File("question/question_list.txt")));
+            reader = new BufferedReader(new FileReader(new File("resource/question_list.txt")));
             questions = new HashMap<String, String>();
             String qTitle = reader.readLine();
             String qContent = reader.readLine();
             while((qTitle != null) && (qContent != null)) {
                 questions.put(qTitle, qContent);
-                writer = new BufferedWriter(new FileWriter("question/" + qTitle + ".txt", false));
+                writer = new BufferedWriter(new FileWriter("resource/" + qTitle + ".txt", false));
                 writer.write(qTitle + ": " + qContent + "\n");
                 writer.close();
                 qTitle = reader.readLine();
@@ -42,7 +42,7 @@ public class QuestionOperator {
     public void writeAnswer(String fileName, String inputAns) {
         try {
         	System.out.println(inputAns);
-            writer = new BufferedWriter(new FileWriter("question/" + fileName + ".txt", true));
+            writer = new BufferedWriter(new FileWriter("resource/" + fileName + ".txt", true));
             writer.append(inputAns + "\n");
             writer.close();
         } catch (IOException e) {

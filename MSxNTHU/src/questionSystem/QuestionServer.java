@@ -99,14 +99,11 @@ public class QuestionServer extends JFrame{
                 try {
                     fileName = "question" + qNum;
                     sendQuestion(this, fileName);
-                    hasInput = false;
-                    while(!hasInput) {
-                        String inputAns = this.reader.readLine();
-                        if(inputAns != "") {
-                            words.writeAnswer(fileName, inputAns);
-                            hasInput = true;
-                            qNum++;
-                        }
+                    String inputAns = this.reader.readLine();
+                    if(inputAns != null) {
+                        words.writeAnswer(fileName, inputAns);
+
+                        qNum++;
                     }
                 } catch (IOException e){
                     e.printStackTrace();

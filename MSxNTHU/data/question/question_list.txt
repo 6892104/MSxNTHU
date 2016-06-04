@@ -1,4 +1,0 @@
-question1
-你最近過得怎麼樣？
-question2
-你開心嗎？

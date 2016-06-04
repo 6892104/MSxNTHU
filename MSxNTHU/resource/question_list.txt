@@ -1,0 +1,18 @@
+question1
+你最近過得怎麼樣？
+question2
+你開心嗎？
+question3
+你爽嗎？
+question4
+你覺得明天會下雨嗎？
+question5
+你覺得我們做得完嗎？
+question6
+你覺得你期末會All pPass嗎？
+question7
+你贊成多元成家嗎？
+question8
+你喜歡吃臭豆腐嗎？
+question9
+你會開飛機嗎？
