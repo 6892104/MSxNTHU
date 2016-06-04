@@ -24,6 +24,7 @@ public class QuestionPanel extends JPanel
 	
 	public QuestionPanel(DisplayPanel display)
 	{
+		
 		temp = this;
 		this.display = display;
 		this.setLayout(null);
