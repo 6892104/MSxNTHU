@@ -18,6 +18,7 @@ import role.QuestionNPC;
 public class MapWithObsticle {
 	private String name;
 	private DisplayPanel display;
+	Control parent;
 	private int size_x, size_y, screen_size_x, screen_size_y;
 	private int shift_x, shift_y, over_shift_x, over_shift_y;
 
@@ -30,8 +31,9 @@ public class MapWithObsticle {
 	JSONObject data;
 	JSONArray data_array;
 
-	public MapWithObsticle(DisplayPanel display){
+	public MapWithObsticle(DisplayPanel display, Control parent){
 		this.display = display;
+		this.parent = parent;
 /*		floors.add(new BlockOnMap( 0, 1392 , 2840 , 1402) );	  //1
 		BAML.add(new BlockAndMonsterLimit( 0, 1392 , 2840 , 1402 , 4) );	   //1
 		floors.add(new BlockOnMap( 822, 1360 , 930 , 1368) );	 //2
@@ -332,7 +334,7 @@ public class MapWithObsticle {
 			NPCpoint npcpoint = npcs.get(i);
 			NPC npc;
 			if(name.equals("map3"))
-				npc = new QuestionNPC(npcpoint.name, display, this);
+				npc = new QuestionNPC(npcpoint.name, display, this, parent);
 			else
 				npc = new NPC(npcpoint.name, display, this);
 			//System.out.println(npcpoint.x +" " +npcpoint.y);

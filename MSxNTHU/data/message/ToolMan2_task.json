@@ -1,0 +1,41 @@
+{
+  "size_x" : 2840,
+  "size_y" : 1748,
+  "messages" : [
+    {
+      "dialog": "message",
+      "type": "information",
+      "message": "哈囉！你在找我嗎？"
+    },
+    {
+      "dialog": "message",
+      "type": "information",
+      "message": "我好想參加下個星期在楓之谷舉辦的化妝舞會唷！\n可是唉…可憐的我，沒有漂亮的禮服可以穿。\n嗚嗚嗚…"
+    },
+    {
+      "dialog": "message",
+      "type": "information",
+      "message": "要是我有200個綠水靈珠就能做出漂亮的衣服了！\n唉可惜我沒錢… \n嗚嗚嗚……"
+    },
+    {
+      "dialog": "message",
+      "type": "information",
+      "message": "也不會把南瓜變馬車……\n嗚嗚嗚……\n（很像什麼故事？）"
+    },
+    {
+      "dialog": "confirm",
+      "type": "question",
+      "message": "你願意幫我收集200個綠水靈珠嗎？\n到時我可以帶你一起去化妝舞會喔！\n",
+      "option": "yes_no",
+      "yes": "task",
+      "task_number": 0
+    }
+  ],
+  "tasks" : [
+    {
+      "type": "collect",
+      "item": "綠水靈珠",
+      "number": 200
+    }
+  ]
+}
