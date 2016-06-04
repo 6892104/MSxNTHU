@@ -38,6 +38,13 @@
   "BAML" : [
   ],
   "TransPoints" : [
+  	{
+  		"name": "map1",
+  	 	"startX": 60,
+  	 	"startY": 690,
+  	  	"endX": 160,
+  	 	"endY": 900
+  	}
   ],
   "NPCpoints" : [
     {
