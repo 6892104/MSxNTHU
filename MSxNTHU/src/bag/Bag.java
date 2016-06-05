@@ -515,38 +515,41 @@ public class Bag{
 		{
 			for(j=0; j<24 && !found; j++)
 			{
-				if(items.get(i).get(j).name().equals(name))
-				{
-					if(items.get(i).get(j).amount>=number)
+				item = items.get(i).get(j);
+				if(item != null){
+					if(item.name().equals(name))
 					{
-						found = true;
-						item = items.get(i).get(j);
-						item.amount-=number;
-						if(i==1) //consumable
+						if(item.amount>=number)
 						{
-							for(k=0; k<8; k++)
+							found = true;
+							
+							item.amount-=number;
+							if(i==1) //consumable
 							{
-								if(fastTable.get(k).equals(j))
+								for(k=0; k<8; k++)
 								{
-									find = k;
-									break;
+									if(fastTable.get(k).equals(j))
+									{
+										find = k;
+										break;
+									}
 								}
 							}
-						}
-						if(item.amount>0)
-						{
-							itemButtons.get(i).get(j).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
-							if(find!=-1) fastButtons.get(find).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
-						}
-						else
-						{
-							items.get(i).set(j, null);
-							itemButtons.get(i).get(j).setIcon(null);
-							if(find!=-1)
+							if(item.amount>0)
 							{
-								fasts.set(find, null);
-								fastButtons.get(find).setIcon(null);
-								fastTable.set(find, -1);
+								itemButtons.get(i).get(j).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
+								if(find!=-1) fastButtons.get(find).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
+							}
+							else
+							{
+								items.get(i).set(j, null);
+								itemButtons.get(i).get(j).setIcon(null);
+								if(find!=-1)
+								{
+									fasts.set(find, null);
+									fastButtons.get(find).setIcon(null);
+									fastTable.set(find, -1);
+								}
 							}
 						}
 					}

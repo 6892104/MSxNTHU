@@ -17,7 +17,7 @@ public class SurveyNPC extends NPC{
 	private Control parent;
 	
 	public SurveyNPC(String name, DisplayPanel display, MapWithObsticle map, Control parent){
-		super(name, display, map);
+		super(name, display, map, parent);
 		this.parent = parent;
 		answering = false;
 		button.removeMouseListener(mouseListen);

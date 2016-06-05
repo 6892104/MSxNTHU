@@ -11,8 +11,14 @@ import processing.data.JSONArray;
 import processing.data.JSONObject;
 
 public class Task {
-	String name;
-	public Task(String name){
+	private NPC npc;
+	private String name;
+	private String item;
+	private int number;
+	private int exp, money;
+	
+	public Task(String name, NPC npc){
+		this.npc = npc;
 		this.name = name;
 		loadData();
 	}
@@ -40,6 +46,8 @@ public class Task {
 							JSONArray tasks = data.getJSONArray("tasks");
 							doTask(tasks.getJSONObject(number));
 						}
+					}else{
+						npc.removeTask();
 					}
 				}
 			}
@@ -51,18 +59,20 @@ public class Task {
 	
 	private void doTask(JSONObject task){
 		if(task.getString("type").equals("collect")){
-			String item = task.getString("item");
-			int number = task.getInt("number");
-			JOptionPane.showMessageDialog(null, "請收集 "+item+" " +number+" 個。", name+" :", getPicture("error"));
-			/*if(option == JOptionPane.YES_OPTION){
-				String yes = data_array.getJSONObject(i).getString("yes");
-				if(yes.equals("task")){
-					int number = data_array.getJSONObject(i).getInt("task_number");
-					JSONArray tasks = data.getJSONArray("tasks");
-					doTask(tasks.getJSONObject(number));
-				}
-			}*/
+			item = task.getString("item");
+			number = task.getInt("number");
+			exp = task.getInt("exp");
+			money = task.getInt("money");
 		}
+	}
+	
+	public void check(){
+		if(npc.checkBag(item, number)){
+			JOptionPane.showMessageDialog(null, "謝謝你的幫忙！", name+" :", getPicture("warning"));
+			npc.reward(exp, money);
+			npc.removeTask();
+		}else
+			JOptionPane.showMessageDialog(null, "請收集 "+item+" " +number+" 個。", name+" :", getPicture("error"));
 	}
 	
 	private int getPicture(String type){

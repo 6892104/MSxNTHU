@@ -207,6 +207,15 @@ public class Control extends Thread{
 		}
 	}
 	
+	public boolean checkBag(String name, int number){
+		return bag.search(name, number);
+	}
+	
+	public void rewardCharacter(int exp, int money){
+		character.gainEXP(exp);
+		bag.putMoney(money);
+	}
+	
 	public void resetMap(String newMap){
 		map.loadData(newMap);
 		display.setMap(map);

@@ -340,7 +340,7 @@ public class MapWithObsticle {
 			else if(npcpoint.type.equals("survey"))
 				npc = new SurveyNPC(npcpoint.name, display, this, parent);
 			else
-				npc = new NPC(npcpoint.name, display, this);
+				npc = new NPC(npcpoint.name, display, this, parent);
 			//System.out.println(npcpoint.x +" " +npcpoint.y);
 			npc.set(npcpoint.x - npcpoint.width/2, npcpoint.y - npcpoint.height, npcpoint.width, npcpoint.height);
 			npclist.add(npc);

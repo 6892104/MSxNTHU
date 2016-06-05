@@ -7,17 +7,21 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import MapleStory.Control;
 import MapleStory.MapWithObsticle;
 import display.DisplayPanel;
 
 
 public class NPC extends Role{
+	protected Control parent;
 	protected JButton button;
 	protected MouseAdapter mouseListen;
 	protected int ScreenX, ScreenY;
+	private Task task;
 	
-	public NPC(String name, DisplayPanel display,MapWithObsticle map){
+	public NPC(String name, DisplayPanel display,MapWithObsticle map, Control control){
 		super(name, display, map);
+		this.parent = control;
 		width = 200;
 	    height = 100;
 	    x = 1000;
@@ -42,8 +46,12 @@ public class NPC extends Role{
 	        	int option = JOptionPane.showConfirmDialog(null, "·Q³Q¨z¡H", "ToolMan :", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 	        	if(option == JOptionPane.YES_OPTION)
 	        		System.exit(0);*/
-	        	if(e.getClickCount() == 2)
-	        		new Task(name);
+	        	if(e.getClickCount() == 2){
+	        		if(task == null)
+	        			createTask();
+	        		else
+	        			task.check();
+	        	}
 	        }
         };
 	    button.addMouseListener(mouseListen);
@@ -65,7 +73,23 @@ public class NPC extends Role{
 		button.setBounds(ScreenX, ScreenY, width, height);
 	}
 	
+	public boolean checkBag(String name, int number){
+		return parent.checkBag(name, number);
+	}
+	
+	public void reward(int exp, int money){
+		parent.rewardCharacter(exp, money);
+	}
+	
+	public void removeTask(){
+		task = null;
+	}
+	
 	public void removeButton(){
 		display.remove(button);
+	}
+	
+	private void createTask(){
+		task = new Task(name, this);
 	}
 }
