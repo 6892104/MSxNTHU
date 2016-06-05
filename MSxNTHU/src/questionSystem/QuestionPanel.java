@@ -89,6 +89,7 @@ public class QuestionPanel extends JPanel
 		numberLabel.setFont(new Font(Font.DIALOG_INPUT, Font.ITALIC, 40));
 		numberLabel.setBounds(45, 30, 80, 40);
 		this.add(numberLabel);
+		this.setVisible(false);
 	}
 	
 	protected void paintComponent(Graphics g)
@@ -98,6 +99,6 @@ public class QuestionPanel extends JPanel
 	
 	public void callSurvey()
 	{
-		
+		this.setVisible(true);
 	}
 }
