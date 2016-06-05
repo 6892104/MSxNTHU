@@ -37,6 +37,7 @@ public class QuestionNPC extends NPC{
 		        	}else{
 		        		if(client == null){
 		        			createClient();
+		        			client.sendMessage("read");
 		        		}
 		    			answering = true;
 		        	}

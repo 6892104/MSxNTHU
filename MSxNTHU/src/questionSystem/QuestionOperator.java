@@ -50,16 +50,16 @@ public class QuestionOperator {
 		String result;
 		switch(inputAns) {
 			case "1":
-				result = "ï¿½Dï¿½`ï¿½ï¿½ï¿½Pï¿½N";
+				result = "«D±`¤£¦P·N";
 				break;
 			case "2":
-				result = "ï¿½ï¿½ï¿½Pï¿½N";
+				result = "¤£¦P·N";
 				break;
 			case "3":
-				result = "ï¿½Pï¿½N";
+				result = "¦P·N";
 				break;
 			case "4":
-				result = "ï¿½Dï¿½`ï¿½Pï¿½N";
+				result = "«D±`¦P·N";
 				break;
 			default:
 				return;
