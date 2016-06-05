@@ -1,6 +1,10 @@
 package bag;
 
 import java.awt.Image;
+import java.awt.TextArea;
+import java.awt.TextField;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -36,7 +40,6 @@ public class Bag{
 	private JLabel moneyLabel;
 	private ArrayList<JButton> fastButtons;
 	private Vector<Integer> fastTable;
-
 	
 	public Bag(DisplayPanel display, Beginner character){
 		this.character = character;
@@ -501,5 +504,55 @@ public class Bag{
 				}
 			}
 		}
+	}
+	
+	public boolean search(String name, int number)
+	{
+		int i, j, k, find=-1;
+		Item item;
+		boolean found = false;
+		for(i=0; i<5 && !found; i++)
+		{
+			for(j=0; j<24 && !found; j++)
+			{
+				if(items.get(i).get(j).name().equals(name))
+				{
+					if(items.get(i).get(j).amount>=number)
+					{
+						found = true;
+						item = items.get(i).get(j);
+						item.amount-=number;
+						if(i==1) //consumable
+						{
+							for(k=0; k<8; k++)
+							{
+								if(fastTable.get(k).equals(j))
+								{
+									find = k;
+									break;
+								}
+							}
+						}
+						if(item.amount>0)
+						{
+							itemButtons.get(i).get(j).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
+							if(find!=-1) fastButtons.get(find).setIcon(new ImageIcon(display.getItemImage(item.name(), item.amount)));
+						}
+						else
+						{
+							items.get(i).set(j, null);
+							itemButtons.get(i).get(j).setIcon(null);
+							if(find!=-1)
+							{
+								fasts.set(find, null);
+								fastButtons.get(find).setIcon(null);
+								fastTable.set(find, -1);
+							}
+						}
+					}
+				}
+			}
+		}
+		return found;
 	}
 }
