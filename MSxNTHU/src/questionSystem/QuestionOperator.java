@@ -43,16 +43,16 @@ public class QuestionOperator {
 		String result;
 		switch(inputAns) {
 			case "1":
-				result = "«D±`¤£¦P·N";
+				result = "ï¿½Dï¿½`ï¿½ï¿½ï¿½Pï¿½N";
 				break;
 			case "2":
-				result = "¤£¦P·N";
+				result = "ï¿½ï¿½ï¿½Pï¿½N";
 				break;
 			case "3":
-				result = "¦P·N";
+				result = "ï¿½Pï¿½N";
 				break;
 			case "4":
-				result = "«D±`¦P·N";
+				result = "ï¿½Dï¿½`ï¿½Pï¿½N";
 				break;
 			default:
 				return;
@@ -60,6 +60,17 @@ public class QuestionOperator {
 		try {
 			writer = new BufferedWriter(new FileWriter("resource/" + fileName + ".txt", true));
 			writer.append(result + "\n");
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public void writeQuestion(String qContent) {
+		int qNum = questions.size()+1;
+		try {
+			writer = new BufferedWriter(new FileWriter("resource/quetion_list.txt", true));
+			writer.append("quetion" + qNum + "\n");
+			writer.append(qContent + "\n");
 			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();
