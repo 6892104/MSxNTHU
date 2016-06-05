@@ -55,7 +55,7 @@ public class QuestionOperator {
 			case "2":
 				result = "不同意";
 				break;
-			case "3":
+case "3":
 				result = "同意";
 				break;
 			case "4":
