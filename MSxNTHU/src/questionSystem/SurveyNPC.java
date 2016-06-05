@@ -3,23 +3,16 @@ package questionSystem;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JOptionPane;
-
 import MapleStory.Control;
 import MapleStory.MapWithObsticle;
 import display.DisplayPanel;
-import role.NPC;
 
-public class SurveyNPC extends NPC{
-	private boolean answering;
-	private QuestionClient client;
+public class SurveyNPC extends QuestionNPC{
 	private QuestionPanel panel;
-	private Control parent;
 	
 	public SurveyNPC(String name, DisplayPanel display, MapWithObsticle map, Control parent){
 		super(name, display, map, parent);
 		this.parent = parent;
-		answering = false;
 		button.removeMouseListener(mouseListen);
 		mouseListen = new MouseAdapter(){
 	        public void mouseClicked(MouseEvent e){
@@ -33,21 +26,24 @@ public class SurveyNPC extends NPC{
         button.addMouseListener(mouseListen);
 	}
 	
-	private void createClient(){
-		//client = new QuestionClient("127.0.0.1", 6000, this);
-		client.connect();
-	}
-	
 	private void createPanel(){
 		panel = new QuestionPanel(display, this);
     	display.add(panel);
     	display.questionPanel = panel;
 	}
 	
-	public void closeConversation(){
-		answering = false;
+	public void sendQuestion(String question){
+		System.out.println(question);
+		createClient();
+		client.sendMessage("write");
+		client.sendMessage(question);
+		client.closeConnection();
 		client = null;
-		parent.resetMap("map1");
+	}
+	
+	@Override
+	public void closeConversation(){
+		client = null;
 	}
 	
 	public void removePanel(){

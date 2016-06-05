@@ -90,7 +90,7 @@ public class QuestionClient {
 		public void closeConnection(){
 			try{
 				if(socket != null){
-					sendMessage("Close");
+					//sendMessage("Close");
 					connection.interrupt();
 					connection.reader.close();
 					socket.close();

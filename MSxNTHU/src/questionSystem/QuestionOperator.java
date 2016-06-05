@@ -75,7 +75,7 @@ public class QuestionOperator {
 	public void writeQuestion(String qContent) {
 		int qNum = questions.size()+1;
 		try {
-			writer = new BufferedWriter(new FileWriter("resource/quetion_list.txt", true));
+			writer = new BufferedWriter(new FileWriter("resource/question_list.txt", true));
 			writer.append("question" + qNum + "\n");
 			writer.append(qContent + "\n");
 			writer.close();

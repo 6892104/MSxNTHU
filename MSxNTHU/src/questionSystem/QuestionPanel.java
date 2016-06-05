@@ -64,6 +64,7 @@ public class QuestionPanel extends JPanel
 						writer.write(writeBoard.getText());
 						writer.newLine();
 						writer.flush();
+						npc.sendQuestion(writeBoard.getText());
 						questionNumber++;
 						numberLabel.setText("Q" + Integer.toString(questionNumber));
 	        		}

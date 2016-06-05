@@ -12,8 +12,8 @@ import role.NPC;
 
 public class QuestionNPC extends NPC{
 	private boolean answering;
-	private QuestionClient client;
-	private Control parent;
+	protected QuestionClient client;
+	protected Control parent;
 	
 	public QuestionNPC(String name, DisplayPanel display, MapWithObsticle map, Control parent){
 		super(name, display, map, parent);
@@ -47,7 +47,7 @@ public class QuestionNPC extends NPC{
         button.addMouseListener(mouseListen);
 	}
 	
-	private void createClient(){
+	protected void createClient(){
 		client = new QuestionClient("127.0.0.1", 6000, this);
 		client.connect();
 	}

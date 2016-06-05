@@ -21,3 +21,5 @@ question8
 你喜歡吃臭豆腐嗎？
 question9
 你會開飛機嗎？
+question10
+fuck
