@@ -42,23 +42,20 @@ public class QuestionOperator {
 	public void writeAnswer(String fileName, String inputAns) {
 		String result;
 		switch(inputAns) {
-		case "0" :
-			return;
-			break;
-		case "1":
-			result = "éå¸¸ä¸åŒæ„";
-			break;
-		case "2":
-			result = "ä¸åŒæ„";
-			break;
-		case "3":
-			result = "åŒæ„";
-			break;
-		case "4":
-			result = "éå¸¸åŒæ„";
-			break;
-		default:
-			return;
+			case "1":
+				result = "«D±`¤£¦P·N";
+				break;
+			case "2":
+				result = "¤£¦P·N";
+				break;
+			case "3":
+				result = "¦P·N";
+				break;
+			case "4":
+				result = "«D±`¦P·N";
+				break;
+			default:
+				return;
 		}
 		try {
 			writer = new BufferedWriter(new FileWriter("resource/" + fileName + ".txt", true));
