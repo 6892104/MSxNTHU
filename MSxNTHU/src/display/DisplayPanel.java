@@ -23,6 +23,7 @@ import item.OtherItem;
 import processing.core.PApplet;
 import processing.data.JSONArray;
 import processing.data.JSONObject;
+import questionSystem.QuestionPanel;
 import role.Beginner;
 import role.Monster;
 import role.NPC;
@@ -56,13 +57,13 @@ public class DisplayPanel extends JPanel {
 	private MoneyPic moneyPic;
 	
 	private ChatPanel chatPanel;
+	public QuestionPanel questionPanel;
 	
 	public DisplayPanel(){
 		this.setLayout(null);
 		chatPanel = new ChatPanel(this);
 		chatPanel.setLocation(0, 645 - chatPanel.getHeight());
 		this.add(chatPanel);
-		
 		
 		status = new Status();
 		chPic = new CharacterPic();

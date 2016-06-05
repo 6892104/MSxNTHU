@@ -24,7 +24,9 @@ public class SurveyNPC extends NPC{
 		mouseListen = new MouseAdapter(){
 	        public void mouseClicked(MouseEvent e){
 	        	if(e.getClickCount() == 2){
-	        		createPanel();
+	        		if(panel == null)
+	        			createPanel();
+	        		panel.callSurvey();
 	        	}
 	        }
         };
@@ -39,6 +41,7 @@ public class SurveyNPC extends NPC{
 	private void createPanel(){
 		panel = new QuestionPanel(display, this);
     	display.add(panel);
+    	display.questionPanel = panel;
 	}
 	
 	public void closeConversation(){

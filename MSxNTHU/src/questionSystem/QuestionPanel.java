@@ -81,6 +81,8 @@ public class QuestionPanel extends JPanel
 		finishButton.addMouseListener(new MouseAdapter(){
 	        public void mousePressed(MouseEvent e){
 	        	temp.setVisible(false);
+	        	questionNumber = 1;
+	        	numberLabel.setText("Q" + Integer.toString(questionNumber));
 	        }
 	    });
 		this.add(finishButton);
