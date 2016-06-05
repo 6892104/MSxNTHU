@@ -9,28 +9,28 @@
       "endY": 1134
     },
     {
-      "startX": 334,
+      "startX": 248,
       "startY": 728,
-      "endX": 497,
-      "endY": 798
+      "endX": 426,
+      "endY": 753
     },
     {
-      "startX": 633,
+      "startX": 588,
       "startY": 728,
-      "endX": 800,
-      "endY": 798
+      "endX": 767,
+      "endY": 753
     },
     {
-  	  "startX": 933,
+  	  "startX": 1085,
       "startY": 728,
-      "endX": 1105,
-      "endY": 798
+      "endX": 1266,
+      "endY": 753
     },
     {
-  	  "startX": 1239,
+  	  "startX": 1405,
       "startY": 728,
-      "endX": 1411,
-      "endY": 798
+      "endX": 1583,
+      "endY": 753
     }
   ],
   "Slopes" : [
