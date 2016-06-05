@@ -71,7 +71,7 @@ public class QuestionClient {
 			 public void run() {
 				 while(!socket.isClosed()) {
 					 try {
-						 System.out.println(socket.isClosed());
+						 //System.out.println(socket.isClosed());
 						 String line = this.reader.readLine();
 						 if(line.equals("Close")){
 							 reader.close();
