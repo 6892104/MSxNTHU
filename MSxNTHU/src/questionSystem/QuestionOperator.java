@@ -18,19 +18,26 @@ public class QuestionOperator {
 		try {
 			reader = new BufferedReader(new FileReader(new File("resource/question_list.txt")));
 			questions = new HashMap<String, String>();
-			String qTitle = reader.readLine();
-			String qContent = reader.readLine();
-			while((qTitle != null) && (qContent != null)) {
-				questions.put(qTitle, qContent);
+			String qTitle = "";
+			String qContent = "";
+			String tmp = "";
+			
+			qTitle = reader.readLine();
+			while((qTitle != null)) {
 				writer = new BufferedWriter(new FileWriter("resource/" + qTitle + ".txt", false));
 				writer.write(qTitle + ": " + qContent + "\n");
 				writer.close();
-				qTitle = reader.readLine();
-				qContent = reader.readLine();
+				tmp = reader.readLine();
+				while ((tmp != null) && (!tmp.substring(0, 8).equals("question"))) {
+					qContent += tmp;
+					tmp = reader.readLine();
+				}
+				questions.put(qTitle, qContent);
+				qTitle = tmp;
+				qContent = "";
 			}
 			reader.close();
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
