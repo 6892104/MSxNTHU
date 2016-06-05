@@ -1,5 +1,6 @@
 package questionSystem;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -9,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import display.DisplayPanel;
@@ -22,10 +24,12 @@ public class QuestionPanel extends JPanel
 	private BufferedWriter writer;
 	private JButton enterButton, finishButton;
 	private QuestionPanel temp;
+	private int questionNumber;
+	private JLabel numberLabel;
 	
 	public QuestionPanel(DisplayPanel display, SurveyNPC npc)
 	{
-		
+		questionNumber = 1;
 		temp = this;
 		this.display = display;
 		this.npc = npc;
@@ -55,9 +59,14 @@ public class QuestionPanel extends JPanel
 		enterButton.addMouseListener(new MouseAdapter(){
 	        public void mousePressed(MouseEvent e){
 	        	try {
-					writer.write(writeBoard.getText());
-					writer.newLine();
-					writer.flush();
+	        		if(writeBoard.getText().length()>0)
+	        		{
+						writer.write(writeBoard.getText());
+						writer.newLine();
+						writer.flush();
+						questionNumber++;
+						numberLabel.setText("Q" + Integer.toString(questionNumber));
+	        		}
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -75,6 +84,12 @@ public class QuestionPanel extends JPanel
 	        }
 	    });
 		this.add(finishButton);
+		
+		numberLabel = new JLabel("Q" + Integer.toString(questionNumber));
+		numberLabel.setFont(new Font(Font.DIALOG_INPUT, Font.ITALIC, 40));
+		numberLabel.setBounds(45, 30, 80, 40);
+		this.add(numberLabel);
+		this.setVisible(false);
 	}
 	
 	protected void paintComponent(Graphics g)
@@ -82,4 +97,8 @@ public class QuestionPanel extends JPanel
 		g.drawImage(image, 0, 0, 534, 373, null);
 	}
 	
+	public void callSurvey()
+	{
+		this.setVisible(true);
+	}
 }
