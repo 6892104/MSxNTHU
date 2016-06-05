@@ -12,9 +12,9 @@ import display.DisplayPanel;
 
 
 public class NPC extends Role{
-	JButton button;
-	MouseAdapter mouseListen;
-	int ScreenX, ScreenY;
+	protected JButton button;
+	protected MouseAdapter mouseListen;
+	protected int ScreenX, ScreenY;
 	
 	public NPC(String name, DisplayPanel display,MapWithObsticle map){
 		super(name, display, map);
@@ -62,5 +62,9 @@ public class NPC extends Role{
 		this.ScreenX = x;
 		this.ScreenY = y;
 		button.setBounds(ScreenX, ScreenY, width, height);
+	}
+	
+	public void removeButton(){
+		display.remove(button);
 	}
 }

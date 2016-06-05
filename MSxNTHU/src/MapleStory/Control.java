@@ -213,6 +213,9 @@ public class Control extends Thread{
 		character.setPosition(0, 0);
 		monsters = map.createMonster();
 	    display.setMonsters(monsters);
+	    for(int i = 0 ; i < npcs.size() ; i++){
+	    	npcs.get(i).removeButton();
+	    }
 	    npcs = map.createNPC();
 	}
 	
