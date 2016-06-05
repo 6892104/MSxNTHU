@@ -28,9 +28,11 @@ public class QuestionOperator {
 				writer.write(qTitle + ": " + qContent + "\n");
 				writer.close();
 				tmp = reader.readLine();
-				while ((tmp != null) && (!tmp.substring(0, 8).equals("question"))) {
+				System.out.println(tmp);
+				while ((tmp != null) && tmp.length() >= 9&& (!tmp.substring(0, 8).equals("question"))) {
 					qContent += tmp;
 					tmp = reader.readLine();
+					System.out.println(tmp);
 				}
 				questions.put(qTitle, qContent);
 				qTitle = tmp;
@@ -55,7 +57,7 @@ public class QuestionOperator {
 			case "2":
 				result = "不同意";
 				break;
-case "3":
+			case "3":
 				result = "同意";
 				break;
 			case "4":
