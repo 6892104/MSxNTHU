@@ -16,17 +16,19 @@ import display.DisplayPanel;
 public class QuestionPanel extends JPanel
 {
 	private DisplayPanel display;
+	private SurveyNPC npc;
 	private Image image;
 	private JTextArea writeBoard;
 	private BufferedWriter writer;
 	private JButton enterButton, finishButton;
 	private QuestionPanel temp;
 	
-	public QuestionPanel(DisplayPanel display)
+	public QuestionPanel(DisplayPanel display, SurveyNPC npc)
 	{
 		
 		temp = this;
 		this.display = display;
+		this.npc = npc;
 		this.setLayout(null);
 		this.setOpaque(false);
 		this.setSize(534, 373);
@@ -66,7 +68,7 @@ public class QuestionPanel extends JPanel
 		this.add(enterButton);
 		finishButton = new JButton();
 		finishButton.setBounds(450, 310, 60, 30);
-		finishButton.setText("§¹¦¨");
+		finishButton.setText("µ²§ô");
 		finishButton.addMouseListener(new MouseAdapter(){
 	        public void mousePressed(MouseEvent e){
 	        	temp.setVisible(false);

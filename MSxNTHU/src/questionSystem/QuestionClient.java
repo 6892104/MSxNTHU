@@ -12,7 +12,6 @@ import java.net.UnknownHostException;
 import javax.swing.JOptionPane;
 
 import processing.data.JSONArray;
-import role.QuestionNPC;
 
 
 public class QuestionClient {

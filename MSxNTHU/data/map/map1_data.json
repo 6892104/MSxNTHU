@@ -244,10 +244,19 @@
   "NPCpoints" : [
   	{
   	  "name": "ToolMan",
+  	  "type": "normal",
   	  "x": 2500,
   	  "y": 443,
   	  "width": 70,
   	  "height": 100
+  	},
+  	{
+  	  "name": "OldMan",
+  	  "type": "survey",
+  	  "x": 2600,
+  	  "y": 443,
+  	  "width": 93,
+  	  "height": 131
   	}
   ]
 }

@@ -42,7 +42,8 @@ public class NPC extends Role{
 	        	int option = JOptionPane.showConfirmDialog(null, "·Q³Q¨z¡H", "ToolMan :", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 	        	if(option == JOptionPane.YES_OPTION)
 	        		System.exit(0);*/
-	        	new Task(name);
+	        	if(e.getClickCount() == 2)
+	        		new Task(name);
 	        }
         };
 	    button.addMouseListener(mouseListen);

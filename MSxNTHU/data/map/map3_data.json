@@ -42,6 +42,7 @@
   "NPCpoints" : [
     {
   	  "name": "DangerDragon",
+  	  "type": "question",
   	  "x": 1600,
   	  "y": 881,
   	  "width": 210,

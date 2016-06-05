@@ -8,11 +8,12 @@ import display.DisplayPanel;
 import processing.core.PApplet;
 import processing.data.JSONArray;
 import processing.data.JSONObject;
+import questionSystem.QuestionNPC;
+import questionSystem.SurveyNPC;
 import role.Green;
 import role.Monster;
 import role.NPC;
 import role.Pig;
-import role.QuestionNPC;
 
 
 public class MapWithObsticle {
@@ -142,8 +143,9 @@ public class MapWithObsticle {
 			int width = data_array.getJSONObject(i).getInt("width");
 			int height = data_array.getJSONObject(i).getInt("height");
 			String name = data_array.getJSONObject(i).getString("name");
+			String type = data_array.getJSONObject(i).getString("type");
 
-			npcs.add(new NPCpoint(x, y, width, height, name));
+			npcs.add(new NPCpoint(x, y, width, height, name, type));
 		}
 
 		screen_size_x = 1280;
@@ -333,8 +335,10 @@ public class MapWithObsticle {
 		for(int i = 0 ; i < npcs.size() ; i++){
 			NPCpoint npcpoint = npcs.get(i);
 			NPC npc;
-			if(name.equals("map3"))
+			if(npcpoint.type.equals("question"))
 				npc = new QuestionNPC(npcpoint.name, display, this, parent);
+			else if(npcpoint.type.equals("survey"))
+				npc = new SurveyNPC(npcpoint.name, display, this, parent);
 			else
 				npc = new NPC(npcpoint.name, display, this);
 			//System.out.println(npcpoint.x +" " +npcpoint.y);
@@ -393,14 +397,16 @@ public class MapWithObsticle {
 	
 	private class NPCpoint{
 		private String name;
+		private String type;
 		private int x, y;
 		private int width, height;
-		private NPCpoint(int x, int y, int width, int height, String name){
+		private NPCpoint(int x, int y, int width, int height, String name, String type){
 			this.x = x;
 			this.y = y;
 			this.width = width;
 			this.height = height;
 			this.name = name;
+			this.type = type;
 		}
 	}
 }
