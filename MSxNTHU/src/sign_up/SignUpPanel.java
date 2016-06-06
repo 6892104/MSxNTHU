@@ -2,6 +2,7 @@ package sign_up;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -9,25 +10,23 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.MouseInfo;
+
+import MapleStory.MainWindow;
 
 public class SignUpPanel extends JPanel{
 
 	private BufferedImage image,mouse;
-	private JLabel name;
-	private SignUpPanel frame;
 	private JTextField account,password;//如果型態為TextField，就不能用設定邊界顏色
 	private JButton signup;
 	private Toolkit toolkit = Toolkit.getDefaultToolkit();
+	private MainWindow parent;
 	
 	private static final long serialVersionUID = 1L;
 	
-	public SignUpPanel(SignUpClient f){
-		//frame = f;//傳入gamestage，用來把建好的物件加入jframe
-		
+	public SignUpPanel(MainWindow parent){
+		this.parent = parent;
 		setLayout(null);
 		Font font1 = new Font("SansSerif", Font.BOLD, 20);
 		account = new JTextField();//玩家輸入文字的地方
@@ -51,7 +50,12 @@ public class SignUpPanel extends JPanel{
 		//signup.setBorderPainted(false);
 	    signup.addActionListener(new ActionListener() {          
 	        public void actionPerformed(ActionEvent e) {
-	        	//SignUpMain.this.sendMessage( mp.account.getText()  + mp.password.getText());
+	        	if(account.getText().length() <= 0)
+	        		JOptionPane.showMessageDialog(null, "請輸入帳號。", "MapleStory :", JOptionPane.ERROR_MESSAGE);
+	        	else if(password.getText().length() <= 0)
+	        		JOptionPane.showMessageDialog(null, "請輸入密碼。", "MapleStory :", JOptionPane.ERROR_MESSAGE);
+	        	else
+	        		parent.checkAccount(account.getText(), password.getText());
 	       }
 	   });
 		
@@ -59,17 +63,19 @@ public class SignUpPanel extends JPanel{
 		try
 		{ 
 				mouse = ImageIO.read(this.getClass().getResourceAsStream("/mouse.png")); //載入圖片
-                image=ImageIO.read(this.getClass().getResourceAsStream("/signup_image.png")); //載入圖片背景
+                image=ImageIO.read(this.getClass().getResourceAsStream("/signup_image.jpg")); //載入圖片背景
                 //Cursor cr = Toolkit.getDefaultToolkit().createCustomCursor( mouse , new Point(0,0) ,"MyCursor" );
                 Cursor cr = toolkit.createCustomCursor( mouse , new Point(0,0) ,"MyCursor" );
                 toolkit.getBestCursorSize(32, 32);
-        		frame.setCursor( cr );
+        		this.setCursor( cr );
         }
 		catch(Exception e)
 		{ 
-                javax.swing.JOptionPane.showMessageDialog(null, "載入圖檔錯誤:"); 
+                javax.swing.JOptionPane.showMessageDialog(null, "載入signup圖檔錯誤"); 
+                e.printStackTrace();
         }
-		
+		this.setPreferredSize(new Dimension(image.getWidth(), image.getHeight()));
+		this.setSize(new Dimension(image.getWidth(), image.getHeight()));
 		this.add(account);
 		this.add(password);
 	}

@@ -22,6 +22,7 @@ public class Pig extends Monster{
 	    
 	    treasure.add("Ä«ªG");
 	    treasure.add("Û£Û£³Ê");
+	    treasure.add("ÂÅÃÄ¤ô");
 	    
 	    money = 30;
 	}

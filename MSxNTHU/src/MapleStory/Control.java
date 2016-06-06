@@ -14,6 +14,7 @@ import processing.core.PApplet;
 import role.Beginner;
 import role.Monster;
 import role.NPC;
+import sign_up.SignUpClient;
 import skill.Skill;
 
 public class Control extends Thread{
@@ -41,24 +42,12 @@ public class Control extends Thread{
 	public Control(DisplayPanel display){
 		this.display = display;
 		map = new MapWithObsticle(display, this);
-		map.loadData("map1");
-	    display.setMap(map);
-	    character = new Beginner("ชüจ}จ}ค์", display, map);
-	    display.setCharacter(character);
-	    monsters = map.createMonster();
-	    display.setMonsters(monsters);
-	    npcs = map.createNPC();
-	    //display.setNPC(npcs);
 	    skills = new ArrayList<Skill>();
 	    dataBase = new ItemDatabase();
-	    bag = new Bag(display, character);
 	    bagDelay = 0;
 	    fastDelay = new int[9];
-	    display.setBag(bag);
-	    
 	    items = new ArrayList<Item>();
 	    moneys = new ArrayList<Money>();
-	    
 	    /*JButton button = new JButton();
 	    button.setBorderPainted(false);
 	    button.setBorder(null);
@@ -75,27 +64,20 @@ public class Control extends Thread{
 	    soundOn = true;
 	}
 	
+	public void setData(String name, String newMap, int lv, int exp, int hp, int max_hp, int mp, int max_mp){
+		character = new Beginner(name, display, map, lv, exp, hp, max_hp, mp, max_mp);
+		display.setCharacter(character);
+		resetMap(newMap);
+	    bag = new Bag(display, character);
+	    display.setBag(bag);
+	}
+	
 	@Override
 	public void run() {
 		super.run();
 		long lastTime = System.currentTimeMillis();
 		while (true){
 			try{
-				/* Game Loop */
-				/*repaint();
-				if( DELAY < 60) {
-					DELAY++;
-					if(curScore <= winScore-10){ // Near the end of game
-						bgCurrentX--;
-						if(curScore > this.winScore-20){ // Can show the ball now
-							ballCurrentX--;
-						}
-					} else {
-						duckCurrentX++;
-					}
-				}*/
-				/* Game Loop End */
-				//lastTime = lastTime + DELAY;
 				Thread.sleep(40);
 				keyDetect();
 				if(character.isDead()){
@@ -205,6 +187,11 @@ public class Control extends Thread{
 				}
 			}
 		}
+	}
+	
+	public void closeGame(){
+		SignUpClient client = new SignUpClient("127.0.0.1", 6687);
+		client.connect();
 	}
 	
 	public boolean checkBag(String name, int number){

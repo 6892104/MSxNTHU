@@ -21,15 +21,15 @@ public class SignUpClient {
 	private Socket socket;
 	private PrintWriter writer;
 	private ClientThread connection;
-	private SignUpPanel signPanel;
+	//private SignUpPanel signPanel;
 	
-	private boolean downloading;
+	public boolean downloading;
 	
 	
-	public SignUpClient(String IPAddress, int portNum, SignUpPanel signPanel) {
+	public SignUpClient(String IPAddress, int portNum) {
 		this.destinationIPAddr = IPAddress;
 		this.destinationPortNum = portNum;
-		this.signPanel = signPanel;
+		//this.signPanel = signPanel;
 		downloading = false;
 	}
 	
@@ -59,28 +59,12 @@ public class SignUpClient {
 		}
 	}
 	
-	private void readCommand(final String message) {
-		/*SwingUtilities.invokeLater(new Runnable(){
-
-			@Override
-			public void run() {
-				GameClient.this.textArea.append(message+"\n"); 
-			}
-			
-		});*/
-		/*if(message.equals("Start")){
-			typing.startGame();
-		}else if(message.equals("Correct")){
-			typing.getResult(true);
-		}else if(message.equals("Wrong")){
-			typing.getResult(false);
-		}else if(message.length() > 5){
-			if(message.substring(0,6).equals("Words:")){
-				String unknown = message.substring(6,15);
-				String known = message.substring(16);
-				typing.setWords(unknown, known);
-			}
-		}*/
+	private void readCommand(String message) {
+		 if(message.equals("succeed")){
+			 downloading = true;
+		 }else if(downloading){
+			 writeFile(message);
+		 }
 	}
 	
 	private void writeFile(String data){
@@ -107,9 +91,15 @@ public class SignUpClient {
 				 try {
 					 String line = this.reader.readLine();
 					 //chatPanel.displayMessage(line);
-					 if(downloading){
-						 writeFile(line);
-					 }
+					 System.out.println(line);
+					 if(line.equals("Close")){
+						 socket.close();
+						 break;
+					 }else if(line.equals("completed")){
+						 socket.close();
+						 break;
+					 }else 
+						 readCommand(line);
 				 } catch (IOException e){
 					 e.printStackTrace();
 				 }

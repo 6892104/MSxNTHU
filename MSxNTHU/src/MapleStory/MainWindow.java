@@ -8,6 +8,9 @@ import java.awt.List;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -19,6 +22,8 @@ import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
 import display.DisplayPanel;
 import processing.core.PApplet;
+import sign_up.SignUpClient;
+import sign_up.SignUpPanel;
 
 public class MainWindow extends JFrame {
 	
@@ -88,37 +93,44 @@ public class MainWindow extends JFrame {
 	                "Are you sure to close this window?", "Really Closing?", 
 	                JOptionPane.YES_NO_OPTION,
 	                JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
-	            	display.closeConnection();
-	                System.exit(0);
+	            	closeGame();
 	            }
 	        }
 	    });
+	    
+	    gameMenu();
 	    
 	    //this.setUndecorated(true); //no border
 	    //this.setExtendedState(JFrame.MAXIMIZED_BOTH); //full screen
 	    //this.setResizable(false);
 	    //this.pack();
 	    //KeyHook.blockWindowsKey();
-	    display = new DisplayPanel();
+	}
+
+	private void gameMenu(){
+		SignUpPanel signPanel = new SignUpPanel(this);
+		this.add(signPanel);
+		this.getContentPane().setPreferredSize(new Dimension(signPanel.getWidth(), signPanel.getHeight()));
+		this.pack();
+	    this.setVisible(true);
+	    signPanel.repaint();
+	    //System.out.println(signPanel.getWidth() + " "+ signPanel.getHeight());
+	}
+	
+	public void checkAccount(String account, String password){
+		SignUpClient client = new SignUpClient("127.0.0.1", 8740);
+		client.connect();
+		client.sendMessage("check");
+		client.sendMessage(account);
+		client.sendMessage(password);
+		//client.downloading = true;
+	}
+	
+	private void gameStart()
+	{
+		
+		display = new DisplayPanel();
 	    
-	    /*this.addFocusListener(new FocusListener() {
-	        private final KeyEventDispatcher altDisabler = new KeyEventDispatcher() {
-	            @Override
-	            public boolean dispatchKeyEvent(KeyEvent e) {
-	                return e.getKeyCode() == 18;
-	            }
-	        };
-
-	        @Override
-	        public void focusGained(FocusEvent e) {
-	            KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(altDisabler);
-	        }
-
-	        @Override
-	        public void focusLost(FocusEvent e) {
-	            KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(altDisabler);
-	        }
-	    });*/
 	    
 	    this.add(display);
 	    keyControl = new KeyControl();
@@ -126,141 +138,54 @@ public class MainWindow extends JFrame {
 	    this.pack();
 	    this.setVisible(true);
 	    display.setBounds(0, 0, this.getContentPane().getWidth(), this.getContentPane().getHeight());
-	System.out.println("ass " + this.getContentPane().getWidth() + " "+ this.getContentPane().getHeight());
+	//System.out.println("ass " + this.getContentPane().getWidth() + " "+ this.getContentPane().getHeight());
 	    //which = pig;
 	
-	    /*play_bgm = true;
-	    play_soundEffect = true;
-	    char startBG[30] = "Sound/bgm.mp3";
-	    char sdrop[30]="Sound/DropItem.mp3";
-	    char spick[30]="Sound/PickUpItem.mp3";
-	    char stombfall[30]="Sound/dead.mp3";
-	    picks = new easyMusic(spick,80,0);
-	    drop = new easyMusic(sdrop,80,0);
-	    tombfall = new easyMusic(stombfall,80,0);
-	
-	
-	    start_bgm = new easyMusic(startBG,80,1);
-	    start_bgm->stop();
-	
-	    this->gameMenu();*/
 		minim = new Minim(new PApplet());
 		soundOn = true;
 		startBGM = minim.loadFile(this.getClass().getResource("/bgm.mp3").getPath());
-		gameStart();
-	}
-	    //~MainWindow();
-
-	private void gameMenu(){
-		
-	}
-	
-	private void gameStart()
-	{
 	    //menu->hide();
 	    //gameMod = StartMod;
 	    //if(play_bgm) start_bgm->play();
 		if(soundOn) startBGM.loop();
-
-	    /*Timer = new QTimer(this);
-	    Timer->start(40);*/
-
-	    
-	    //map->show();
-	    //connect(Timer,SIGNAL(timeout()),map,SLOT(update()));
-
-	    
-	    /*role->show();
-	    connect(Timer,SIGNAL(timeout()),role,SLOT(update()));
-	    connect(Timer,SIGNAL(timeout()),role,SLOT(RoleAction()));
-	    connect(role,SIGNAL(dead(int)),this,SLOT(deadinfor(int)));*/
-
-
-	    //System.out.println("fuck");
 	    
 	    control = new Control(display);
 	    /*control.setCharacter(role);
 	    control.setDisplay(display);*/
 	    control.setKeyControl(keyControl);
 	    control.start();
-
-
-	    //create monster
-	    /*createmonster();
-
-	    bag = new Bag(this);
-	    bag->move(1000,100);
-	    bag->hide();
-
-	    for(int i=0;i<9;i++)
-	    have_item[i]=0;
-
-	    str[1]="apple";
-	    str[2]="red_medicine";
-	    str[3]="blue_snail_shell";
-	    str[4]="full_medicine";
-	    str[5]="orange_medicine";
-	    str[6]="blue_medicine";
-	    str[7]="mushroom_cap";
-	    str[8]="green_wet_fairy";
-	    status = new Status(bag,this);
-	    status->show();
-	    status->move(0,620);
-	    connect(Timer,SIGNAL(timeout()),status,SLOT(update()));
-	    connect(role,SIGNAL(state_change(int,int,int,int)),status,SLOT(get_state(int,int,int,int)));    //bug,use item will change back
-
-	    button=new QPushButton("", this);
-	    //button->setGeometry(QRect(QPoint(100, 100),QSize(200, 50)));
-	    button->setFixedSize(50 , 50);
-	    button->move(860,645);
-	    QPixmap pix(QString(":/Image/bag_button.png"));
-	    button->setIcon( QIcon(pix) );                     // set Icon picture
-	    button->setIconSize( pix.rect().size() );          // set Icon size to the size of picture
-	    button->setFlat(true);                             // hide the frame
-	    button->show();
-
-	    connect(button, SIGNAL (pressed()), this, SLOT (handleButton()));
-
-	    //button2
-	    button2 = new QPushButton("EXIT", this);
-	    button2->setFixedSize(50 , 50);
-	    button2->move(930,660);
-
-	    button2->show();
-	    connect(button2, SIGNAL (pressed()), this, SLOT (back_to_menu()));
-	    //button2->setFocusPolicy( Qt::StrongFocus );
-
-	    //deadbutton
-	    deadbutton = new QPushButton("", this);
-	    deadbutton->setFixedSize(280 , 140);
-	    deadbutton->move(500 , 150);
-	    deadbutton->hide();
-	    pix.load(QString(":/Image/back_to_menu.png"));
-	    deadbutton->setIcon( QIcon(pix) );
-	    deadbutton->setIconSize( pix.rect().size() );
-	    connect(deadbutton, SIGNAL (pressed()), this, SLOT (back_to_menu()));
-
-	    this->setFocus();
-
-	    key["right"]=false;
-	    key["left"]=false;
-	    connect(Timer,SIGNAL(timeout()),this,SLOT (keyaction()));
-
-	    connect(Timer,SIGNAL(timeout()),this,SLOT (update()));*/
-	    //display.repaint();
 	}
-	    /*void pick();
-	    void createmonster();
-
-	    enum{left=0,right=1};
-	    enum{up=0,down=1};
-	    QTimer *Timer;
-	protected:
-	    void paintEvent(QPaintEvent*);  
-	    void keyPressEvent(QKeyEvent *); 
-	    void keyReleaseEvent(QKeyEvent *);
-	    void mouseReleaseEvent(QMouseEvent *);*/
-
+	
+	private void loadData(){
+		try{
+			String data;
+			BufferedReader reader = new BufferedReader(new FileReader(new File("./user.txt")));
+			data = reader.readLine();
+			String name = data;
+			data = reader.readLine();
+			String map = data;
+			data = reader.readLine();
+			int lv = Integer.valueOf(data);
+			data = reader.readLine();
+			/*int hp = Integer.valueOf(data);
+			data = reader.readLine();
+			int mp = Integer.valueOf(data);
+			data = reader.readLine();
+			int exp = Integer.valueOf(data);
+			data = reader.readLine();*/
+			//String map = data;
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+	
+	private void closeGame(){
+		if(display != null)
+			display.closeConnection();
+		if(control != null)
+			control.closeGame();
+        System.exit(0);
+	}
 	
 	public static void main(String[] args) {
 		new MainWindow();

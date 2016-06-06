@@ -130,7 +130,7 @@ public class SignUpServer extends JFrame{
 	}
 
 	public static void main(String[] args) {
-		SignUpServer server = new SignUpServer(6687);
+		SignUpServer server = new SignUpServer(8740);
 		server.runForever();
 	}
 }

@@ -17,7 +17,7 @@ public class User {
 	
 	public User() {
 		try {
-			reader = new BufferedReader(new FileReader(new File("resource/user_list.txt")));
+			reader = new BufferedReader(new FileReader(new File("resource/user_maintain/user_list.txt")));
 			users = new HashMap<String, String>();
 			String userAccount = "";
 			String userPassword = "";
@@ -26,6 +26,7 @@ public class User {
 			while(userAccount != null) {
 				userPassword = reader.readLine();
 				users.put(userAccount,  userPassword);
+				userAccount = reader.readLine();
 			}
 			reader.close();
 		} catch (IOException e) {
@@ -44,7 +45,7 @@ public class User {
 	
 	public void sendInfo(ConnectionThread connect, String userAccount) {
 		try {
-			reader = new BufferedReader(new FileReader(new File("resource/" + userAccount + ".txt")));
+			reader = new BufferedReader(new FileReader(new File("resource/user_maintain/" + userAccount + ".txt")));
 			String line = reader.readLine();
 			while(line != null) {
 				connect.sendMessage(line);
@@ -59,7 +60,7 @@ public class User {
 	
 	public void writeInfo(String inputAccount, String info) {
 		try {
-			writer = new BufferedWriter(new FileWriter("resource/" + inputAccount + ".txt", false));
+			writer = new BufferedWriter(new FileWriter("resource/user_maintain/" + inputAccount + ".txt", false));
 			writer.write(info);
 		} catch (IOException e) {
 			e.printStackTrace();

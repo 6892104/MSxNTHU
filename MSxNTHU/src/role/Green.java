@@ -21,6 +21,7 @@ public class Green extends Monster{
 	    treasure.add("ºñ¤ôÆF¯]");
 	    treasure.add("Ä«ªG");
 	    treasure.add("¬õÃÄ¤ô");
+	    treasure.add("ÂÅÃÄ¤ô");
 	    
 	    money = 30;
 	}

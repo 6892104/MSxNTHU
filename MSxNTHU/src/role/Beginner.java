@@ -92,6 +92,16 @@ public class Beginner extends Role {
 	    tombFall = minim.loadFile(this.getClass().getResource("/dead.mp3").getPath());
 	    soundOn = true;
 	}
+	
+	public Beginner(String name, DisplayPanel display, MapWithObsticle map, int lv, int exp, int hp, int max_hp, int mp, int max_mp){
+		super(name, display, map);
+		this.level = lv;
+		this.exp = exp;
+		this.hp = hp;
+		this.max_hp = max_hp;
+		this.mp = mp;
+		this.max_mp = max_mp;
+	}
 
 	    //easyMusic *nor_attack,*level_up, *jump_effect;
 	public void gain_hp(int gnhp){
