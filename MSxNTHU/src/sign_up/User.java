@@ -3,8 +3,8 @@ package sign_up;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -55,5 +55,14 @@ public class User {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void writeInfo(String inputAccount, String info) {
+		try {
+			writer = new BufferedWriter(new FileWriter("resource/" + inputAccount + ".txt", false));
+			writer.write(info);
+		} catch (IOException e) {
+			e.printStackTrace();
+		};
 	}
 }

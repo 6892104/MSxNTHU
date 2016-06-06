@@ -99,6 +99,17 @@ public class SignUpServer extends JFrame{
 					}
 					closeSocket();
 				}
+				else if(action.equals("write")) {
+					String inputAccount = reader.readLine();
+					String info = reader.readLine();
+					while(info != null) {
+						info += "\n";
+						info += reader.readLine();
+					}
+					info += "\n";
+					user.writeInfo(inputAccount, info);
+					closeSocket();
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -119,7 +130,7 @@ public class SignUpServer extends JFrame{
 	}
 
 	public static void main(String[] args) {
-		SignUpServer server = new SignUpServer(6000);
+		SignUpServer server = new SignUpServer(6687);
 		server.runForever();
 	}
 }
