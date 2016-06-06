@@ -43,14 +43,14 @@ public class ChatServer extends JFrame{
 		
 		try {
 			this.serverSocket = new ServerSocket(portNum);
-			display.append("Server starts listening on port " + portNum + ".\n");
+			display.append("ChatServer starts listening on port " + portNum + ".\n");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public void runForever() {
-		display.append("Server starts waiting for client.\n");
+		display.append("ChatServer starts waiting for client.\n");
 		// Create a loop to make server wait for client forever (unless you stop it)
 		// Make sure you do create a connectionThread and add it into 'connections'
 		while(true) {
@@ -97,7 +97,7 @@ public class ChatServer extends JFrame{
 	
 	public static void main(String[] args) {
 		
-		ChatServer server = new ChatServer(8000);
+		ChatServer server = new ChatServer(6666);
 		server.runForever();
 
 	}

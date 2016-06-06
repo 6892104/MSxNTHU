@@ -44,14 +44,14 @@ public class SignUpServer extends JFrame{
 //			connections.clear();
 			user = new User();
 			this.serverSocket = new ServerSocket(portNum);
-		display.append("Server starts listening on port " + portNum + ".\n");
+		display.append("SignUpServer starts listening on port " + portNum + ".\n");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public void runForever() {
-		display.append("Server starts waiting for client.\n");
+		display.append("SignUpServer starts waiting for client.\n");
 		while(true) {
 			try {
 				Socket connectionToClient = this.serverSocket.accept();
@@ -130,7 +130,7 @@ public class SignUpServer extends JFrame{
 	}
 
 	public static void main(String[] args) {
-		SignUpServer server = new SignUpServer(8740);
+		SignUpServer server = new SignUpServer(6687);
 		server.runForever();
 	}
 }

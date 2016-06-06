@@ -11,6 +11,7 @@ import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import MapleStory.MainWindow;
 import display.ChatPanel;
 
 
@@ -21,7 +22,7 @@ public class SignUpClient {
 	private Socket socket;
 	private PrintWriter writer;
 	private ClientThread connection;
-	//private SignUpPanel signPanel;
+	private MainWindow parent;
 	
 	public boolean downloading;
 	
@@ -30,6 +31,13 @@ public class SignUpClient {
 		this.destinationIPAddr = IPAddress;
 		this.destinationPortNum = portNum;
 		//this.signPanel = signPanel;
+		downloading = false;
+	}
+	
+	public SignUpClient(String IPAddress, int portNum, MainWindow parent) {
+		this.destinationIPAddr = IPAddress;
+		this.destinationPortNum = portNum;
+		this.parent = parent;
 		downloading = false;
 	}
 	
@@ -97,6 +105,7 @@ public class SignUpClient {
 						 break;
 					 }else if(line.equals("completed")){
 						 socket.close();
+						 parent.gameStart();
 						 break;
 					 }else 
 						 readCommand(line);

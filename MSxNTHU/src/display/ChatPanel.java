@@ -58,7 +58,7 @@ public class ChatPanel extends JPanel{
 		this.add(writeBoard);
 		writeBoard.setBounds(0, this.getHeight() - 20, this.getWidth(), 20);
 		
-		client = new ChatClient("127.0.0.1", 8000, this);
+		client = new ChatClient("127.0.0.1", 6666, this);
 		client.connect();
 		
 		writeBoard.addKeyListener(new KeyListener() {

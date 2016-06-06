@@ -48,6 +48,7 @@ public class Control extends Thread{
 	    fastDelay = new int[9];
 	    items = new ArrayList<Item>();
 	    moneys = new ArrayList<Money>();
+	    npcs = new ArrayList<NPC>();
 	    /*JButton button = new JButton();
 	    button.setBorderPainted(false);
 	    button.setBorder(null);

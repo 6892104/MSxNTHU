@@ -118,7 +118,7 @@ public class MainWindow extends JFrame {
 	}
 	
 	public void checkAccount(String account, String password){
-		SignUpClient client = new SignUpClient("127.0.0.1", 8740);
+		SignUpClient client = new SignUpClient("127.0.0.1", 6687, this);
 		client.connect();
 		client.sendMessage("check");
 		client.sendMessage(account);
@@ -126,12 +126,11 @@ public class MainWindow extends JFrame {
 		//client.downloading = true;
 	}
 	
-	private void gameStart()
+	public void gameStart()
 	{
-		
+		this.getContentPane().removeAll();
+		this.getContentPane().setPreferredSize(new Dimension(1280, 720));
 		display = new DisplayPanel();
-	    
-	    
 	    this.add(display);
 	    keyControl = new KeyControl();
 	    display.addKeyListener(keyControl);
@@ -150,8 +149,7 @@ public class MainWindow extends JFrame {
 		if(soundOn) startBGM.loop();
 	    
 	    control = new Control(display);
-	    /*control.setCharacter(role);
-	    control.setDisplay(display);*/
+	    loadData();
 	    control.setKeyControl(keyControl);
 	    control.start();
 	}
@@ -159,21 +157,29 @@ public class MainWindow extends JFrame {
 	private void loadData(){
 		try{
 			String data;
-			BufferedReader reader = new BufferedReader(new FileReader(new File("./user.txt")));
-			data = reader.readLine();
+			File file = new File("./user.txt");
+			BufferedReader reader = new BufferedReader(new FileReader(file));
+				data = reader.readLine();
 			String name = data;
-			data = reader.readLine();
-			String map = data;
-			data = reader.readLine();
+				data = reader.readLine();
+			String newMap = data;
+				data = reader.readLine();
 			int lv = Integer.valueOf(data);
-			data = reader.readLine();
-			/*int hp = Integer.valueOf(data);
-			data = reader.readLine();
-			int mp = Integer.valueOf(data);
-			data = reader.readLine();
+				data = reader.readLine();
 			int exp = Integer.valueOf(data);
-			data = reader.readLine();*/
+				data = reader.readLine();
+			int hp = Integer.valueOf(data);
+				data = reader.readLine();
+			int max_hp = Integer.valueOf(data);
+				data = reader.readLine();
+			int mp = Integer.valueOf(data);
+				data = reader.readLine();
+			int max_mp = Integer.valueOf(data);
+				data = reader.readLine();
+			reader.close();
+			file.delete();
 			//String map = data;
+			control.setData(name, newMap, lv, exp, hp, max_hp, mp, max_mp);;
 		}catch(IOException e){
 			e.printStackTrace();
 		}
