@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import sign_up.SignUpServer.ConnectionThread;
@@ -14,11 +15,13 @@ public class User {
 	private BufferedReader reader;
 	private BufferedWriter writer;
 	public HashMap<String, String> users;
+	public ArrayList<String> isSignin;
 	
 	public User() {
 		try {
 			reader = new BufferedReader(new FileReader(new File("resource/user_maintain/user_list.txt")));
 			users = new HashMap<String, String>();
+			isSignin = new Arraylist<String>();
 			String userAccount = "";
 			String userPassword = "";
 			
@@ -36,7 +39,8 @@ public class User {
 
 	public boolean checkID(String inputAccount, String inputPassword) {
 		if(users.containsKey(inputAccount)) {
-			if(users.get(inputAccount).equals(inputPassword)) {
+			if(users.get(inputAccount).equals(inputPassword) && !isSignin.contains(inputAccount)) {
+				isSignin.add(inputAccount);
 				return true;
 			}
 		}

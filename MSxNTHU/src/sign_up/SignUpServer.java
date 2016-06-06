@@ -108,6 +108,7 @@ public class SignUpServer extends JFrame{
 					}
 					info += "\n";
 					user.writeInfo(inputAccount, info);
+					user.isSignin.remove(inputAccount);
 					closeSocket();
 				}
 			} catch (IOException e) {
