@@ -33,7 +33,7 @@ public class User {
 			String userEmail = new String();
 			URL u = new URL("http://s103062217.web.2y.idv.tw/java/pw.txt");
 			Object obj=u.getContent();
-			InputStreamReader isr = new InputStreamReader((InputStream) obj);
+			InputStreamReader isr = new InputStreamReader((InputStream) obj,"UTF-8");
 			reader = new BufferedReader(isr);
 
 			writer = new BufferedWriter(new FileWriter("resource/user_maintain/user_list.txt", false));
