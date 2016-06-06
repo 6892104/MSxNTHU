@@ -1,11 +1,14 @@
 package sign_up;
 
+import java.io.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -19,17 +22,40 @@ public class User {
 	
 	public User() {
 		try {
-			reader = new BufferedReader(new FileReader(new File("resource/user_maintain/user_list.txt")));
 			users = new HashMap<String, String>();
 			isSignin = new ArrayList<String>();
-			String userAccount = "";
-			String userPassword = "";
+			String userName = new String();
+			String userAccount = new String();
+			String userPassword = new String();
+			String userEmail = new String();
+			URL u = new URL("http://s103062217.web.2y.idv.tw/java/pw.txt");
+			Object obj=u.getContent();
+			InputStreamReader isr = new InputStreamReader((InputStream) obj);
+			reader = new BufferedReader(isr);
+
+			writer = new BufferedWriter(new FileWriter("resource/user_maintain/user_list.txt", false));
+			String str = reader.readLine(); // name
+			while(str != null) {
+				writer.write(str + "\n");; // name
+				writer.write(reader.readLine() + "\n");  //user account
+				writer.write(reader.readLine() + "\n"); // pass word
+				str = reader.readLine(); // email
+				str = reader.readLine(); // name
+			}
+			writer.close();
 			
-			userAccount = reader.readLine();
-			while(userAccount != null) {
-				userPassword = reader.readLine();
-				users.put(userAccount,  userPassword);
+			reader = new BufferedReader(new FileReader(new File("resource/user_maintain/user_list.txt")));
+			userName = reader.readLine();
+			while(userName != null) {
 				userAccount = reader.readLine();
+				userPassword = reader.readLine();
+				if(!(new File("resource/user_maintain/" + userAccount + ".txt").exists())) {
+					writer = new BufferedWriter(new FileWriter("resource/user_maintain/" + userAccount + ".txt", false));
+					writer.close();
+				}
+				users.put(userAccount,  userPassword);
+				userEmail = reader.readLine();
+				userName = reader.readLine();
 			}
 			reader.close();
 		} catch (IOException e) {
