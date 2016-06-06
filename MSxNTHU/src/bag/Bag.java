@@ -583,4 +583,22 @@ public class Bag{
 		}
 		return all;
 	}
+	
+	public boolean payMoney(int number)
+	{
+		int now;
+		now = Integer.valueOf(moneyLabel.getText());
+		if(now>=number)
+		{
+			now-=number;
+			moneyLabel.setText(Integer.toString(now));
+			return true;
+		}
+		else return false;
+	}
+	
+	public int money()
+	{
+		return Integer.valueOf(moneyLabel.getText());
+	}
 }
