@@ -101,12 +101,13 @@ public class SignUpServer extends JFrame{
 				}
 				else if(action.equals("write")) {
 					String inputAccount = reader.readLine();
-					String info = reader.readLine();
-					while(!info.equals("completed")) {
+					String line = reader.readLine();
+					String info = new String();
+					while(!line.equals("completed")) {
+						info += line;
 						info += "\n";
-						info += reader.readLine();
+						line = reader.readLine();
 					}
-					info += "\n";
 					user.writeInfo(inputAccount, info);
 					user.isSignin.remove(inputAccount);
 					closeSocket();
