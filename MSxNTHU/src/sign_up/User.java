@@ -21,7 +21,7 @@ public class User {
 		try {
 			reader = new BufferedReader(new FileReader(new File("resource/user_maintain/user_list.txt")));
 			users = new HashMap<String, String>();
-			isSignin = new Arraylist<String>();
+			isSignin = new ArrayList<String>();
 			String userAccount = "";
 			String userPassword = "";
 			
