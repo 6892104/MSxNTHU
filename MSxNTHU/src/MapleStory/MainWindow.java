@@ -157,9 +157,10 @@ public class MainWindow extends JFrame {
 	}
 	
 	private void loadData(){
+		File file = null;
 		try{
 			String data;
-			File file = new File("./user.txt");
+			file = new File("./user.txt");
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 				data = reader.readLine();
 			String name = data;
@@ -178,12 +179,22 @@ public class MainWindow extends JFrame {
 				data = reader.readLine();
 			int max_mp = Integer.valueOf(data);
 				data = reader.readLine();
+			int atk = Integer.valueOf(data);
+				data = reader.readLine();
+			int matk = Integer.valueOf(data);
+				data = reader.readLine();
+			int def = Integer.valueOf(data);
+				data = reader.readLine();
+			int mdef = Integer.valueOf(data);
+				data = reader.readLine();
 			reader.close();
 			file.delete();
 			//String map = data;
-			control.setData(name, newMap, lv, exp, hp, max_hp, mp, max_mp);;
+			control.setData(name, newMap, lv, exp, hp, max_hp, mp, max_mp, atk, matk, def, mdef);
 		}catch(IOException e){
 			e.printStackTrace();
+			if(file != null)
+				file.delete();
 		}
 	}
 	

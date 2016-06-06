@@ -278,6 +278,15 @@ public abstract class Role {
     public int atk(){
     	return atk;
     }
+    public int matk(){
+    	return matk;
+    }
+    public int def(){
+    	return def;
+    }
+    public int mdef(){
+    	return mdef;
+    }
     
     public int dir(){
     	return dir;

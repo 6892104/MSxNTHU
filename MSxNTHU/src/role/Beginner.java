@@ -93,7 +93,8 @@ public class Beginner extends Role {
 	    soundOn = true;
 	}
 	
-	public Beginner(String name, DisplayPanel display, MapWithObsticle map, int lv, int exp, int hp, int max_hp, int mp, int max_mp){
+	public Beginner(String name, DisplayPanel display, MapWithObsticle map, 
+			int lv, int exp, int hp, int max_hp, int mp, int max_mp, int atk, int matk, int def, int mdef){
 		this(name, display, map);
 		this.level = lv;
 		this.exp = exp;
@@ -101,6 +102,10 @@ public class Beginner extends Role {
 		this.max_hp = max_hp;
 		this.mp = mp;
 		this.max_mp = max_mp;
+		this.atk = atk;
+		this.matk = matk;
+		this.def = def;
+		this.mdef = mdef;
 	}
 
 	    //easyMusic *nor_attack,*level_up, *jump_effect;

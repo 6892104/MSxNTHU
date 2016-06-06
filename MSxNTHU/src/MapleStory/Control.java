@@ -65,8 +65,9 @@ public class Control extends Thread{
 	    soundOn = true;
 	}
 	
-	public void setData(String name, String newMap, int lv, int exp, int hp, int max_hp, int mp, int max_mp){
-		character = new Beginner(name, display, map, lv, exp, hp, max_hp, mp, max_mp);
+	public void setData(String name, String newMap, 
+			int lv, int exp, int hp, int max_hp, int mp, int max_mp, int atk, int matk, int def, int mdef){
+		character = new Beginner(name, display, map, lv, exp, hp, max_hp, mp, max_mp, atk, matk, def, mdef);
 		display.setCharacter(character);
 		resetMap(newMap);
 	    bag = new Bag(display, character);
@@ -203,6 +204,10 @@ public class Control extends Thread{
 		client.sendMessage(Integer.toString(character.maxHP()));
 		client.sendMessage(Integer.toString(character.mp()));
 		client.sendMessage(Integer.toString(character.maxMP()));
+		client.sendMessage(Integer.toString(character.atk()));
+		client.sendMessage(Integer.toString(character.matk()));
+		client.sendMessage(Integer.toString(character.def()));
+		client.sendMessage(Integer.toString(character.mdef()));
 		client.sendMessage("completed");
 		System.out.println("fuck1");
 		//client.closeConnection();
