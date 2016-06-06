@@ -23,10 +23,14 @@ public class User {
 	public ArrayList<String> isSignin;
 	
 	public User() {
-		try {
 			users = new HashMap<String, String>();
 			users_name = new HashMap<String, String>();
 			isSignin = new ArrayList<String>();
+			updateUser();
+	}
+	
+	private void updateUser(){
+		try {
 			String userName = new String();
 			String userAccount = new String();
 			String userPassword = new String();
@@ -46,6 +50,7 @@ public class User {
 				str = reader.readLine(); // name
 			}
 			writer.close();
+			reader.close();
 			
 			reader = new BufferedReader(new FileReader(new File("resource/user_maintain/user_list.txt")));
 			userName = reader.readLine();
@@ -57,7 +62,7 @@ public class User {
 				}
 				users.put(userAccount,  userPassword);
 				users_name.put(userAccount,  userName);
-				userEmail = reader.readLine();
+				//userEmail = reader.readLine();
 				userName = reader.readLine();
 			}
 			reader.close();
@@ -67,6 +72,7 @@ public class User {
 	}
 
 	public boolean checkID(String inputAccount, String inputPassword) {
+		updateUser();
 		if(users.containsKey(inputAccount)) {
 			if(users.get(inputAccount).equals(inputPassword) && !isSignin.contains(inputAccount)) {
 				isSignin.add(inputAccount);
