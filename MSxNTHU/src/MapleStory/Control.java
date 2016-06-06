@@ -1,7 +1,10 @@
 package MapleStory;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import javax.imageio.ImageIO;
 
 import bag.Bag;
 import ddf.minim.AudioPlayer;
@@ -11,6 +14,8 @@ import item.Item;
 import item.ItemDatabase;
 import item.Money;
 import processing.core.PApplet;
+import processing.data.JSONArray;
+import processing.data.JSONObject;
 import role.Beginner;
 import role.Monster;
 import role.NPC;
@@ -208,10 +213,61 @@ public class Control extends Thread{
 		client.sendMessage(Integer.toString(character.matk()));
 		client.sendMessage(Integer.toString(character.def()));
 		client.sendMessage(Integer.toString(character.mdef()));
+		client.sendMessage(Integer.toString(bag.money()));
+		storeBag(client);
+		client.sendMessage("done");
 		client.sendMessage("completed");
 		System.out.println("fuck1");
 		//client.closeConnection();
 		System.out.println("fuck");
+	}
+	
+	private void storeBag(SignUpClient client){
+		JSONObject data;
+		JSONArray data_array;
+		try{
+			String file = "item/item_data.json";
+			data = new PApplet().loadJSONObject(file);
+		
+			data_array = data.getJSONArray("Consumables");
+			for(int i =0; i< data_array.size(); i++) {
+				String name = data_array.getJSONObject(i).getString("name");
+				int number = bag.searchNumber(name);
+				client.sendMessage(name);
+				client.sendMessage(Integer.toString(number));
+			}
+			
+			/*data_array = data.getJSONArray("Equipments");
+			for(int i =0; i< data_array.size(); i++) {
+				String name = data_array.getJSONObject(i).getString("name");
+				try { 
+					itemPicture.put(name, ImageIO.read(this.getClass().getResourceAsStream("/item/consumable/" + name + ".png")));
+				}catch (Exception ie){
+					javax.swing.JOptionPane.showMessageDialog(null, "載入"+name+"圖檔錯誤");
+				}
+			}*/
+			
+			data_array = data.getJSONArray("Other Items");
+			for(int i =0; i< data_array.size(); i++) {
+				String name = data_array.getJSONObject(i).getString("name");
+				int number = bag.searchNumber(name);
+				client.sendMessage(name);
+				client.sendMessage(Integer.toString(number));
+			}
+		}catch (NullPointerException ie){
+			javax.swing.JOptionPane.showMessageDialog(null, "載入物品data錯誤");
+		}
+	}
+	
+	public void setBagItem(String name, int number){
+		System.out.println("fuck" + name);
+		for(int i = 0 ; i < number ; i++){
+			bag.putItem(dataBase.createItem(name, true));
+		}
+	}
+	
+	public void setBagMoney(int amount){
+		bag.putMoney(amount);
 	}
 	
 	public boolean checkBag(String name, int number){

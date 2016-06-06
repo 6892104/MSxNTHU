@@ -70,6 +70,13 @@ public class SignUpClient {
 	private void readCommand(String message) {
 		 if(message.equals("succeed")){
 			 downloading = true;
+			 try{
+					BufferedWriter writer = new BufferedWriter(new FileWriter("./user.txt", false));
+					writer.write("");
+					writer.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 		 }else if(downloading){
 			 writeFile(message);
 		 }

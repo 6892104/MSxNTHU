@@ -186,11 +186,23 @@ public class MainWindow extends JFrame {
 			int def = Integer.valueOf(data);
 				data = reader.readLine();
 			int mdef = Integer.valueOf(data);
+			
+			control.setData(name, newMap, lv, exp, hp, max_hp, mp, max_mp, atk, matk, def, mdef);
+			
 				data = reader.readLine();
+			int money = Integer.valueOf(data);
+			control.setBagMoney(money);
+				data = reader.readLine();
+			while(!data.equals("done")){
+				String item = data;
+					data = reader.readLine();
+				int number = Integer.valueOf(data);
+				control.setBagItem(item, number);
+					data = reader.readLine();
+			}
 			reader.close();
 			file.delete();
 			//String map = data;
-			control.setData(name, newMap, lv, exp, hp, max_hp, mp, max_mp, atk, matk, def, mdef);
 		}catch(IOException e){
 			e.printStackTrace();
 			if(file != null)

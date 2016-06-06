@@ -103,7 +103,23 @@ public class ItemDatabase {
 			else return null;
 		}
 		return null;
-}
+	}
+	
+	public Item createItem(String itemName, boolean concern) {
+		if(consumables.containsKey(itemName)) {
+			Consumable i = new Consumable(consumables.get(itemName));
+			return i;
+		}
+		else if(equipments.containsKey(itemName)) {
+			Equipment i = new Equipment(equipments.get(itemName));
+			return i;
+		}
+		else if(otherItems.containsKey(itemName)) {
+			Item i = new OtherItem(otherItems.get(itemName));
+			return i;
+		}
+		return null;
+	}
 
 	private boolean isHit(int probability) {
 		Random r = new Random();
