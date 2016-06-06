@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -18,11 +19,13 @@ public class User {
 	private BufferedReader reader;
 	private BufferedWriter writer;
 	public HashMap<String, String> users;
+	public HashMap<String, String> users_name;
 	public ArrayList<String> isSignin;
 	
 	public User() {
 		try {
 			users = new HashMap<String, String>();
+			users_name = new HashMap<String, String>();
 			isSignin = new ArrayList<String>();
 			String userName = new String();
 			String userAccount = new String();
@@ -50,10 +53,10 @@ public class User {
 				userAccount = reader.readLine();
 				userPassword = reader.readLine();
 				if(!(new File("resource/user_maintain/" + userAccount + ".txt").exists())) {
-					writer = new BufferedWriter(new FileWriter("resource/user_maintain/" + userAccount + ".txt", false));
-					writer.close();
+					Files.copy(new File("resource/user_maintain/model.txt").toPath(), new File("resource/user_maintain/" + userAccount + ".txt").toPath());
 				}
 				users.put(userAccount,  userPassword);
+				users_name.put(userAccount,  userName);
 				userEmail = reader.readLine();
 				userName = reader.readLine();
 			}
@@ -75,6 +78,7 @@ public class User {
 	
 	public void sendInfo(ConnectionThread connect, String userAccount) {
 		try {
+			connect.sendMessage(users_name.get(userAccount));
 			reader = new BufferedReader(new FileReader(new File("resource/user_maintain/" + userAccount + ".txt")));
 			String line = reader.readLine();
 			while(line != null) {
