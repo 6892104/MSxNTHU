@@ -1,0 +1,153 @@
+{
+  "size_x" : 2800,
+  "size_y" : 900,
+  "Floors" : [
+    {
+      "startX": 0,
+      "startY": 683,
+      "endX": 2800,
+      "endY": 900
+    },
+    {
+      "startX": 478,
+      "startY": 352,
+      "endX": 1248,
+      "endY": 373
+    },
+    {
+      "startX": 1085,
+      "startY": 623,
+      "endX": 1178,
+      "endY": 642
+    },
+    {
+      "startX": 1156,
+      "startY": 562,
+      "endX": 2012,
+      "endY": 583
+    },
+    {
+      "startX": 1989,
+      "startY": 624,
+      "endX": 2105,
+      "endY": 641
+    },
+    {
+      "startX": 2055,
+      "startY": 504,
+      "endX": 2193,
+      "endY": 523
+    },
+    {
+      "startX": 2146,
+      "startY": 322,
+      "endX": 2284,
+      "endY": 342
+    },
+    {
+      "startX": 2145,
+      "startY": 263,
+      "endX": 2286,
+      "endY": 281
+    },
+    {
+      "startX": 1071,
+      "startY": 624,
+      "endX": 1087,
+      "endY": 642
+    },
+    {
+      "startX": 1059,
+      "startY": 641,
+      "endX": 1075,
+      "endY": 657
+    },
+    {
+      "startX": 1040,
+      "startY": 651,
+      "endX": 1056,
+      "endY": 664
+    },
+    {
+      "startX": 1029,
+      "startY": 663,
+      "endX": 1043,
+      "endY": 677
+    },
+	    {
+      "startX": 1013,
+      "startY": 673,
+      "endX": 1029,
+      "endY": 685
+    },
+  ],
+  "Slopes": [
+    {
+      "startX": 2162,
+      "startY": 278,
+      "endX": 2178,
+      "endY": 503
+    },
+    {
+      "startX": 1175,
+      "startY": 310,
+      "endX": 1224,
+      "endY": 563
+    }
+  ],
+  "BAML": [
+  
+  ],
+  "TransPoints" : [
+  	{
+  	  "name": "map1",
+  	  "startX": 2470,
+  	  "startY": 549,
+  	  "endX": 2571,
+  	  "endY": 685
+  	}
+  ],
+  "NPCpoints" : [
+  	{
+  	  "name": "Tool",
+  	  "type": "normal",
+  	  "x": 802,
+  	  "y": 612,
+  	  "width": 52,
+  	  "height": 76
+  	},
+  	{
+  	  "name": "EqipmentShop",
+  	  "type": "normal",
+  	  "x": 952,
+  	  "y": 275,
+  	  "width": 75,
+  	  "height": 81
+  	},
+  	{
+  	  "name": "LiquidShop",
+  	  "type": "normal",
+  	  "x": 1507,
+  	  "y": 494,
+  	  "width": 60,
+  	  "height": 73
+  	},
+  	{
+  	  "name": "Old",
+  	  "type": "normal",
+  	  "x": 1860,
+  	  "y": 492,
+  	  "width": 70,
+  	  "height": 75
+  	},
+  	{
+  	  "name": "LazyMan",
+  	  "type": "normal",
+  	  "x": 2073,
+  	  "y": 431,
+  	  "width": 46,
+  	  "height": 75
+  	}
+  ]
+  
+}
