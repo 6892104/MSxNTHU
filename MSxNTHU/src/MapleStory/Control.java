@@ -201,7 +201,7 @@ public class Control extends Thread{
 		client.connect();
 		client.sendMessage("write");
 		client.sendMessage(account);
-		client.sendMessage(character.name());
+		//client.sendMessage(character.name());
 		client.sendMessage(map.name());
 		client.sendMessage(Integer.toString(character.level()));
 		client.sendMessage(Integer.toString(character.exp()));
