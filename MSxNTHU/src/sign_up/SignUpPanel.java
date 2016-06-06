@@ -9,7 +9,12 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.MalformedURLException;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -19,7 +24,7 @@ public class SignUpPanel extends JPanel{
 
 	private BufferedImage image,mouse;
 	private JTextField account,password;//如果型態為TextField，就不能用設定邊界顏色
-	private JButton signup;
+	private JButton signup, web, join;
 	private Toolkit toolkit = Toolkit.getDefaultToolkit();
 	private MainWindow parent;
 	
@@ -41,6 +46,43 @@ public class SignUpPanel extends JPanel{
 		account.setBorder(null);
 		password.setBorder(null);
 		
+		join = new JButton();
+		add(join);
+		join.setBounds(400, 357, 85, 30);
+		join.setContentAreaFilled(false);
+		join.setFocusable(false);
+		join.addMouseListener(new MouseAdapter(){
+			public void mousePressed(MouseEvent e)
+			{
+				try {
+					String url = "http://s103062217.web.2y.idv.tw/java/index.php";
+					Runtime.getRuntime().exec("cmd /c start " + url);
+				} 
+				catch (MalformedURLException e1) { 
+				} 
+				catch (IOException e1) {   
+				}
+			}
+		});
+		
+		web = new JButton();
+		add(web);
+		web.setBounds(500, 357, 85, 30);
+		web.setContentAreaFilled(false);
+		web.setFocusable(false);
+		web.addMouseListener(new MouseAdapter(){
+			public void mousePressed(MouseEvent e)
+			{
+				try {
+					String url = "http://s103062217.web.2y.idv.tw/java/index.php";
+					Runtime.getRuntime().exec("cmd /c start " + url);
+				} 
+				catch (MalformedURLException e1) { 
+				} 
+				catch (IOException e1) {   
+				}
+			}
+		});
 		
 	    signup = new JButton("");
 	    add(signup);
