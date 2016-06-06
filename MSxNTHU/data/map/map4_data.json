@@ -74,29 +74,28 @@
       "endX": 1043,
       "endY": 677
     },
-	    {
+	{
       "startX": 1013,
       "startY": 673,
       "endX": 1029,
       "endY": 685
-    },
+    }
   ],
   "Slopes": [
     {
       "startX": 2162,
-      "startY": 278,
+      "startY": 270,
       "endX": 2178,
-      "endY": 503
+      "endY": 460
     },
     {
       "startX": 1175,
-      "startY": 310,
+      "startY": 300,
       "endX": 1224,
-      "endY": 563
+      "endY": 520
     }
   ],
   "BAML": [
-  
   ],
   "TransPoints" : [
   	{
@@ -111,43 +110,50 @@
   	{
   	  "name": "Tool",
   	  "type": "normal",
-  	  "x": 802,
-  	  "y": 612,
+  	  "x": 823,
+  	  "y": 685,
   	  "width": 52,
   	  "height": 76
   	},
   	{
-  	  "name": "EqipmentShop",
+  	  "name": "EquipmentShop",
   	  "type": "normal",
-  	  "x": 952,
-  	  "y": 275,
+  	  "x": 990,
+  	  "y": 355,
   	  "width": 75,
   	  "height": 81
   	},
   	{
   	  "name": "LiquidShop",
   	  "type": "normal",
-  	  "x": 1507,
-  	  "y": 494,
+  	  "x": 1534,
+  	  "y": 566,
   	  "width": 60,
   	  "height": 73
   	},
   	{
   	  "name": "Old",
   	  "type": "normal",
-  	  "x": 1860,
-  	  "y": 492,
+  	  "x": 1893,
+  	  "y": 565,
   	  "width": 70,
   	  "height": 75
   	},
   	{
   	  "name": "LazyMan",
   	  "type": "normal",
-  	  "x": 2073,
-  	  "y": 431,
+  	  "x": 2099,
+  	  "y": 504,
   	  "width": 46,
   	  "height": 75
+  	},
+  	{
+  	  "name": "QQLady",
+  	  "type": "normal",
+  	  "x": 439,
+  	  "y": 690,
+  	  "width": 54,
+  	  "height": 70
   	}
   ]
-  
 }
