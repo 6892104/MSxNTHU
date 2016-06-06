@@ -43,6 +43,7 @@ public class Control extends Thread{
 	AudioPlayer drop;
 	AudioPlayer pick;
 	private boolean soundOn;
+	public boolean gameing;
 
 	public Control(DisplayPanel display){
 		this.display = display;
@@ -83,7 +84,7 @@ public class Control extends Thread{
 	public void run() {
 		super.run();
 		long lastTime = System.currentTimeMillis();
-		while (true){
+		while (gameing){
 			try{
 				Thread.sleep(40);
 				keyDetect();

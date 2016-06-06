@@ -27,49 +27,17 @@ import sign_up.SignUpPanel;
 
 public class MainWindow extends JFrame {
 	
-	/*private slots:
-	    void handleButton();
-	    void back_to_menu();
-	    void gameStart();
-	    void keyaction();
-	    void tcreator(int,int,std::string);
-    void deadinfor(int);
-	    void deadanima();
-	    void green_mode();*/
-	//private ModForGame gameMod;
-	//private Menu *menu;
 	private Control control;
 	private KeyControl keyControl;
 
-	
 	private DisplayPanel display;
 	public String account;
 
-	    /*enum Monster{pig,green};
-	    Monster which;
-	    Pig * piggy[20];
-	    int pig_num;
-	    Green * greens[20];
-	    int green_num;
-
-	    Status *status;
-	    QPushButton * button , *button2 , *deadbutton;
-	    std::vector <Item *> treasure;
-	    Item * item[9];
-	    Bag *bag;
-	    int have_item[9];
-	    std::string str[9];
-	    std::map <std::string,bool> key;
-
-	    easyMusic *start_bgm;
-
-	    easyMusic *drop,*picks,*tombfall;*/
-	    //add the sound effect here
 	Minim minim;
 	AudioPlayer startBGM;
+	AudioPlayer menuBGM;
 	
 	public boolean soundOn;
-	
 	
 	public MainWindow(){
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -99,6 +67,11 @@ public class MainWindow extends JFrame {
 	        }
 	    });
 	    
+	    minim = new Minim(new PApplet());
+		soundOn = true;
+		menuBGM = minim.loadFile(this.getClass().getResource("/menu_bgm.mp3").getPath());
+		startBGM = minim.loadFile(this.getClass().getResource("/bgm.mp3").getPath());
+	    
 	    gameMenu();
 	    
 	    //this.setUndecorated(true); //no border
@@ -109,6 +82,13 @@ public class MainWindow extends JFrame {
 	}
 
 	private void gameMenu(){
+		if(startBGM.isPlaying()) startBGM.pause();
+		if(soundOn){
+			menuBGM.rewind();
+			menuBGM.loop();
+		}
+		if(control != null) control.gameing = false;
+		this.getContentPane().removeAll();
 		SignUpPanel signPanel = new SignUpPanel(this);
 		this.add(signPanel);
 		this.getContentPane().setPreferredSize(new Dimension(signPanel.getWidth(), signPanel.getHeight()));
@@ -130,6 +110,11 @@ public class MainWindow extends JFrame {
 	
 	public void gameStart()
 	{
+		if(menuBGM.isPlaying()) menuBGM.pause();
+		if(soundOn){
+			startBGM.rewind();
+			startBGM.loop();
+		}
 		this.getContentPane().removeAll();
 		this.getContentPane().setPreferredSize(new Dimension(1280, 720));
 		display = new DisplayPanel();
@@ -143,15 +128,12 @@ public class MainWindow extends JFrame {
 	//System.out.println("ass " + this.getContentPane().getWidth() + " "+ this.getContentPane().getHeight());
 	    //which = pig;
 	
-		minim = new Minim(new PApplet());
-		soundOn = true;
-		startBGM = minim.loadFile(this.getClass().getResource("/bgm.mp3").getPath());
-	    //menu->hide();
-	    //gameMod = StartMod;
-	    //if(play_bgm) start_bgm->play();
-		if(soundOn) startBGM.loop();
+		
+		
+		
 	    
 	    control = new Control(display);
+	    if(control != null) control.gameing = true;
 	    loadData();
 	    control.setKeyControl(keyControl);
 	    control.start();
@@ -213,10 +195,13 @@ public class MainWindow extends JFrame {
 	
 	private void closeGame(){
 		if(display != null)
-			display.closeConnection();
-		if(control != null)
+			display.closeConnection();	
+		if(control != null && control.gameing){
 			control.closeGame(account);
-        System.exit(0);
+			gameMenu();
+		}else{
+			System.exit(0);
+		}
 	}
 	
 	public static void main(String[] args) {
