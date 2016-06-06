@@ -102,7 +102,7 @@ public class SignUpServer extends JFrame{
 				else if(action.equals("write")) {
 					String inputAccount = reader.readLine();
 					String info = reader.readLine();
-					while(info != null) {
+					while(!info.equals("completed")) {
 						info += "\n";
 						info += reader.readLine();
 					}
