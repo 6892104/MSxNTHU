@@ -24,13 +24,15 @@ public class QuestionOperator {
 			
 			qTitle = reader.readLine();
 			while((qTitle != null)) {
-				writer = new BufferedWriter(new FileWriter("resource/" + qTitle + ".txt", false));
-				writer.write(qTitle + ": " + qContent + "\n");
-				writer.close();
 				tmp = reader.readLine();
 				while ((tmp != null) && (tmp.length() < 9  || (!tmp.substring(0, 8).equals("question")))) {
 					qContent += tmp;
 					tmp = reader.readLine();
+				}
+				if(!(new File("resource/" + qTitle + ".txt").exists())) {
+					writer = new BufferedWriter(new FileWriter("resource/" + qTitle + ".txt", false));
+					writer.write(qTitle + ": " + qContent + "\n");
+					writer.close();
 				}
 				questions.put(qTitle, qContent);
 				qTitle = tmp;
