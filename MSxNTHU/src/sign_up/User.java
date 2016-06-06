@@ -52,7 +52,7 @@ public class User {
 			}
 			connect.sendMessage("completed");
 			reader.close();
-		} catch (FileNotFoundException | IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
