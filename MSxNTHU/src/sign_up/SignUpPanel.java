@@ -24,7 +24,7 @@ public class SignUpPanel extends JPanel{
 
 	private BufferedImage image,mouse;
 	private JTextField account,password;//如果型態為TextField，就不能用設定邊界顏色
-	private JButton signup, web, join;
+	private JButton signup, web, join, end;
 	private Toolkit toolkit = Toolkit.getDefaultToolkit();
 	private MainWindow parent;
 	
@@ -81,6 +81,18 @@ public class SignUpPanel extends JPanel{
 				} 
 				catch (IOException e1) {   
 				}
+			}
+		});
+		
+		end = new JButton();
+		add(end);
+		end.setBounds(610, 354, 55, 30);
+		end.setContentAreaFilled(false);
+		end.setFocusable(false);
+		end.addMouseListener(new MouseAdapter(){
+			public void mousePressed(MouseEvent e)
+			{
+				System.exit(0);
 			}
 		});
 		
