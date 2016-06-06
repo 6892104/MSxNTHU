@@ -12,6 +12,7 @@ import processing.core.PApplet;
 import role.RoleMode.Mode;
 import skill.NormalAttack;
 import skill.Skill.Direction;
+import skill.Skymad;
 
 public class Beginner extends Role {
 	
@@ -148,6 +149,23 @@ public class Beginner extends Role {
 	    	  return new NormalAttack(x+width()/2 , y , 100 , height() , atk , Direction.right , true);
 	      }
 	      //if(play_soundEffect) nor_attack->play();
+		}
+		return null;
+	}
+	
+	public Skymad skymad(){
+		if(atk_mod <= 0 && climb_mod <= 0 && able){
+			if(mp >= 100){
+				mp -= 100;
+				atk_mod = display.getAtkParameter();
+				move_mod = 0;
+				able = false;
+				if(soundOn) {
+					norAtk.rewind();
+					norAtk.play();
+				}
+				return new Skymad(x + width/2, y + height, 9999, Direction.left, true);
+			}
 		}
 		return null;
 	}

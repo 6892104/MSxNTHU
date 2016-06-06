@@ -47,6 +47,7 @@ public class DisplayPanel extends JPanel {
 	private ArrayList<Item> items;
 	private ArrayList<Money> moneys;
 	private Bag bag;
+	private SkymadEffect skymad;
 	
 	private Status status;
 	private CharacterPic chPic;
@@ -72,6 +73,8 @@ public class DisplayPanel extends JPanel {
 		npcPic = new NPCPic();
 		itemPic = new ItemPic();
 		moneyPic = new MoneyPic();
+		
+		skymad = new SkymadEffect();
 		
 		try {
 			bagImage = new ArrayList<Image>();
@@ -114,6 +117,9 @@ public class DisplayPanel extends JPanel {
 				//System.out.println(npc.x() + " " + npc.y());
 				g.drawImage(npcPic.getImage(npc.name()), npc.x() - map.getShift_x(), npc.y() - map.getShift_y(), npc.width(), npc.height(), null);
 			}
+		}
+		if(skymad != null && character != null && map != null){
+			skymad.paintSkill(g, character.x() + character.width()/2 - map.getShift_x(), character.y() + character.height() - map.getShift_y());
 		}
 		if(character != null){
 			//System.out.println("fuck : "+  character.x()+ " "+ character.y() + " " + map.getShift_x() + " " + map.getShift_y());
@@ -204,6 +210,12 @@ public class DisplayPanel extends JPanel {
 	
 	public int getAtkParameter(){
 		return chPic.atk_pic_num * chPic.atk_co;
+	}
+	
+	public void showSkill(String name){
+		if(name.equals("skymad")){
+			skymad.picEffect = 0;
+		}
 	}
 	
 	public void setItem(ArrayList<Item> items){

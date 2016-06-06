@@ -226,6 +226,9 @@ public class Control extends Thread{
 	    	npcs.get(i).removeButton();
 	    }
 	    npcs = map.createNPC();
+	    skills = new ArrayList<Skill>();
+		items = new ArrayList<Item>();
+		moneys  = new ArrayList<Money>();
 	}
 	
 	private void keyDetect(){
@@ -234,13 +237,19 @@ public class Control extends Thread{
 		if(keyControl.get("space"))      character.jump();
 	    if(keyControl.get("down"))     	 character.climb(1);
 	    if(keyControl.get("z"))			 pickUp();
+	    if(keyControl.get("x")){
+	    	Skill sk = character.skymad();
+	    	if(sk != null){
+	    		display.showSkill("skymad");
+	    		skills.add(sk);
+	    	}
+	    }
 	    if(keyControl.get("i")){		 
 	    	if(bagDelay <= 0){
 	    		bag.open();
 	    		bagDelay = 3;
 	    	}
 	    }
-	    
 	    for(int i = 1 ; i <= 8 ; i++){
 	    	if(keyControl.get(new Integer(i).toString())){		 
 		    	if(fastDelay[i] <= 0){
