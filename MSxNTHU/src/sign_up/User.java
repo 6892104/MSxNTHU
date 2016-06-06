@@ -66,8 +66,9 @@ public class User {
 		try {
 			writer = new BufferedWriter(new FileWriter("resource/user_maintain/" + inputAccount + ".txt", false));
 			writer.write(info);
+			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-		};
+		}
 	}
 }

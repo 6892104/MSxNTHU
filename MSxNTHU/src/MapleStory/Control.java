@@ -190,9 +190,23 @@ public class Control extends Thread{
 		}
 	}
 	
-	public void closeGame(){
+	public void closeGame(String account){
 		SignUpClient client = new SignUpClient("127.0.0.1", 6687);
 		client.connect();
+		client.sendMessage("write");
+		client.sendMessage(account);
+		client.sendMessage(character.name());
+		client.sendMessage(map.name());
+		client.sendMessage(Integer.toString(character.level()));
+		client.sendMessage(Integer.toString(character.exp()));
+		client.sendMessage(Integer.toString(character.hp()));
+		client.sendMessage(Integer.toString(character.maxHP()));
+		client.sendMessage(Integer.toString(character.mp()));
+		client.sendMessage(Integer.toString(character.maxMP()));
+		client.sendMessage("completed");
+		System.out.println("fuck1");
+		//client.closeConnection();
+		System.out.println("fuck");
 	}
 	
 	public boolean checkBag(String name, int number){

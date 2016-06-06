@@ -119,8 +119,9 @@ public class SignUpClient {
 	public void closeConnection(){
 		try{
 			if(socket != null){
-				sendMessage("Close");
-				connection.reader.close();
+				//sendMessage("Close");
+				//connection.reader.close();
+				System.out.println("fuck2");
 				socket.close();
 			}
 		}catch(IOException e){

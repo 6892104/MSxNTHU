@@ -108,6 +108,8 @@ public class SignUpServer extends JFrame{
 						info += "\n";
 						line = reader.readLine();
 					}
+					display.append("fuck" + info);
+					System.out.println(info);
 					user.writeInfo(inputAccount, info);
 					user.isSignin.remove(inputAccount);
 					closeSocket();

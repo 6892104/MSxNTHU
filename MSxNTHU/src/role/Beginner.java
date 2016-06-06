@@ -101,9 +101,6 @@ public class Beginner extends Role {
 		this.max_hp = max_hp;
 		this.mp = mp;
 		this.max_mp = max_mp;
-		System.out.println(lv +" "+ exp +" "+ hp +" "+ max_hp+" "+ mp+" "+max_mp);
-		System.out.println("Press Any Key To Continue...");
-        new java.util.Scanner(System.in).nextLine();
 	}
 
 	    //easyMusic *nor_attack,*level_up, *jump_effect;

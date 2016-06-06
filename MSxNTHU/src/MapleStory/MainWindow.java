@@ -43,6 +43,7 @@ public class MainWindow extends JFrame {
 
 	
 	private DisplayPanel display;
+	public String account;
 
 	    /*enum Monster{pig,green};
 	    Monster which;
@@ -124,6 +125,7 @@ public class MainWindow extends JFrame {
 		client.sendMessage(account);
 		client.sendMessage(password);
 		//client.downloading = true;
+		this.account = account;
 	}
 	
 	public void gameStart()
@@ -189,7 +191,7 @@ public class MainWindow extends JFrame {
 		if(display != null)
 			display.closeConnection();
 		if(control != null)
-			control.closeGame();
+			control.closeGame(account);
         System.exit(0);
 	}
 	
