@@ -59,9 +59,9 @@ public class MainWindow extends JFrame {
 	        @Override
 	        public void windowClosing(java.awt.event.WindowEvent windowEvent) {
 	            if (JOptionPane.showConfirmDialog(null, 
-	                "Are you sure to close this window?", "Really Closing?", 
+	                "確定要離開？", "離開", 
 	                JOptionPane.YES_NO_OPTION,
-	                JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+	                JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION){
 	            	closeGame();
 	            }
 	        }
