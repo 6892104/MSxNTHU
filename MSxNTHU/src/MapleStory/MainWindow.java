@@ -136,6 +136,7 @@ public class MainWindow extends JFrame {
 	    this.add(display);
 	    keyControl = new KeyControl();
 	    display.addKeyListener(keyControl);
+	    display.requestFocus();
 	    this.pack();
 	    this.setVisible(true);
 	    display.setBounds(0, 0, this.getContentPane().getWidth(), this.getContentPane().getHeight());
