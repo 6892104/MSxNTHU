@@ -68,7 +68,9 @@ public class SignUpClient {
 	}
 	
 	private void readCommand(String message) {
-		 if(message.equals("succeed")){
+		 if(message.equals("fail")){
+			 javax.swing.JOptionPane.showMessageDialog(null, "登入失敗","系統",javax.swing.JOptionPane.ERROR_MESSAGE);
+		 }else if(message.equals("succeed")){
 			 downloading = true;
 			 try{
 					BufferedWriter writer = new BufferedWriter(new FileWriter("./user.txt", false));
