@@ -108,12 +108,52 @@
   ],
   "NPCpoints" : [
   	{
+  	  "name": "Tool",
+  	  "type": "normal",
+  	  "x": 823,
+  	  "y": 685,
+  	  "width": 52,
+  	  "height": 76
+  	},
+  	{
+  	  "name": "EquipmentShop",
+  	  "type": "normal",
+  	  "x": 990,
+  	  "y": 355,
+  	  "width": 75,
+  	  "height": 81
+  	},
+  	{
   	  "name": "LiquidShop",
   	  "type": "shop",
   	  "x": 1534,
   	  "y": 566,
   	  "width": 60,
   	  "height": 73
+  	},
+  	{
+  	  "name": "Old",
+  	  "type": "normal",
+  	  "x": 1893,
+  	  "y": 565,
+  	  "width": 70,
+  	  "height": 75
+  	},
+  	{
+  	  "name": "LazyMan",
+  	  "type": "normal",
+  	  "x": 2099,
+  	  "y": 504,
+  	  "width": 46,
+  	  "height": 75
+  	},
+  	{
+  	  "name": "QQLady",
+  	  "type": "normal",
+  	  "x": 439,
+  	  "y": 690,
+  	  "width": 54,
+  	  "height": 70
   	}
   ]
 }
