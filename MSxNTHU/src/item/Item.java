@@ -39,8 +39,14 @@ public class Item {
 	public ItemType type(){
 		return this.itemType;
 	}
+	public int lv(){
+		return lvRequired;
+	}
 	public int maxNum(){
 		return maxNum;
+	}
+	public int price(){
+		return price;
 	}
 	public int width() {
 		return this.width;

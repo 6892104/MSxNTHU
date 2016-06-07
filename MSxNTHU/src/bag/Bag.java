@@ -324,7 +324,7 @@ public class Bag{
 		num--;
 		int type=1, find;
 		Item item = fasts.get(num);
-		if(item != null){
+		if(item != null && item.lv() <= character.level()){
 			item.use(character);
 			find = fastTable.get(num);
 			if(item.amount > 1){
@@ -372,7 +372,7 @@ public class Bag{
 			if(e.getClickCount()>=2)
 			{
 				Item item = items.get(type).get(num);
-				if(item != null){
+				if(item != null && item.lv() <= character.level()){
 					item.use(character);
 					for(i=0; i<8; i++)
 					{
@@ -491,7 +491,7 @@ public class Bag{
 			if(e.getClickCount()>=2)
 			{
 				Item item = fasts.get(num);
-				if(item != null){
+				if(item != null && item.lv() <= character.level()){
 					item.use(character);
 					find = fastTable.get(num);
 					if(item.amount > 1){

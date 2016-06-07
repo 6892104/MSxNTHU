@@ -125,7 +125,7 @@
   	},
   	{
   	  "name": "LiquidShop",
-  	  "type": "normal",
+  	  "type": "shop",
   	  "x": 1534,
   	  "y": 566,
   	  "width": 60,

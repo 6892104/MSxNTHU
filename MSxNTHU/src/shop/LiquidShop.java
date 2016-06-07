@@ -9,27 +9,32 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import MapleStory.Control;
 import bag.Bag;
 import display.DisplayPanel;
+import item.Item;
 
 public class LiquidShop extends JPanel
 {
 	private Image image;
 	private int x, y;
 	private JButton apple, red, blue, orange, sup, exit;
-	private Bag bag;
 	private LiquidShop keep;
+	private Control control;
+	private DisplayPanel display;
 	
-	public LiquidShop()
+	public LiquidShop(Control control, DisplayPanel display)
 	{
+		this.control = control;
+		this.display = display;
 		x=200;
 		y=100;
-		bag = null;
 		this.setLayout(null);
 		this.setOpaque(false);
 		this.setSize(224, 334);
 		this.setLocation(x, y);
 		this.setVisible(false);
+		this.setFocusable(true);
 		try {
 			image = ImageIO.read(this.getClass().getResourceAsStream("/LiquidShop.jpg"));
 		} catch (IOException e1) {
@@ -41,12 +46,13 @@ public class LiquidShop extends JPanel
 	
 	protected void paintComponent(Graphics g)
 	{
-		g.drawImage(image, 0, 0, 224, 334, null);
+		g.drawImage(image, 0, 0, null);
 	}
 	
 	public void callLiquidShop()
 	{
 		this.setVisible(true);
+		this.requestFocus();
 	}
 	
 	public void setButton()
@@ -60,10 +66,11 @@ public class LiquidShop extends JPanel
 				boolean temp = false;
                 if(e.getClickCount()==2)
                 {
-                	temp = bag.payMoney(50);
+                	Item item = control.creatItem("Ä«ªG");
+                	temp = control.checkBag(item.price());
                 	if(temp)
                 	{
-                		bag.putItem(null);
+                		control.setBagItem(item);
                 	}
                 }
         }
@@ -79,13 +86,14 @@ public class LiquidShop extends JPanel
 				boolean temp = false;
                 if(e.getClickCount()==2)
                 {
-                	temp = bag.payMoney(100);
+                	Item item = control.creatItem("¬õÃÄ¤ô");
+                	temp = control.checkBag(item.price());
                 	if(temp)
                 	{
-                		bag.putItem(null);
+                		control.setBagItem(item);
                 	}
                 }
-        }
+        } 
 		});
 		this.add(red);
 		
@@ -98,10 +106,11 @@ public class LiquidShop extends JPanel
 				boolean temp = false;
                 if(e.getClickCount()==2)
                 {
-                	temp = bag.payMoney(150);
+                	Item item = control.creatItem("ÂÅÃÄ¤ô");
+                	temp = control.checkBag(item.price());
                 	if(temp)
                 	{
-                		bag.putItem(null);
+                		control.setBagItem(item);
                 	}
                 }
         }
@@ -117,10 +126,11 @@ public class LiquidShop extends JPanel
 				boolean temp = false;
                 if(e.getClickCount()==2)
                 {
-                	temp = bag.payMoney(300);
+                	Item item = control.creatItem("¾ïÃÄ¤ô");
+                	temp = control.checkBag(item.price());
                 	if(temp)
                 	{
-                		bag.putItem(null);
+                		control.setBagItem(item);
                 	}
                 }
         }
@@ -136,10 +146,11 @@ public class LiquidShop extends JPanel
 				boolean temp = false;
                 if(e.getClickCount()==2)
                 {
-                	temp = bag.payMoney(1000);
+                	Item item = control.creatItem("¶W¯ÅÃÄ¤ô");
+                	temp = control.checkBag(item.price());
                 	if(temp)
                 	{
-                		bag.putItem(null);
+                		control.setBagItem(item);
                 	}
                 }
         }
@@ -149,11 +160,13 @@ public class LiquidShop extends JPanel
 		exit = new JButton();
 		exit.setContentAreaFilled(false);
 		exit.setFocusable(false);
-		exit.setBounds(0, 0, 20, 20);
+		exit.setBounds(141, 14, 67, 16);
 		exit.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				keep.setVisible(false);
-        }
+				display.requestFocus();
+			}
 		});
+		this.add(exit);
 	}
 }

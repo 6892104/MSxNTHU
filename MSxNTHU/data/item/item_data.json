@@ -6,7 +6,7 @@
       "HP" : 30,
       "MP" : 0,
       "maxNum": 200,
-      "price": 30,
+      "price": 50,
       "probability": 95
     },
     {
@@ -15,7 +15,7 @@
       "HP" : 50,
       "MP" : 0,
       "maxNum": 200,
-      "price": 50,
+      "price": 100,
       "probability": 50
     },
     {
@@ -24,7 +24,7 @@
       "HP" : 0,
       "MP" : 50,
       "maxNum": 200,
-      "price": 100,
+      "price": 150,
       "probability": 50
     },
     {
@@ -33,7 +33,7 @@
       "HP" : 150,
       "MP" : 0,
       "maxNum": 200,
-      "price": 150,
+      "price": 300,
       "probability": 30
     },
     {
@@ -42,7 +42,7 @@
       "HP" : 9999999,
       "MP" : 9999999,
       "maxNum": 200,
-      "price": 150,
+      "price": 1000,
       "probability": 10
     }
   ],

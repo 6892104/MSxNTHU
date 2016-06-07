@@ -24,9 +24,11 @@ public class ShopNPC extends NPC
 	        {
 	        	if(e.getClickCount() >= 2)
 	        	{
-		        	liquidShop = new LiquidShop();
+	        		if(liquidShop == null){
+			        	liquidShop = new LiquidShop(control, display);
+			        	display.add(liquidShop);
+	        		}
 		        	liquidShop.callLiquidShop();
-		        	display.add(liquidShop);
 	        	}
 	        }
         };

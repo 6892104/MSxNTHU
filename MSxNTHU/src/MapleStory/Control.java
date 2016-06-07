@@ -197,6 +197,11 @@ public class Control extends Thread{
 		}
 	}
 	
+	public Item creatItem(String name){
+		System.out.println(name);
+		return dataBase.createItem(name, true);
+	}
+	
 	public void closeGame(String account){
 		SignUpClient client = new SignUpClient("127.0.0.1", 6687);
 		client.connect();
@@ -261,10 +266,14 @@ public class Control extends Thread{
 	}
 	
 	public void setBagItem(String name, int number){
-		System.out.println("fuck" + name);
+		//System.out.println("fuck" + name);
 		for(int i = 0 ; i < number ; i++){
 			bag.putItem(dataBase.createItem(name, true));
 		}
+	}
+	
+	public void setBagItem(Item item){
+		bag.putItem(item);
 	}
 	
 	public void setBagMoney(int amount){
@@ -273,6 +282,10 @@ public class Control extends Thread{
 	
 	public boolean checkBag(String name, int number){
 		return bag.search(name, number);
+	}
+	
+	public boolean checkBag(int money){
+		return bag.payMoney(money);
 	}
 	
 	public void rewardCharacter(int exp, int money){

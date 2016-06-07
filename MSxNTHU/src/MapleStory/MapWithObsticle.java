@@ -14,6 +14,7 @@ import role.Green;
 import role.Monster;
 import role.NPC;
 import role.Pig;
+import shop.ShopNPC;
 
 
 public class MapWithObsticle {
@@ -339,6 +340,8 @@ public class MapWithObsticle {
 				npc = new QuestionNPC(npcpoint.name, display, this, parent);
 			else if(npcpoint.type.equals("survey"))
 				npc = new SurveyNPC(npcpoint.name, display, this, parent);
+			else if(npcpoint.type.equals("shop"))
+				npc = new ShopNPC(npcpoint.name, display, this, parent);
 			else
 				npc = new NPC(npcpoint.name, display, this, parent);
 			//System.out.println(npcpoint.x +" " +npcpoint.y);
