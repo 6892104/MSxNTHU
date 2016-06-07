@@ -64,7 +64,7 @@ public class LiquidShop extends JPanel
 		apple.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				boolean temp = false;
-                if(e.getClickCount()==2)
+                if(e.getClickCount()>=2)
                 {
                 	Item item = control.creatItem("蘋果");
                 	temp = control.checkBag(item.price());
@@ -84,7 +84,7 @@ public class LiquidShop extends JPanel
 		red.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				boolean temp = false;
-                if(e.getClickCount()==2)
+                if(e.getClickCount()>=2)
                 {
                 	Item item = control.creatItem("紅藥水");
                 	temp = control.checkBag(item.price());
@@ -104,7 +104,7 @@ public class LiquidShop extends JPanel
 		blue.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				boolean temp = false;
-                if(e.getClickCount()==2)
+                if(e.getClickCount()>=2)
                 {
                 	Item item = control.creatItem("藍藥水");
                 	temp = control.checkBag(item.price());
@@ -124,7 +124,7 @@ public class LiquidShop extends JPanel
 		orange.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				boolean temp = false;
-                if(e.getClickCount()==2)
+                if(e.getClickCount()>=2)
                 {
                 	Item item = control.creatItem("橘藥水");
                 	temp = control.checkBag(item.price());
@@ -144,7 +144,7 @@ public class LiquidShop extends JPanel
 		sup.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				boolean temp = false;
-                if(e.getClickCount()==2)
+                if(e.getClickCount()>=2)
                 {
                 	Item item = control.creatItem("超級藥水");
                 	temp = control.checkBag(item.price());

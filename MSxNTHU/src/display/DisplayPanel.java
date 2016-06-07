@@ -355,7 +355,7 @@ public class DisplayPanel extends JPanel {
 		
 		private Image mergeImage(Image image1, Image image2){
 			// create the new image, canvas size is the max. of both image sizes
-			BufferedImage combined = new BufferedImage(image1.getWidth(null) * 2, image1.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+			BufferedImage combined = new BufferedImage(image1.getWidth(null)  + image2.getWidth(null), image1.getHeight(null), BufferedImage.TYPE_INT_ARGB);
 
 			// paint both images, preserving the alpha channels
 			Graphics g = combined.getGraphics();
