@@ -15,7 +15,7 @@
     {
       "dialog": "message",
       "type": "information",
-      "message": "要是我有200個綠水靈珠就能做出漂亮的衣服了！\n唉可惜我沒錢… \n嗚嗚嗚……"
+      "message": "要是我有10個綠水靈珠就能做出漂亮的衣服了！\n唉可惜我沒錢… \n嗚嗚嗚……"
     },
     {
       "dialog": "message",
@@ -25,7 +25,7 @@
     {
       "dialog": "confirm",
       "type": "question",
-      "message": "你願意幫我收集200個綠水靈珠嗎？\n到時我可以帶你一起去化妝舞會喔！\n",
+      "message": "你願意幫我收集10個綠水靈珠嗎？\n到時我可以帶你一起去化妝舞會喔！\n",
       "option": "yes_no",
       "yes": "task",
       "task_number": 0
@@ -35,7 +35,9 @@
     {
       "type": "collect",
       "item": "綠水靈珠",
-      "number": 200
+      "number": 10,
+	  "exp": 400,
+      "money": 1000
     }
   ]
 }

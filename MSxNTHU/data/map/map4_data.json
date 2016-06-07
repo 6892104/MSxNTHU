@@ -114,6 +114,14 @@
   	  "y": 566,
   	  "width": 60,
   	  "height": 73
+  	},
+	{
+  	  "name": "QQLady",
+  	  "type": "normal",
+  	  "x": 439,
+  	  "y": 690,
+  	  "width": 54,
+  	  "height": 70
   	}
   ]
 }
