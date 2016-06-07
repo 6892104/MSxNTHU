@@ -119,9 +119,9 @@ public class SignUpPanel extends JPanel{
 				mouse = ImageIO.read(this.getClass().getResourceAsStream("/mouse.png")); //載入圖片
                 image=ImageIO.read(this.getClass().getResourceAsStream("/signup_image.jpg")); //載入圖片背景
                 //Cursor cr = Toolkit.getDefaultToolkit().createCustomCursor( mouse , new Point(0,0) ,"MyCursor" );
-                Cursor cr = toolkit.createCustomCursor( mouse , new Point(0,0) ,"MyCursor" );
+                /*Cursor cr = toolkit.createCustomCursor( mouse , new Point(0,0) ,"MyCursor" );
                 toolkit.getBestCursorSize(32, 32);
-        		this.setCursor( cr );
+        		this.setCursor( cr );*/
         }
 		catch(Exception e)
 		{ 

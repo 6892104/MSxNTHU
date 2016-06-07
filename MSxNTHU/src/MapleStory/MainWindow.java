@@ -1,10 +1,13 @@
 package MapleStory;
 
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.List;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
@@ -46,6 +49,7 @@ public class MainWindow extends JFrame {
 	   /* this.setPreferredSize(new Dimension(1280, 720));
 	    this.setMinimumSize(new Dimension(1280, 720));*/
 	    this.setSize(1280, 720);
+	    this.setResizable(false);
 		this.setLocation(300, 100);
 		//read picture
 		try {
@@ -66,6 +70,21 @@ public class MainWindow extends JFrame {
 	            }
 	        }
 	    });
+	    
+	    try
+		{ 
+	    	Toolkit toolkit = Toolkit.getDefaultToolkit();
+			Image mouse = ImageIO.read(this.getClass().getResourceAsStream("/mouse.png")); //載入圖片
+            //Cursor cr = Toolkit.getDefaultToolkit().createCustomCursor( mouse , new Point(0,0) ,"MyCursor" );
+            Cursor cr = toolkit.createCustomCursor( mouse , new Point(0,0) ,"MyCursor" );
+            toolkit.getBestCursorSize(32, 32);
+    		this.setCursor( cr );
+        }
+		catch(Exception e)
+		{ 
+                javax.swing.JOptionPane.showMessageDialog(null, "載入mouse圖檔錯誤"); 
+                e.printStackTrace();
+        }
 	    
 	    minim = new Minim(new PApplet());
 		soundOn = true;
