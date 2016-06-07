@@ -81,6 +81,7 @@ public class QuestionOperator {
 			writer.append("question" + qNum + "\n");
 			writer.append(qContent + "\n");
 			writer.close();
+			questions.put("question" + qNum, qContent);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
