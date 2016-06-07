@@ -52,6 +52,8 @@ public class User {
 			writer.close();
 			reader.close();
 			
+			users.clear();
+			users_name.clear();
 			reader = new BufferedReader(new FileReader(new File("resource/user_maintain/user_list.txt")));
 			userName = reader.readLine();
 			while(userName != null) {

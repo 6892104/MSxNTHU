@@ -44,14 +44,14 @@ public class QuestionServer extends JFrame{
 //			connections.clear();
 			words = new QuestionOperator();
 			this.serverSocket = new ServerSocket(portNum);
-		display.append("Server starts listening on port " + portNum + ".\n");
+		display.append("QuestionServer starts listening on port " + portNum + ".\n");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public void runForever() {
-		display.append("Server starts waiting for client.\n");
+		display.append("QuestionServer starts waiting for client.\n");
 		while(true) {
 			try {
 				Socket connectionToClient = this.serverSocket.accept();
