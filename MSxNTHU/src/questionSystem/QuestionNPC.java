@@ -24,7 +24,7 @@ public class QuestionNPC extends NPC{
 	        public void mouseClicked(MouseEvent e){
 	        	//new Task(name);
 	        	//JOptionPane.showMessageDialog(null, "what the ass");
-	        	if(e.getClickCount() == 2){
+	        	if(e.getClickCount() >= 2){
 		        	if(answering){
 		        		int option = JOptionPane.showConfirmDialog(null, "選擇好了嗎？", name+" :", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 						if(option == JOptionPane.YES_OPTION){

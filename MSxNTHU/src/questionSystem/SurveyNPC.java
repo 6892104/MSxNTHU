@@ -16,7 +16,7 @@ public class SurveyNPC extends QuestionNPC{
 		button.removeMouseListener(mouseListen);
 		mouseListen = new MouseAdapter(){
 	        public void mouseClicked(MouseEvent e){
-	        	if(e.getClickCount() == 2){
+	        	if(e.getClickCount() >= 2){
 	        		if(panel == null)
 	        			createPanel();
 	        		panel.callSurvey();

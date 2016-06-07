@@ -369,7 +369,7 @@ public class Bag{
 		}
 		public void mouseClicked(MouseEvent e)
 		{
-			if(e.getClickCount()==2)
+			if(e.getClickCount()>=2)
 			{
 				Item item = items.get(type).get(num);
 				if(item != null){
@@ -488,7 +488,7 @@ public class Bag{
 		}
 		public void mouseClicked(MouseEvent e)
 		{
-			if(e.getClickCount()==2)
+			if(e.getClickCount()>=2)
 			{
 				Item item = fasts.get(num);
 				if(item != null){

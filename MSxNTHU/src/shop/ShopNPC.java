@@ -22,7 +22,7 @@ public class ShopNPC extends NPC
 		mouseListen = new MouseAdapter(){
 	        public void mouseClicked(MouseEvent e)
 	        {
-	        	if(e.getClickCount() == 2)
+	        	if(e.getClickCount() >= 2)
 	        	{
 		        	liquidShop = new LiquidShop();
 		        	liquidShop.callLiquidShop();
