@@ -110,12 +110,16 @@ public class Beginner extends Role {
 
 	    //easyMusic *nor_attack,*level_up, *jump_effect;
 	public void gain_hp(int gnhp){
-		hp+=gnhp;
-	    hp=Math.min(hp,max_hp);
+		if(hp > 0){
+			hp+=gnhp;
+		    hp=Math.min(hp,max_hp);
+		}
 	}
 	public void gain_mp(int gnmp){
-    	mp+=gnmp;
-        mp=Math.min(mp,max_mp);
+		if(mp > 0){
+	    	mp+=gnmp;
+	        mp=Math.min(mp,max_mp);
+		}
 	}
 	
 	public RoleMode getMode(){
@@ -212,7 +216,7 @@ public class Beginner extends Role {
 	
 	public void gainEXP(int new_exp){
 		exp+=new_exp;
-	    if(exp >= max_exp[level])
+	    while(exp >= max_exp[level])
 	    {
 	        /*if(play_soundEffect)
 	            level_up->play();*/
@@ -277,6 +281,7 @@ public class Beginner extends Role {
 		
 		private void reset(){
 			JOptionPane.showMessageDialog(null, "UCCU\n你死去了。\n哈哈笑你～", "系統 :", JOptionPane.WARNING_MESSAGE );
+			able = false;
 			x = x();
 			y = y() - 190;
 			tombEffect = 21;

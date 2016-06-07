@@ -14,6 +14,7 @@ public class QuestionNPC extends NPC{
 	private boolean answering;
 	protected QuestionClient client;
 	protected Control parent;
+	private int qnum;
 	
 	public QuestionNPC(String name, DisplayPanel display, MapWithObsticle map, Control parent){
 		super(name, display, map, parent);
@@ -31,11 +32,13 @@ public class QuestionNPC extends NPC{
 							int x = display.getCharacter().x() + display.getCharacter().width()/2;
 							int y = display.getCharacter().y() + display.getCharacter().height();
 							client.sendMessage(new Integer(map.atWhichFloor(x, y)).toString());
-							answering = false;
+							qnum++;
+							//answering = false;
 							//client.closeConnection();
 						}
 		        	}else{
 		        		if(client == null){
+		        			qnum = 0;
 		        			createClient();
 		        			client.sendMessage("read");
 		        		}
@@ -45,6 +48,7 @@ public class QuestionNPC extends NPC{
 	        }
         };
         button.addMouseListener(mouseListen);
+        qnum = 0;
 	}
 	
 	protected void createClient(){
@@ -55,6 +59,8 @@ public class QuestionNPC extends NPC{
 	public void closeConversation(){
 		answering = false;
 		client = null;
+		System.out.println(100 * qnum);
+		parent.rewardCharacter(100 * qnum, 100 * qnum);
 		parent.resetMap("map1");
 	}
 }
